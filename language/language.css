@@ -1,0 +1,260 @@
+/* -------------------------------
+   전체 배경 / 타이틀
+--------------------------------*/
+body {
+    background-color: #e6f0ff;
+    text-align: center;
+    padding-bottom: 150px;
+    font-family: 'Inter', sans-serif;
+}
+
+.title-text {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 30px 0 15px;
+    color: #333;
+}
+
+
+/* ==========================================================
+   🧩 조합보드 (workspace)
+   ========================================================== */
+#workspace-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 40px;
+    position: relative;
+    padding-top: 50px;  
+}
+
+#workspace {
+    width: 100%;
+    height: 220px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+/* ==========================================================
+   1) 조합보드 오른쪽 상단 버튼
+      (커서 / 지우개 / 전체삭제)
+   ========================================================== */
+#toolButtons {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: space-between; /* 양쪽 끝으로 배치 */
+    align-items: center;
+
+    padding: 0 0;  /* 좌우 여백 */
+}
+
+#toolButtons button {
+    padding: 8px 16px;
+    background: #4a6fa5;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+#toolButtons button:hover {
+    background: #3558c8;
+}
+
+#toolButtons .active {
+    background: #222;
+}
+
+
+
+/* ==========================================================
+   2) 자음 박스 왼쪽 상단 버튼
+      (그룹모드 / 획모드)
+   ========================================================== */
+#modeToggle {
+    width: 100%;
+    max-width: 680px;  /* 자음박스 width와 맞춤 */
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+
+    transform: translateY(-10px); /* 제목과 간격 조절 */
+}
+
+#modeToggle button {
+    padding: 8px 16px;
+    background: #ff8d3a;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+#modeToggle button.active {
+    background: #d9732d;
+}
+
+
+
+/* ==========================================================
+   ✨ 자음 / 모음 박스
+   ========================================================== */
+#consonant-wrapper {
+    width: 100%;
+    max-width: 680px;
+    height: 200px;
+    margin: 20px auto 40px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+#vowel-wrapper {
+    width: 100%;
+    max-width: 780px;
+    height: 100px;
+    margin: 10px auto 60px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+
+
+/* ==========================================================
+   스케일 컨테이너
+   ========================================================== */
+.scale-container {
+    transform-origin: top center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* ==========================================================
+   자음/모음 컨테이너
+   ========================================================== */
+#consonant-container {
+    width: 580px;
+    height: 240px;
+    position: relative;
+}
+
+#vowel-container {
+    width: 850px;
+    height: 220px;
+    position: relative;
+}
+
+
+
+/* ==========================================================
+   stroke / circle 요소 스타일
+   ========================================================== */
+.stroke {
+    position: absolute;
+    height: 11px;
+    opacity: 0;
+    border-radius: 4px;
+    transform-origin: 0 0;
+    transition: transform 0.5s cubic-bezier(0.68,-0.55,0.265,1.55);
+    cursor: pointer;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    background: transparent;
+    border: 10px solid currentColor;
+    cursor: pointer;
+}
+
+.letter-group {
+    position: absolute;
+}
+
+body.eraser-mode,
+body.eraser-mode * {
+    cursor: crosshair !important;
+}
+
+
+
+/* ==========================================================
+   🎮 게임 방법 버튼
+   ========================================================== */
+#guide-box {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+}
+
+#guide-btn {
+    background: #4a6fa5;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+#guide-popup {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 280px;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+#guide-popup p {
+    margin: 4px 0;
+    font-size: 0.85rem;
+    text-align: left;
+    color: #444;
+}
+
+#guide-popup p.en {
+    font-size: 0.78rem;
+    color: #777;
+}
+
+#guide-box:hover #guide-popup {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#clearWorkspace {
+    background: #d86b6b !important;
+    color: #fff !important;
+}
