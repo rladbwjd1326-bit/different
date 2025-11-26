@@ -1,41 +1,42 @@
-/* ============================================================
+/* ================================
    0. 전역 상태
-============================================================ */
-let pickedPiece = null;
-let mouseMoveHandler = null;
-let eraserMode = false;
-let groupMode = true;   // true = 자음/모음 "그룹 모드", false = "획 모드"
+================================ */
+let pickedPiece = null;      // 현재 들고 있는 "글자 그룹"
+let mouseMoveHandler = null; // 마우스 이동 이벤트
+let eraserMode = false;      // 지우개 모드 ON/OFF
 
-/* ============================================================
+/* ================================
    1. 반응형 스케일
-============================================================ */
+================================ */
 function applyScale(wrapperId, baseWidth) {
     const wrapper = document.querySelector(wrapperId);
+    if (!wrapper) return;
+
     const container = wrapper.querySelector(".scale-container");
+    if (!container) return;
+
     const wrapperWidth = wrapper.clientWidth;
     const scale = Math.min(wrapperWidth / baseWidth, 1);
     container.style.transform = `scale(${scale})`;
 }
 
 window.addEventListener("resize", () => {
-    applyScale("#consonant-wrapper", 700);
-    applyScale("#vowel-wrapper", 700);
+    applyScale("#consonant-wrapper", 680);
+    applyScale("#vowel-wrapper", 780);
 });
 
-/* ============================================================
-   2. stroke & circle 요소 생성
-============================================================ */
-function createAndInitialize(container, data) {
-    const box = $(container).empty();
+/* ================================
+   2. stroke & circle 생성
+================================ */
+function createAndInitialize(containerSelector, data) {
+    const box = $(containerSelector).empty();
 
     data.forEach(st => {
-
-        // ● circle (도넛)
+        // ● circle 타입
         if (st.type === "circle") {
             const $circle = $("<div>")
-                .addClass("circle piece")
+                .addClass("circle")
                 .attr("id", st.id)
-                .attr("data-id", st.id)
                 .css({
                     left: st.initial.left,
                     top: st.initial.top,
@@ -47,14 +48,13 @@ function createAndInitialize(container, data) {
             return;
         }
 
-        // ● stroke
+        // ● stroke 타입
         const width = st.final.width || 40;
         const height = 11;
 
         const $stroke = $("<div>")
-            .addClass("stroke piece")
+            .addClass("stroke")
             .attr("id", st.id)
-            .attr("data-id", st.id)
             .css({
                 left: st.initial.left,
                 top: st.initial.top,
@@ -68,29 +68,32 @@ function createAndInitialize(container, data) {
     });
 }
 
-/* ============================================================
+/* ================================
    3. 애니메이션
-============================================================ */
+================================ */
 const ANIMATION_DURATION = 500;
 
 function startAnimation(data) {
     data.forEach(st => {
         const target = $("#" + st.id);
-
-        target.delay(st.delay)
+        target
+            .delay(st.delay)
             .animate({ opacity: 1 }, 20)
-            .animate({
-                left: st.final.left,
-                top: st.final.top
-            }, ANIMATION_DURATION, "swing", function () {
-
-                if (st.type !== "circle") {
-                    $(this).css({
-                        transform: `rotate(${st.final.rotate || 0}deg)`
-                    });
+            .animate(
+                {
+                    left: st.final.left,
+                    top: st.final.top
+                },
+                ANIMATION_DURATION,
+                "swing",
+                function () {
+                    if (st.type !== "circle") {
+                        $(this).css({
+                            transform: `rotate(${st.final.rotate || 0}deg)`
+                        });
+                    }
                 }
-
-            });
+            );
     });
 }
 
@@ -265,176 +268,205 @@ const VOWEL_STROKES = [
 
 ];
 
-/* ============================================================
-   6. 헬퍼: 공통 floating 시작 함수
-============================================================ */
-function startFloatingPiece($elem) {
-    if (pickedPiece) {
-        pickedPiece.remove();
-        $(document).off("mousemove", mouseMoveHandler);
-    }
+/* ================================
+   6. 그룹(자음/모음 한 글자 단위) 정의
+   - A 방식: stroke id 기반 그룹 묶기
+================================ */
+const LETTER_GROUPS = {
+    // 자음
+    g: ["g1", "g2"],                    // ㄱ
+    n: ["n1", "n2"],                    // ㄴ
+    d: ["d1", "d2", "d3"],              // ㄷ
+    r: ["r1", "r2", "r3", "r4", "r5"],  // ㄹ
+    m: ["m1", "m2", "m3", "m4"],        // ㅁ
+    b: ["b1", "b2", "b3", "b4"],        // ㅂ
+    s: ["s1", "s2"],                    // ㅅ
+    o: ["o_circle"],                    // ㅇ
+    j: ["j1", "j2", "j3"],              // ㅈ
+    c: ["c1", "c2", "c3", "c4"],        // ㅊ
+    k: ["k1", "k2", "k3"],              // ㅋ
+    t: ["t1", "t2", "t3", "t4"],        // ㅌ
+    p: ["p1", "p2", "p3", "p4"],        // ㅍ
+    h: ["h_circle", "h_line1", "h_line2"], // ㅎ
 
-    pickedPiece = $elem.addClass("floating-piece").css({
-        position: "fixed",
-        pointerEvents: "none",
-        opacity: 0.9,
-        zIndex: 99999
-    });
+    // 모음
+    a: ["a1", "a2"],                    // ㅏ
+    ya: ["ya1", "ya2", "ya3"],          // ㅑ
+    eo: ["eo1", "eo2"],                 // ㅓ
+    yeo: ["yeo1", "yeo2", "yeo3"],      // ㅕ
+    ov: ["o_v1", "o_v2"],               // ㅗ
+    yo: ["yo1", "yo2", "yo3"],          // ㅛ
+    u: ["u1", "u2"],                    // ㅜ
+    yu: ["yu1", "yu2", "yu3"],          // ㅠ
+    eu: ["eu1"],                        // ㅡ
+    i: ["i1"]                           // ㅣ
+};
 
-    mouseMoveHandler = e => {
-        pickedPiece.css({
-            left: e.clientX - pickedPiece.width() / 2 + "px",
-            top: e.clientY - pickedPiece.height() / 2 + "px"
+/* id → 어느 그룹(key)인지 찾기 위한 역맵 */
+const ID_TO_GROUP_KEY = (() => {
+    const map = {};
+    Object.entries(LETTER_GROUPS).forEach(([key, idList]) => {
+        idList.forEach(id => {
+            map[id] = key;
         });
-    };
-
-    $(document).on("mousemove", mouseMoveHandler);
-}
-
-/* ============================================================
-   7. 그룹 단위 픽업 (자음/모음 전체)
-============================================================ */
-function pickLetterGroupFromSource($elem) {
-    if (eraserMode) return;
-
-    const id = $elem.attr("id") || $elem.data("id");
-    if (!id) return;
-
-    // ✔ prefix를 _ 기준으로 구분 → ㄱ,ㄴ,ㄷ,ㅎ,ㅏ,ㅑ 모두 정확
-    const key = id.includes("_") ? id.split("_")[0] : id.replace(/[0-9]/g, "");
-
-    const $container = $elem.closest("#consonant-container, #vowel-container");
-
-    // ✔ 해당 key로 시작하는 stroke 전체 자동 선택
-    const $parts = $container.find(`.piece[id^="${key}"]`);
-
-    if ($parts.length === 0) {
-        pickSingleStrokeFromSource($elem);
-        return;
-    }
-
-    // ===== 그룹 박스 경계 계산 =====
-    let minLeft = Infinity, minTop = Infinity;
-    let maxRight = -Infinity, maxBottom = -Infinity;
-
-    $parts.each(function () {
-        const $p = $(this);
-        const left = parseFloat($p.css("left"));
-        const top = parseFloat($p.css("top"));
-        const w = $p.outerWidth();
-        const h = $p.outerHeight();
-
-        minLeft = Math.min(minLeft, left);
-        minTop = Math.min(minTop, top);
-        maxRight = Math.max(maxRight, left + w);
-        maxBottom = Math.max(maxBottom, top + h);
     });
+    return map;
+})();
 
-    const groupWidth = maxRight - minLeft;
-    const groupHeight = maxBottom - minTop;
-
-    // ===== wrapper 생성 =====
-    const $wrapper = $("<div>")
-        .addClass("letter-group placed-piece")
-        .css({
-            width: groupWidth + "px",
-            height: groupHeight + "px"
-        });
-
-    // ===== 내부 stroke/원 복제 =====
-    $parts.each(function () {
-        const $p = $(this);
-        const left = parseFloat($p.css("left"));
-        const top = parseFloat($p.css("top"));
-
-        const clone = $p.clone()
-            .removeClass("piece")
-            .css({
-                left: (left - minLeft) + "px",
-                top: (top - minTop) + "px"
-            });
-
-        $wrapper.append(clone);
-    });
-
-    $("body").append($wrapper);
-    startFloatingPiece($wrapper);
-}
-
-
-/* ============================================================
-   8. 단일 stroke / circle 픽업
-============================================================ */
-function pickSingleStrokeFromSource($elem) {
-    if (eraserMode) return;
-
-    const original = $elem;
-
-    const clone = original.clone()
-        .removeClass("piece")
-        .addClass("placed-piece");
-
-    $("body").append(clone);
-    startFloatingPiece(clone);
-}
-
-/* ============================================================
-   9. 클릭 → 복제/이동 + 보드 내 이동 + 삭제 + 모드
-============================================================ */
+/* ================================
+   7. 클릭 → 그룹 복제 → 조합보드 배치
+================================ */
 function enableClickCloneMovement() {
-
     pickedPiece = null;
     mouseMoveHandler = null;
 
-    /* 1) palette 영역의 .piece 클릭 */
-    $(document).on("click", ".piece", function () {
-        if (eraserMode) return;
+    /* ---------------------------
+       1) 자음/모음 영역 클릭 → 그 글자(그룹) 복제해서 들기
+    ---------------------------- */
+    $("#consonant-container, #vowel-container").on("click", ".stroke, .circle", function (e) {
+        if (eraserMode) return; // 지우개 모드일 땐 복제 안 함
 
-        const $this = $(this);
-
-        if (groupMode) {
-            pickLetterGroupFromSource($this);
-        } else {
-            pickSingleStrokeFromSource($this);
+        // 이미 들고 있는 조각 있으면 취소
+        if (pickedPiece) {
+            pickedPiece.remove();
+            $(document).off("mousemove", mouseMoveHandler);
         }
+
+        const clickedId = this.id;
+        const groupKey = ID_TO_GROUP_KEY[clickedId];
+        if (!groupKey) return;
+
+        const idList = LETTER_GROUPS[groupKey];
+
+        // 원본 요소들
+        const elems = idList
+            .map(id => $("#" + id))
+            .filter($el => $el.length > 0);
+
+        if (!elems.length) return;
+
+        // 그룹의 바운딩 박스 계산 (원본 기준)
+        let minLeft = Infinity,
+            minTop = Infinity;
+        elems.forEach($el => {
+            const left = parseFloat($el.css("left"));
+            const top = parseFloat($el.css("top"));
+            if (left < minLeft) minLeft = left;
+            if (top < minTop) minTop = top;
+        });
+
+        // 그룹 래퍼 생성
+        const $group = $("<div>")
+            .addClass("letter-group placed-piece floating-piece")
+            .attr("data-group-key", groupKey)
+            .css({
+                position: "fixed",
+                pointerEvents: "none",
+                opacity: 0.9,
+                zIndex: 99999
+            });
+
+        // 각 stroke / circle 복제 후 그룹 내부에 상대좌표로 배치
+        elems.forEach($orig => {
+            const clone = $orig
+                .clone()
+                .removeAttr("id"); // workspace 안에서는 id 중복 방지
+
+            const left = parseFloat($orig.css("left"));
+            const top = parseFloat($orig.css("top"));
+
+            clone.css({
+                left: left - minLeft + "px",
+                top: top - minTop + "px",
+                opacity: 1 // 이미 애니메이션 끝난 상태처럼 보이도록
+            });
+
+            $group.append(clone);
+        });
+
+        $("body").append($group);
+        pickedPiece = $group;
+
+        mouseMoveHandler = ev => {
+            pickedPiece.css({
+                left: ev.clientX - pickedPiece.width() / 2 + "px",
+                top: ev.clientY - pickedPiece.height() / 2 + "px"
+            });
+        };
+
+        $(document).on("mousemove", mouseMoveHandler);
+        e.stopPropagation();
     });
 
-    /* 2) 보드 위 .placed-piece 클릭 → 다시 들기 (복사 X) */
+    /* ---------------------------
+       2) 조합보드 안의 그룹 클릭 → 다시 들기
+          (복사 X, 그대로 이동)
+    ---------------------------- */
     $("#workspace").on("click", ".placed-piece", function (e) {
         if (eraserMode) {
-            // 지우개 모드에서는 여기서 삭제
+            // 지우개 모드에서는 삭제만
             $(this).remove();
             e.stopPropagation();
             return;
         }
 
-        // 보드 위 조각을 그대로 다시 집어 듦
-        startFloatingPiece($(this));
+        // 이미 다른 걸 들고 있으면 취소
+        if (pickedPiece) {
+            pickedPiece.remove();
+            $(document).off("mousemove", mouseMoveHandler);
+        }
+
+        const $elem = $(this);
+
+        pickedPiece = $elem
+            .addClass("floating-piece")
+            .css({
+                position: "fixed",
+                pointerEvents: "none",
+                opacity: 0.9,
+                zIndex: 99999
+            });
+
+        mouseMoveHandler = ev => {
+            pickedPiece.css({
+                left: ev.clientX - pickedPiece.width() / 2 + "px",
+                top: ev.clientY - pickedPiece.height() / 2 + "px"
+            });
+        };
+
+        $(document).on("mousemove", mouseMoveHandler);
         e.stopPropagation();
     });
 
-    /* 3) 보드 빈 공간 클릭 → 들고 있는 조각 내려놓기 */
+    /* ---------------------------
+       3) workspace 클릭 → 들고 있는 그룹 내려놓기
+    ---------------------------- */
     $("#workspace").on("click", function (e) {
-        if (!pickedPiece || eraserMode) return;
+        if (!pickedPiece) return;
 
         const offset = $(this).offset();
+        const x = e.pageX - offset.left - pickedPiece.width() / 2;
+        const y = e.pageY - offset.top - pickedPiece.height() / 2;
 
-        pickedPiece.removeClass("floating-piece").css({
-            position: "absolute",
-            left: e.pageX - offset.left - pickedPiece.width() / 2 + "px",
-            top: e.pageY - offset.top - pickedPiece.height() / 2 + "px",
-            pointerEvents: "auto",
-            opacity: 1,
-            zIndex: ""
-        });
+        pickedPiece
+            .removeClass("floating-piece")
+            .css({
+                position: "absolute",
+                left: x + "px",
+                top: y + "px",
+                pointerEvents: "auto",
+                opacity: 1,
+                zIndex: ""
+            });
 
         $(this).append(pickedPiece);
-
         $(document).off("mousemove", mouseMoveHandler);
         pickedPiece = null;
     });
 
-    /* 4) ESC → 현재 들고 있는 조각 취소 */
+    /* ---------------------------
+       4) Esc → 현재 들고 있는 그룹 취소
+    ---------------------------- */
     $(document).on("keydown", e => {
         if (e.key === "Escape" && pickedPiece) {
             pickedPiece.remove();
@@ -442,38 +474,21 @@ function enableClickCloneMovement() {
             pickedPiece = null;
         }
     });
+
+    /* ---------------------------
+       5) 전체 삭제 버튼
+    ---------------------------- */
+    $("#clearWorkspace").on("click", function () {
+        $("#workspace").empty();
+        pickedPiece = null;
+        $(document).off("mousemove", mouseMoveHandler);
+    });
 }
 
-/* ============================================================
-   10. 실행부
-============================================================ */
-$(document).ready(() => {
-    // 자음/모음 생성 + 애니메이션
-    createAndInitialize("#consonant-container", CONSONANT_STROKES);
-    createAndInitialize("#vowel-container", VOWEL_STROKES);
-
-    startAnimation(CONSONANT_STROKES);
-    startAnimation(VOWEL_STROKES);
-
-    applyScale("#consonant-wrapper", 700);
-    applyScale("#vowel-wrapper", 700);
-
-    enableClickCloneMovement();
-
-    /* 모드 토글 버튼 */
-    $("#groupModeButton").on("click", function () {
-        groupMode = true;
-        $("#groupModeButton").addClass("active");
-        $("#strokeModeButton").removeClass("active");
-    });
-
-    $("#strokeModeButton").on("click", function () {
-        groupMode = false;
-        $("#strokeModeButton").addClass("active");
-        $("#groupModeButton").removeClass("active");
-    });
-
-    /* 지우개 / 커서 버튼 */
+/* ================================
+   8. 지우개 모드 ON/OFF
+================================ */
+function setupEraserAndCursorButtons() {
     $("#eraserButton").on("click", function () {
         eraserMode = true;
         $("body").addClass("eraser-mode");
@@ -489,15 +504,26 @@ $(document).ready(() => {
         $("#cursorButton").addClass("active");
         $("#eraserButton").removeClass("active");
     });
+}
 
-    /* 전체 삭제 버튼 */
-    $("#clearWorkspace").on("click", function () {
-        $("#workspace").empty();
+/* ================================
+   9. 실행
+================================ */
+$(document).ready(() => {
+    // 자음/모음 생성 + 애니메이션
+    createAndInitialize("#consonant-container", CONSONANT_STROKES);
+    createAndInitialize("#vowel-container", VOWEL_STROKES);
 
-        if (pickedPiece) {
-            pickedPiece.remove();
-            pickedPiece = null;
-            $(document).off("mousemove", mouseMoveHandler);
-        }
-    });
+    startAnimation(CONSONANT_STROKES);
+    startAnimation(VOWEL_STROKES);
+
+    // 반응형 스케일 초기 적용
+    applyScale("#consonant-wrapper", 680);
+    applyScale("#vowel-wrapper", 780);
+
+    // 클릭 → 그룹 복제/배치/이동
+    enableClickCloneMovement();
+
+    // 지우개 / 마우스 모드
+    setupEraserAndCursorButtons();
 });

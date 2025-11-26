@@ -15,7 +15,6 @@ body {
     color: #333;
 }
 
-
 /* ==========================================================
    🧩 조합보드 (workspace)
    ========================================================== */
@@ -24,7 +23,9 @@ body {
     max-width: 900px;
     margin: 0 auto 40px;
     position: relative;
-    padding-top: 50px;  
+
+    /* 🔥 버튼이 보드 위에 겹치지 않도록 위쪽 공간 확보 */
+    padding-top: 45px;
 }
 
 #workspace {
@@ -32,31 +33,31 @@ body {
     height: 220px;
     background: #ffffff;
     border-radius: 18px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
 }
 
-
-
 /* ==========================================================
-   1) 조합보드 오른쪽 상단 버튼
+   1) 조합보드 상단 도구 버튼
       (커서 / 지우개 / 전체삭제)
    ========================================================== */
 #toolButtons {
     position: absolute;
-    top: -10px;
+    top: 0;  /* wrapper의 맨 상단 */
     left: 0;
     right: 0;
 
     display: flex;
-    justify-content: space-between; /* 양쪽 끝으로 배치 */
+    justify-content: space-between; /* 왼쪽 그룹 vs 오른쪽 그룹 */
     align-items: center;
 
-    padding: 0 0;  /* 좌우 여백 */
+    padding: 0 10px;
+    z-index: 10;
 }
 
-#toolButtons button {
+/* 왼쪽(마우스/지우개) 버튼 그룹 */
+.left-tools button {
     padding: 8px 16px;
     background: #4a6fa5;
     color: #fff;
@@ -64,38 +65,17 @@ body {
     border: none;
     cursor: pointer;
     font-size: 0.95rem;
+    margin-right: 8px;
 }
 
-#toolButtons button:hover {
+.left-tools button:hover {
     background: #3558c8;
 }
 
-#toolButtons .active {
-    background: #222;
-}
-
-
-
-/* ==========================================================
-   2) 자음 박스 왼쪽 상단 버튼
-      (그룹모드 / 획모드)
-   ========================================================== */
-#modeToggle {
-    width: 100%;
-    max-width: 680px;  /* 자음박스 width와 맞춤 */
-    margin: 0 auto;
-    margin-bottom: 10px;
-
-    display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-
-    transform: translateY(-10px); /* 제목과 간격 조절 */
-}
-
-#modeToggle button {
+/* 오른쪽(전체 삭제) 버튼 그룹 */
+.right-tools #clearWorkspace {
     padding: 8px 16px;
-    background: #ff8d3a;
+    background: #d86b6b; /* 차분한 붉은색 */
     color: #fff;
     border-radius: 8px;
     border: none;
@@ -103,11 +83,14 @@ body {
     font-size: 0.95rem;
 }
 
-#modeToggle button.active {
-    background: #d9732d;
+.right-tools #clearWorkspace:hover {
+    background: #c05a5a;
 }
 
-
+/* 공통 active 상태 (마우스/지우개 등) */
+#toolButtons .active {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7);
+}
 
 /* ==========================================================
    ✨ 자음 / 모음 박스
@@ -120,7 +103,7 @@ body {
     background: #fff;
     border-radius: 18px;
     padding: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
@@ -132,11 +115,9 @@ body {
     background: #fff;
     border-radius: 18px;
     padding: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
-
-
 
 /* ==========================================================
    스케일 컨테이너
@@ -150,10 +131,8 @@ body {
     align-items: center;
 }
 
-
-
 /* ==========================================================
-   자음/모음 컨테이너
+   자음/모음 컨테이너 (실제 좌표 기준 영역)
    ========================================================== */
 #consonant-container {
     width: 580px;
@@ -167,8 +146,6 @@ body {
     position: relative;
 }
 
-
-
 /* ==========================================================
    stroke / circle 요소 스타일
    ========================================================== */
@@ -178,7 +155,7 @@ body {
     opacity: 0;
     border-radius: 4px;
     transform-origin: 0 0;
-    transition: transform 0.5s cubic-bezier(0.68,-0.55,0.265,1.55);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     cursor: pointer;
 }
 
@@ -191,16 +168,16 @@ body {
     cursor: pointer;
 }
 
+/* 조합보드 위에 올라간 하나의 "글자" 그룹 */
 .letter-group {
     position: absolute;
 }
 
+/* 지우개 모드일 때 커서 */
 body.eraser-mode,
 body.eraser-mode * {
     cursor: crosshair !important;
 }
-
-
 
 /* ==========================================================
    🎮 게임 방법 버튼
@@ -231,7 +208,7 @@ body.eraser-mode * {
     background: #ffffff;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s ease;
@@ -249,12 +226,8 @@ body.eraser-mode * {
     color: #777;
 }
 
+/* Hover 시 팝업 열림 */
 #guide-box:hover #guide-popup {
     opacity: 1;
     pointer-events: auto;
-}
-
-#clearWorkspace {
-    background: #d86b6b !important;
-    color: #fff !important;
 }

@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>알록달록 한글 자음/모음 조합</title>
 
     <!-- Tailwind + Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="language.css">
+    <link rel="stylesheet" href="language.css" />
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 
 <body class="font-inter">
-
     <!-- 🎮 게임 방법 버튼 -->
     <div id="guide-box">
         <button id="guide-btn">게임 방법</button>
@@ -39,20 +37,17 @@
     </div>
 
     <!-- 🧩 조합보드 -->
-    <h1 class="title-text p-6">🧩 한글 조합 보드</h1>
+    <h1 class="title-text">🧩 한글 조합 보드</h1>
 
     <div id="workspace-wrapper">
-        <!-- 모드/툴 버튼들 -->
-        <div id="workspace-controls">
-            <div id="toolButtons">
-                <div class="left-tools">
-                    <button id="cursorButton" class="active font-bold">🖱️ 마우스</button>
-                    <button id="eraserButton" class="font-bold">🩹 지우개</button>
-                </div>
-
-                <div class="right-tools">
-                    <button id="clearWorkspace" class="font-bold">🗑 전체 삭제</button>
-                </div>
+        <!-- 보드용 도구 버튼 (마우스 / 지우개 / 전체 삭제) -->
+        <div id="toolButtons">
+            <div class="left-tools">
+                <button id="cursorButton" class="active font-bold">🖱️ 마우스</button>
+                <button id="eraserButton" class="font-bold">🩹 지우개</button>
+            </div>
+            <div class="right-tools">
+                <button id="clearWorkspace" class="font-bold">🗑 전체 삭제</button>
             </div>
         </div>
 
@@ -60,19 +55,14 @@
     </div>
 
     <!-- ✨ 자음 영역 -->
-
-    <div id="modeToggle">
-        <button id="groupModeButton" class="active font-bold">그룹 모드</button>
-        <button id="strokeModeButton" class="font-bold">획 모드</button>
-    </div>
-    <div id="consonant-wrapper" class="wrapper">
+    <div id="consonant-wrapper">
         <div class="scale-container">
             <div id="consonant-container"></div>
         </div>
     </div>
 
     <!-- ✨ 모음 영역 -->
-    <div id="vowel-wrapper" class="wrapper">
+    <div id="vowel-wrapper">
         <div class="scale-container">
             <div id="vowel-container"></div>
         </div>
@@ -81,5 +71,4 @@
     <!-- JS -->
     <script src="language.js"></script>
 </body>
-
 </html>
