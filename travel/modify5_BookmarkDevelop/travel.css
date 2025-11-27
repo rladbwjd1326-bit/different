@@ -1,0 +1,277 @@
+/* 기본 설정 */
+:root {
+    --primary-color: #FF5733; /* 포인트 색상 (한국적인 느낌을 살린 매운 맛?) */
+    --secondary-color: #333;
+    --background-color: #f8f8f8;
+    --card-bg-color: #fff;
+    --text-color: #222;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    overflow-y: scroll;
+}
+
+.main-header {
+    background-color: var(--background-color);
+    color: rgb(44, 44, 44);
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main-header h1 {
+    margin-top: 0;
+    font-size: 2.5em;
+}
+
+.main-header p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* 검색 및 필터 영역 */
+.controls {
+    margin-bottom: 30px;
+}
+
+/* 1. 새로운 Wrapper에 position: relative를 적용하여 버튼의 기준점 설정 */
+.search-wrapper {
+    position: relative; /* 버튼 위치의 기준점 */
+    margin-bottom: 15px; 
+}
+
+
+
+/* 2. input 스타일 조정 */
+.search-wrapper input {
+    width: 100%;
+    padding: 15px 50px 15px 15px; /* 오른쪽에 버튼 공간(50px) 확보 */
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+/* 3. 버튼 스타일 조정 (검색창 안으로 위치) */
+.search-wrapper .search-btn {
+    position: absolute; /* search-wrapper를 기준으로 절대 위치 설정 */
+    right: 0;
+    top: 0;
+    height: 100%; /* input과 높이 일치 */
+    width: 50px;
+    
+    /* 버튼 디자인 */
+    background-color: transparent; /* 배경 투명 */
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color); /* 포인트 색상 적용 */
+    font-size: 1.2em;
+    padding: 0; /* 패딩 제거 */
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    transition: color 0.2s;
+}
+
+.search-wrapper .search-btn:hover {
+    color: #FF5733;
+    filter: brightness(1.7);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    margin-bottom: 15px; /* 이 margin-bottom은 .search-wrapper에 적용됨 */
+}
+
+.tag-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-button {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.tag-button:hover {
+    background-color: #ccc;
+}
+
+.tag-button.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+/* 여행지 목록 */
+.trip-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    max-width: 1100px; /* 원하는 최대 너비 설정 */
+    margin: 0 auto;
+}
+
+.trip-card {
+    background-color: var(--card-bg-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s;
+    display: block; /* flex-direction: column 대신 block으로 변경 */
+    position: relative; /* 👈 이 줄을 추가합니다. (자식 요소 absolute 기준점) */
+    min-height: 250px; /* 카드의 최소 높이 설정 (이미지 높이와 동일하게) */
+}
+
+.trip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+    width: 100%;
+    height: 400px; 
+    background-color: #eeeeeed5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    color: #888;
+    overflow: hidden;
+    z-index: 10; /* 👈 이미지가 콘텐츠 위에 있도록 z-index 추가 */
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* height: 170px;
+    box-sizing: border-box; */
+    
+    padding: 15px; 
+    background: rgba(255, 255, 255, 0.904);
+    color: rgb(49, 49, 49); 
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1); 
+    
+    /* 콘텐츠를 숨기는 초기 상태 설정 */
+    opacity: 0; 
+    transform: translateY(100%); 
+    transition: opacity 0.02s ease-out, transform 0.02s ease-out; /* 전환 효과 */
+    
+    /* 다른 요소 위에 있도록 z-index 설정 (이미지보다 낮게) */
+    z-index: 5;
+}
+
+.card-content h3 {
+    margin-top: 0;
+    font-size: 1.15em;
+    color: var(--primary-color); /* 포인트 색상 유지 또는 흰색으로 변경 */
+}
+
+/* 호버 시 애니메이션 */
+.trip-card:hover .card-content {
+    opacity: 1; /* 보이게 만듦 */
+    transform: translateY(0); /* 원래 위치로 올림 */
+}
+
+.card-content p {
+    font-size: 0.85em; /* 폰트 크기 조정 */
+    line-height: 1.3;
+    color: #555; /* 밝은 회색으로 변경 */
+    margin-bottom: 5px;
+}
+
+.card-tags span {
+    /* 태그도 흰 배경이 아닌 어두운 배경에 맞게 수정 */
+    background-color: rgba(223, 223, 223, 0.692);
+    color: rgb(83, 83, 83);
+    padding: 1px 5px;
+    border-radius: 15px;
+    font-size: 0.65em;
+    margin-right: 3px;
+    margin-top: 3px;
+}
+
+.bookmark-btn {
+    position: absolute; /* 절대 위치로 카드의 모서리에 배치 */
+    top: 10px;
+    right: 10px;
+    background: transparent; /* 흰색 배경 반투명 */
+    color: #ccc; /* 기본 비활성화 상태 색상 */
+    border: none;
+    border-radius: 50%; /* 원형 버튼 */
+    width: 35px;
+    height: 35px;
+    font-size: 1.2em;
+    cursor: pointer;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+    transition: color 0.2s;
+    /* , background 0.2s; */
+    z-index: 15; /* 이미지와 콘텐츠 위에 오도록 설정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.bookmark-btn:hover {
+    /* color: var(--primary-color); */
+    color : #ffffff;
+}
+
+/* 북마크가 활성화된(저장된) 상태 */
+.bookmark-btn.active {
+    color: var(--primary-color); /* 채워진 색상 */
+}
+
+
+
+/* 푸터 */
+.main-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+    color: #777;
+    font-size: 0.9em;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .main-header h1 {
+        font-size: 2em;
+    }
+
+    .trip-list {
+        grid-template-columns: 1fr;
+    }
+}
