@@ -6,7 +6,7 @@ const travelSpots = [
         location: "서울 홍대/신촌",
         description: "친구들과 1000원으로 K-POP 최신곡을 신나게 부르는 한국식 유흥 문화!",
         tags: ["아이돌편테마", "쇼핑테마", "로컬바이브", "음악", "저예산", "노래방"],
-        image: "",
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDAyMTVfMjcy%2FMDAxNzA4MDA2NTY1NTc0.7npQWKCVlbBBk28smuOobUG6FBXURNjHD_0P5bk7htEg.-wrb7AP5sB4NglqjNdTOLm0e7-GYHvD0Fg2taDSZcy4g.PNG.v1gm7fi6%2F1.png&type=sc960_832",
     },
     {
         id: 2,
@@ -14,7 +14,7 @@ const travelSpots = [
         location: "부산 서면",
         description: "한국인들의 소울푸드. 든든한 국물과 고기로 해장과 식사를 동시에! 김치와 깍두기 필수.",
         tags: ["식도락여행테마", "로컬바이브", "국밥", "부산", "맛집"],
-        image: "",
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTA5MjRfMTky%2FMDAxNzU4NjkxMTkzNTI5.y_HI27jm_hE0gzcKyzyaW0mKrU0fW3J2wkO9vJsKFqgg.uT36qqyQJKRjOnmpPc_kPEXrmcMekC_AXokVh5tzi9kg.JPEG%2FP20250912_113050947_FA60B7A6-4AE0-457E-9BF5-8FCECA1756EB.JPG&type=a340",
     },
     {
         id: 3,
@@ -22,7 +22,7 @@ const travelSpots = [
         location: "서울 강남역",
         description: "머리를 써서 제한 시간 내에 방을 탈출하는 미션 게임. 친구들과 팀워크를 즐겨보세요.",
         tags: ["아이돌편테마", "로컬바이브", "실내놀이", "테마카페"],
-        image: "",
+        image: "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.namu.wiki%2Fi%2Fz7daGwnyG4XZTW0ZtbTHwQUwR8vmFwqh3CEfk8lg32xdlwjJ37daboKgEdorUiKndajVRqLfTFFsEQC5qfyiOA.webp&type=sc960_832",
     },
     {
         id: 4,
@@ -30,7 +30,7 @@ const travelSpots = [
         location: "서울 성수동",
         description: "트렌디한 인테리어와 고급 말차 디저트, 음료를 즐기는 카페투어의 정점.",
         tags: ["커피투어테마", "말차테마", "식도락여행테마", "카페"],
-        image: "",
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTA4MDRfMjI3%2FMDAxNzU0MjgwMjM4NjUx.1s8si4VOVbc6t4C3dPm_RDuemuQaB1G_WubgxBIfdlIg.cktx0fhcIi0G316koUO6PXyMopKEv4FWZRQwO_bX5H0g.JPEG%2FSnapshot_21.JPG&type=a340",
     },
     {
         id: 5,
@@ -38,7 +38,7 @@ const travelSpots = [
         location: "서울 가로수길",
         description: "한국 신진 디자이너 브랜드와 트렌디한 패션 아이템을 구매하기 좋은 곳.",
         tags: ["쇼핑테마", "패션", "강남", "로컬바이브"],
-        image: "",
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA1MjdfMjIz%2FMDAxNjg1MTcwNjUzNDI1.zBKkS2Bqg_Ljxc1MQa2AMMKueq9tEJgOOajyPHKL7ZYg.M38TVO88hekWxy5LXaK3ZjAXvPPXd2KSR2wTwHFrD_8g.JPEG.eastlight0301%2FIMG_7924.jpg&type=a340",
     },
     {
         id: 6,
@@ -46,7 +46,7 @@ const travelSpots = [
         location: "서울 연남동",
         description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
         tags: ["커피투어테마", "카페", "연남동", "로스터리"],
-        image: "",
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
     },
     // 더 많은 여행지를 추가할 수 있습니다.
 ];
@@ -68,7 +68,9 @@ function createTripCard(spot) {
     const tagsHtml = spot.tags.map(tag => `<span>#${tag}</span>`).join('');
 
     card.innerHTML = `
-        <div class="card-image">${spot.image}</div>
+        <div class="card-image">
+            <img src="${spot.image}" alt="${spot.name}">  </div>
+
         <div class="card-content">
             <h3>${spot.name}</h3>
             <p>📍 ${spot.location}</p>
