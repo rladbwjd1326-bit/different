@@ -59,10 +59,20 @@ const searchButtonEl = document.getElementById('searchButton');
 
 let activeTag = null; // 현재 활성화된 태그
 
+// 로컬 스토리지에서 북마크 ID 목록을 로드하거나 새 배열을 만듭니다.
+let bookmarkedIds = JSON.parse(localStorage.getItem('bookmarkedSpots')) || [];
+
+
+
 // 3. 여행지 카드 생성 함수
 function createTripCard(spot) {
     const card = document.createElement('div');
     card.className = 'trip-card';
+
+    // 현재 장소가 북마크 되었는지 확인
+    const isBookmarked = bookmarkedIds.includes(spot.id);
+    const btnClass = isBookmarked ? 'active' : '';
+    const iconClass = isBookmarked ? 'fas fa-bookmark' : 'far fa-bookmark';
 
     // 카드 내부 HTML 구성
     const tagsHtml = spot.tags.map(tag => `<span>#${tag}</span>`).join('');
@@ -71,6 +81,11 @@ function createTripCard(spot) {
         <div class="card-image">
             <img src="${spot.image}" alt="${spot.name}">  </div>
 
+
+        <button class="bookmark-btn ${btnClass}" data-id="${spot.id}">
+            <i class="${iconClass}"></i>
+        </button>
+
         <div class="card-content">
             <h3>${spot.name}</h3>
             <p>📍 ${spot.location}</p>
@@ -78,6 +93,15 @@ function createTripCard(spot) {
             <div class="card-tags">${tagsHtml}</div>
         </div>
     `;
+
+    // ⭐️ 이벤트 리스너 연결: 버튼 요소를 찾아서 클릭 이벤트 연결
+    // DOM이 완전히 생성된 후, 버튼을 찾아 이벤트를 연결합니다.
+    const bookmarkButton = card.querySelector('.bookmark-btn');
+    bookmarkButton.addEventListener('click', (event) => {
+        // 이벤트 버블링 방지 (나중에 카드를 클릭했을 때 다른 이벤트가 발생하는 것을 방지)
+        event.stopPropagation(); 
+        toggleBookmark(spot.id, bookmarkButton);
+    });
 
     return card;
 }
@@ -95,6 +119,31 @@ function renderTripList(spots) {
         tripListEl.appendChild(createTripCard(spot));
     });
 }
+
+// 북마크 상태를 토글하고 로컬 스토리지에 저장하는 함수
+function toggleBookmark(spotId, buttonEl) {
+    const id = parseInt(spotId);
+    const index = bookmarkedIds.indexOf(id);
+
+    if (index > -1) {
+        // 이미 북마크 되어 있으면 -> 제거
+        bookmarkedIds.splice(index, 1);
+        buttonEl.classList.remove('active');
+        buttonEl.querySelector('i').className = 'far fa-bookmark'; // 빈 별
+        alert(`"${id}번 장소" 북마크가 해제되었습니다.`);
+    } else {
+        // 북마크 되어 있지 않으면 -> 추가
+        bookmarkedIds.push(id);
+        buttonEl.classList.add('active');
+        buttonEl.querySelector('i').className = 'fas fa-bookmark'; // 채워진 별
+        alert(`"${id}번 장소" 북마크에 저장되었습니다!`);
+    }
+
+    // 로컬 스토리지 업데이트
+    localStorage.setItem('bookmarkedSpots', JSON.stringify(bookmarkedIds));
+}
+
+
 
 // 5. 검색 및 필터링 로직
 function filterSpots() {

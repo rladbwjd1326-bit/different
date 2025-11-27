@@ -152,7 +152,7 @@ body {
 .card-image {
     width: 100%;
     height: 400px; 
-    background-color: #eee;
+    background-color: #eeeeeed5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -220,6 +220,44 @@ body {
     margin-right: 3px;
     margin-top: 3px;
 }
+
+.bookmark-btn {
+    position: absolute; /* 절대 위치로 카드의 모서리에 배치 */
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0); /* 흰색 배경 반투명 */
+    color: #ccc; /* 기본 비활성화 상태 색상 */
+    border: none;
+    border-radius: 50%; /* 원형 버튼 */
+    width: 35px;
+    height: 35px;
+    font-size: 1.2em;
+    cursor: pointer;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+    transition: color 0.2s;
+    /* , background 0.2s; */
+    z-index: 15; /* 이미지와 콘텐츠 위에 오도록 설정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bookmark-btn:hover {
+    color: var(--primary-color);
+}
+
+/* 북마크가 활성화된(저장된) 상태 */
+.bookmark-btn.active {
+    color: var(--primary-color); /* 채워진 색상 */
+}
+
+/* 호버 시 설명이 올라올 때 버튼의 색상을 더 잘 보이도록 조정 (선택 사항) */
+.trip-card:hover .bookmark-btn {
+    color: var(--primary-color);
+}
+
+
+
 
 /* 푸터 */
 .main-footer {
