@@ -56,6 +56,9 @@ const tripListEl = document.getElementById('tripList');
 const searchInputEl = document.getElementById('searchInput');
 const tagFiltersEl = document.getElementById('tagFilters');
 const searchButtonEl = document.getElementById('searchButton');
+const modalEl = document.getElementById('detailsModal');
+const modalContentEl = document.getElementById('modalContent');
+const modalCloseBtn = document.querySelector('.modal-close'); // X 버튼
 
 let activeTag = null; // 현재 활성화된 태그
 
@@ -97,8 +100,12 @@ function createTripCard(spot) {
         </div>
     `;
 
-    // ⭐️ 이벤트 리스너 연결: 버튼 요소를 찾아서 클릭 이벤트 연결
-    // DOM이 완전히 생성된 후, 버튼을 찾아 이벤트를 연결합니다.
+    // ⭐️ 카드 자체에 클릭 이벤트 추가 (팝업을 띄우는 역할)
+    card.addEventListener('click', () => {
+        showModal(spot); // 해당 여행지 데이터로 모달을 띄웁니다.
+    });
+
+    
     const bookmarkButton = card.querySelector('.bookmark-btn');
     bookmarkButton.addEventListener('click', (event) => {
         // 이벤트 버블링 방지 (나중에 카드를 클릭했을 때 다른 이벤트가 발생하는 것을 방지)
@@ -247,6 +254,53 @@ window.onload = () => {
     // 태그 필터 초기화
     setupTagFilters();
 
+    // ⭐️ 모달 닫기 이벤트 리스너 등록 (새로 추가)
+    modalCloseBtn.addEventListener('click', hideModal);
+    
+    // ⭐️ 모달 바깥 영역 클릭 시 닫기 (새로 추가)
+    modalEl.addEventListener('click', (event) => {
+        // 이벤트 타겟이 모달 배경(modalEl)일 때만 닫기
+        if (event.target === modalEl) {
+            hideModal();
+        }
+    });
+
+
+
     // 초기 목록 렌더링 (모든 여행지 표시)
     renderTripList(travelSpots);
 };
+
+// 8. 모달 표시 함수 (새로 추가)
+function showModal(spot) {
+    // 태그를 HTML로 변환
+    const tagsHtml = spot.tags.map(tag => `<span class="modal-tag">#${tag}</span>`).join('');
+    
+    // 모달 내용 구성
+    modalContentEl.innerHTML = `
+        <div class="modal-image-wrapper">
+            <img src="${spot.image}" alt="${spot.name}">
+        </div>
+        <div class="modal-text-content">
+            <h2>${spot.name}</h2>
+            <p class="modal-location">📍 ${spot.location}</p>
+            <hr>
+            <p class="modal-description">${spot.description}</p>
+            <div class="modal-tags-container">${tagsHtml}</div>
+            
+            <a href="#" class="modal-link-btn" onclick="alert('상품 상세 페이지로 이동합니다.'); return false;">
+                상세 정보 페이지로 이동 (링크 미연결)
+            </a>
+        </div>
+    `;
+
+    // 모달 보이게 설정
+    modalEl.classList.add('visible');
+    document.body.classList.add('modal-open-no-scroll');
+}
+
+// 9. 모달 숨김 함수 (새로 추가)
+function hideModal() {
+    modalEl.classList.remove('visible');
+    document.body.classList.remove('modal-open-no-scroll');
+}
