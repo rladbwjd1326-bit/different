@@ -214,7 +214,7 @@ body.eraser-mode * {
     transition: opacity 0.25s ease;
 }
 
-#guide-popup p {
+#guide-popup p { 
     margin: 4px 0;
     font-size: 0.85rem;
     text-align: left;
