@@ -225,7 +225,7 @@ body {
     position: absolute; /* 절대 위치로 카드의 모서리에 배치 */
     top: 10px;
     right: 10px;
-    background: rgba(255, 255, 255, 0); /* 흰색 배경 반투명 */
+    background: transparent; /* 흰색 배경 반투명 */
     color: #ccc; /* 기본 비활성화 상태 색상 */
     border: none;
     border-radius: 50%; /* 원형 버튼 */
@@ -240,22 +240,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 
 .bookmark-btn:hover {
-    color: var(--primary-color);
+    /* color: var(--primary-color); */
+    color : #ffffff;
 }
 
 /* 북마크가 활성화된(저장된) 상태 */
 .bookmark-btn.active {
     color: var(--primary-color); /* 채워진 색상 */
 }
-
-/* 호버 시 설명이 올라올 때 버튼의 색상을 더 잘 보이도록 조정 (선택 사항) */
-.trip-card:hover .bookmark-btn {
-    color: var(--primary-color);
-}
-
 
 
 

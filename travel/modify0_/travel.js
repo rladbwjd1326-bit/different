@@ -72,7 +72,10 @@ function createTripCard(spot) {
     // 현재 장소가 북마크 되었는지 확인
     const isBookmarked = bookmarkedIds.includes(spot.id);
     const btnClass = isBookmarked ? 'active' : '';
-    const iconClass = isBookmarked ? 'fas fa-bookmark' : 'far fa-bookmark';
+    // const iconClass = isBookmarked ? 'fas fa-bookmark' : 'far fa-bookmark';
+    const iconClass = 'fas fa-bookmark';
+
+
 
     // 카드 내부 HTML 구성
     const tagsHtml = spot.tags.map(tag => `<span>#${tag}</span>`).join('');
@@ -129,14 +132,13 @@ function toggleBookmark(spotId, buttonEl) {
         // 이미 북마크 되어 있으면 -> 제거
         bookmarkedIds.splice(index, 1);
         buttonEl.classList.remove('active');
-        buttonEl.querySelector('i').className = 'far fa-bookmark'; // 빈 별
-        alert(`"${id}번 장소" 북마크가 해제되었습니다.`);
+        // buttonEl.querySelector('i').className = 'far fa-bookmark'; // 빈 별
+        
     } else {
         // 북마크 되어 있지 않으면 -> 추가
         bookmarkedIds.push(id);
         buttonEl.classList.add('active');
-        buttonEl.querySelector('i').className = 'fas fa-bookmark'; // 채워진 별
-        alert(`"${id}번 장소" 북마크에 저장되었습니다!`);
+        // buttonEl.querySelector('i').className = 'fas fa-bookmark'; // 채워진 별
     }
 
     // 로컬 스토리지 업데이트
