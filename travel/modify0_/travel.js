@@ -8,7 +8,7 @@ const travelSpots = [
         tags: ["아이돌편테마", "쇼핑테마", "로컬바이브", "음악", "저예산", "노래방"],
         image: "",
     },
-    { 
+    {
         id: 2,
         name: "뜨끈한 돼지국밥 & 깍두기",
         location: "부산 서면",
@@ -55,7 +55,7 @@ const travelSpots = [
 const tripListEl = document.getElementById('tripList');
 const searchInputEl = document.getElementById('searchInput');
 const tagFiltersEl = document.getElementById('tagFilters');
-// const searchButtonEl = document.getElementById('searchButton');
+const searchButtonEl = document.getElementById('searchButton');
 
 let activeTag = null; // 현재 활성화된 태그
 
@@ -176,16 +176,18 @@ function handleTagClick(event) {
 
 // 7. 이벤트 리스너 등록 및 초기 실행
 window.onload = () => {
-    // (키 입력 시 바로 검색)
-    searchInputEl.addEventListener('input', filterSpots);
 
-    // 검색 버튼 클릭
-    // searchButtonEl.addEventListener('click', filterSpots);
 
-    // 사용자가 검색 입력 필드에서 Enter 키를 눌렀을 때도 검색되도록 추가
+    searchButtonEl.addEventListener('click', filterSpots);
+
+    // 사용자가 검색 입력 필드에서 Enter 키를 눌렀을 때도 검색 실행
     searchInputEl.addEventListener('keypress', (event) => {
         if (event.key === 'Enter') {
+            // Enter 키가 눌렸을 때, 버튼 클릭 이벤트를 강제로 발생시키는 것도 좋습니다.
+            // 하지만 filterSpots()를 직접 호출해도 동일하게 작동합니다.
             filterSpots();
+            // Enter 키를 눌러도 폼 제출 등의 기본 동작을 방지
+            event.preventDefault(); 
         }
     });
 

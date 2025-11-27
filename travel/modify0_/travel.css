@@ -4,7 +4,7 @@
     --secondary-color: #333;
     --background-color: #f8f8f8;
     --card-bg-color: #fff;
-    --text-color: #222; 
+    --text-color: #222;
 }
 
 body {
@@ -44,6 +44,49 @@ body {
     margin-bottom: 30px;
 }
 
+/* 1. 새로운 Wrapper에 position: relative를 적용하여 버튼의 기준점 설정 */
+.search-wrapper {
+    position: relative; /* 버튼 위치의 기준점 */
+    margin-bottom: 15px; 
+}
+
+
+
+/* 2. input 스타일 조정 */
+.search-wrapper input {
+    width: 100%;
+    padding: 15px 50px 15px 15px; /* 오른쪽에 버튼 공간(50px) 확보 */
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+/* 3. 버튼 스타일 조정 (검색창 안으로 위치) */
+.search-wrapper .search-btn {
+    position: absolute; /* search-wrapper를 기준으로 절대 위치 설정 */
+    right: 0;
+    top: 0;
+    height: 100%; /* input과 높이 일치 */
+    width: 50px;
+    
+    /* 버튼 디자인 */
+    background-color: transparent; /* 배경 투명 */
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color); /* 포인트 색상 적용 */
+    font-size: 1.2em;
+    padding: 0; /* 패딩 제거 */
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    transition: color 0.2s;
+}
+
+.search-wrapper .search-btn:hover {
+    color: #FF5733;
+    filter: brightness(1.7);
+}
+
 .search-box input {
     width: 100%;
     padding: 15px;
@@ -51,7 +94,7 @@ body {
     border-radius: 8px;
     font-size: 1em;
     box-sizing: border-box;
-    margin-bottom: 15px;
+    margin-bottom: 15px; /* 이 margin-bottom은 .search-wrapper에 적용됨 */
 }
 
 .tag-filters {
