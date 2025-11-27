@@ -1,0 +1,203 @@
+/* 기본 설정 */
+:root {
+    /* 🌟 색상 변경: K-Pop/K-컬처의 트렌디한 느낌 반영 */
+    --primary-color: #7A00FF; /* 딥 퍼플 (힙한 느낌) */
+    --secondary-color: #121212; /* 진한 블랙 */
+    --accent-color: #FFDE00; /* 네온 옐로우 (포인트) */
+    --background-color: #fcfcfc; /* 거의 흰색 */
+    --card-bg-color: #ffffff;
+    --text-color: #222;
+}
+
+body {
+    /* 🌟 Noto Sans KR 폰트 적용 */
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.main-header {
+    background-color: var(--background-color);
+    color: var(--secondary-color); /* 텍스트 색상 변경 */
+    padding: 30px 20px 10px; /* 아래쪽 패딩 줄임 */
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 그림자 얇게 */
+}
+
+.main-header h1 {
+    font-size: 3em; /* 제목 크기 키움 */
+    font-weight: 700; /* 볼드하게 */
+}
+
+.main-header p {
+    font-size: 1.2em;
+    opacity: 1; /* 투명도 제거 */
+    font-weight: 300;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* 검색 및 필터 영역 */
+.controls {
+    margin-bottom: 40px; /* 아래 여백 증가 */
+    padding: 20px;
+    border-radius: 12px;
+    background: #fff; /* 배경색 추가 */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05); /* 박스 그림자 추가 */
+}
+
+.search-box {
+    margin-bottom: 25px; /* 태그 필터와의 간격 증가 */
+}
+
+.search-box input {
+    width: 100%;
+    padding: 18px 20px; /* 패딩 증가 */
+    border: 1px solid #ddd; /* 테두리 얇게 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: border-color 0.3s;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--primary-color); /* 포커스 시 색상 변경 */
+    box-shadow: 0 0 0 3px rgba(122, 0, 255, 0.1); /* 은은한 포커스 효과 */
+}
+
+.tag-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* 간격 줄임 */
+    border-top: 1px dashed #eee; /* 구분선 추가 */
+    padding-top: 15px;
+}
+
+.tag-button {
+    background-color: #f0f0f0;
+    border: 1px solid #e0e0e0;
+    padding: 6px 14px; /* 패딩 줄임 */
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.tag-button:hover {
+    background-color: var(--accent-color); /* 포인트 색상으로 변경 */
+    color: var(--secondary-color);
+    transform: translateY(-1px); /* 살짝 떠오르는 효과 */
+}
+
+.tag-button.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    border-color: var(--primary-color);
+}
+
+/* 여행지 목록 */
+.trip-list {
+    display: grid;
+    grid-template-columns: 1fr; /* 한 줄에 하나씩 세로 목록 형태 유지 */
+    gap: 30px; /* 간격 40px -> 30px로 줄임 */
+    max-width: 700px; /* 가로 폭 유지 */
+    margin: 30px auto; /* 위아래 여백 조정 */
+}
+
+.trip-card {
+    background-color: var(--card-bg-color);
+    border-radius: 12px; /* 모서리 더 둥글게 */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* 그림자 더 강하게 */
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    
+    /* 🌟 힙한 느낌의 강조 라인 추가 */
+    border-left: 5px solid var(--accent-color); 
+    
+    display: flex;
+    flex-direction: row; /* 가로 정렬 유지 */
+    align-items: stretch; /* 아이템이 전체 높이를 채우도록 */
+    height: 120px; /* 고정 높이 유지 */
+}
+
+.trip-card:hover {
+    transform: translateY(-2px); /* 살짝 뜸 */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* 그림자 더 강조 */
+}
+
+.card-image {
+    width: 120px;
+    height: 100%; /* 카드 높이에 꽉 차도록 */
+    background-color: #eee;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.card-content {
+    padding: 12px 15px; /* 좌우 패딩 증가 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 텍스트를 세로 중앙에 배치 */
+    flex-grow: 1; 
+}
+
+.card-content h3 {
+    font-size: 1.25em; /* 제목 크기 키움 */
+    font-weight: 700;
+    color: var(--secondary-color); /* 텍스트 색상 변경 */
+    margin-bottom: 4px;
+}
+
+.card-content p {
+    font-size: 0.85em; /* 본문 크기 키움 */
+    font-weight: 300;
+    line-height: 1.4;
+    color: #555;
+    margin-bottom: 8px; /* 여백 증가 */
+}
+
+.card-tags span {
+    background-color: #f7f7f7;
+    color: var(--primary-color); /* 태그 색상 변경 */
+    padding: 3px 8px;
+    border-radius: 4px; /* 둥글기 줄임 */
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+/* 푸터 */
+.main-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+    color: #777;
+    font-size: 0.9em;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .main-header h1 {
+        font-size: 2em;
+    }
+
+    .trip-list {
+        grid-template-columns: 1fr;
+    }
+}
