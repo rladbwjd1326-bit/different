@@ -1,0 +1,96 @@
+/* ---------------------------
+   기본 설정 
+--------------------------- */
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: "KoreanTitle", sans-serif;
+}
+
+/* ---------------------------
+   배경 (절대 고정 + cover 방식)
+--------------------------- */
+.intro-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url("images/인트로_배경.png");
+    background-size: auto;        /* 깨짐 없이 화면 채우기 */
+    background-position: center;   /* 중앙 기준 */
+    background-repeat: no-repeat;
+}
+
+/* ---------------------------
+   붓 이미지 "드러나는" 영역
+--------------------------- */
+.brush-reveal {
+    position: absolute;
+    overflow: hidden;
+    width: 0px;
+    height: auto;
+    transition: width 1.25s ease-out;
+}
+
+/* ---------------------------
+   붓 이미지 크기
+--------------------------- */
+.brush-img {
+    width: 600px;      /* 위치에 맞춰 조정 */
+    display: block;
+}
+
+.brush-img.small {
+    width: 300px;
+}
+
+/* ---------------------------
+   위치 정밀 고정
+--------------------------- */
+
+.brush-title {
+    position: absolute;
+    top: 8%;           /* 정확한 중앙 위쪽 고정 */
+    left: 35%;
+    transform: translateX(-50%);
+}
+
+.brush-start {
+    position: absolute;
+    top: 75%;           /* 시작하기는 아래쪽에 고정 */
+    left: 43%;
+    transform: translateX(-50%);
+}
+
+/* ---------------------------
+   텍스트 스타일
+--------------------------- */
+.title-text, .start-text {
+    position: absolute;
+    color: white;
+    font-weight: 700;
+    opacity: 0;
+    white-space: nowrap;
+    text-shadow: 0px 0px 6px rgba(0,0,0,0.35);
+}
+
+.title-text {
+    font-size: 60px;
+    top: 45%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.start-text {
+    font-size: 32px;
+    top: 45%; left: 46%;
+    transform: translate(-50%, -50%);
+}
+
+/* ---------------------------
+   텍스트 페이드
+--------------------------- */
+@keyframes textFade {
+    0% { opacity: 0; filter: blur(6px); }
+    100% { opacity: 1; filter: blur(0); }
+}
