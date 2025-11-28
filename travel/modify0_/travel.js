@@ -48,7 +48,127 @@ const travelSpots = [
         tags: ["커피투어테마", "카페", "연남동", "로스터리"],
         image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
     },
-    // 더 많은 여행지를 추가할 수 있습니다.
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+    {
+        id: 6,
+        name: "드립커피 장인의 로스팅 카페",
+        location: "서울 연남동",
+        description: "산미와 풍미가 살아있는 특별한 드립커피를 맛볼 수 있는 전문 로스터리.",
+        tags: ["커피투어테마", "카페", "연남동", "로스터리"],
+        image: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEyMDhfNjUg%2FMDAxNjcwNDU5NTQ2MjEz.fOn1sI8BFiwRAGz379aZI0ciGAzPFZkNnSYY3VfRWl0g.MoBD_RnKGy0IMOsGmhWevickFPCNY91L2uHc-kZiw_4g.JPEG.minjoo901010%2F1670459541734.jpg&type=a340",
+    },
+
 ];
 
 // 2. DOM 요소 선택
@@ -59,8 +179,9 @@ const searchButtonEl = document.getElementById('searchButton');
 const modalEl = document.getElementById('detailsModal');
 const modalContentEl = document.getElementById('modalContent');
 const modalCloseBtn = document.querySelector('.modal-close'); // X 버튼
+const recentlyViewedEl = document.getElementById('recentlyViewed');
 
-let activeTag = null; // 현재 활성화된 태그
+let activeTags = [];
 
 // 로컬 스토리지에서 북마크 ID 목록을 로드하거나 새 배열을 만듭니다.
 let bookmarkedIds = JSON.parse(localStorage.getItem('bookmarkedSpots')) || [];
@@ -75,7 +196,6 @@ function createTripCard(spot) {
     // 현재 장소가 북마크 되었는지 확인
     const isBookmarked = bookmarkedIds.includes(spot.id);
     const btnClass = isBookmarked ? 'active' : '';
-    // const iconClass = isBookmarked ? 'fas fa-bookmark' : 'far fa-bookmark';
     const iconClass = 'fas fa-bookmark';
 
 
@@ -102,14 +222,17 @@ function createTripCard(spot) {
 
     // ⭐️ 카드 자체에 클릭 이벤트 추가 (팝업을 띄우는 역할)
     card.addEventListener('click', () => {
-        showModal(spot); // 해당 여행지 데이터로 모달을 띄웁니다.
+
+        showModal(spot); // 장소 상세정보 모달
+
+        saveRecentSpot(spot); // 최근 본 장소 저장        
     });
 
-    
+
     const bookmarkButton = card.querySelector('.bookmark-btn');
     bookmarkButton.addEventListener('click', (event) => {
         // 이벤트 버블링 방지 (나중에 카드를 클릭했을 때 다른 이벤트가 발생하는 것을 방지)
-        event.stopPropagation(); 
+        event.stopPropagation();
         toggleBookmark(spot.id, bookmarkButton);
     });
 
@@ -140,7 +263,7 @@ function toggleBookmark(spotId, buttonEl) {
         bookmarkedIds.splice(index, 1);
         buttonEl.classList.remove('active');
         // buttonEl.querySelector('i').className = 'far fa-bookmark'; // 빈 별
-        
+
     } else {
         // 북마크 되어 있지 않으면 -> 추가
         bookmarkedIds.push(id);
@@ -166,7 +289,7 @@ function filterSpots() {
             spot.description.toLowerCase().includes(searchTerm);
 
         // 2) 태그 필터링
-        const tagMatch = !activeTag || spot.tags.includes(activeTag);
+        const tagMatch = activeTags.length === 0 || activeTags.every(tag => spot.tags.includes(tag));
 
         return searchMatch && tagMatch;
     });
@@ -189,7 +312,7 @@ function setupTagFilters() {
 
     // '전체 보기' 버튼 추가
     const allButton = document.createElement('button');
-    allButton.textContent = 'ALL 🗺️';
+    allButton.textContent = 'ALL';
     allButton.className = 'tag-button active';
     allButton.dataset.tag = '';
     allButton.addEventListener('click', handleTagClick);
@@ -208,29 +331,28 @@ function setupTagFilters() {
 
 function handleTagClick(event) {
     const clickedButton = event.target;
-    const tag = clickedButton.dataset.tag;
-
-    // 현재 활성화된 태그 상태 업데이트
-    if (activeTag === tag || tag === '') {
-        // 이미 활성화된 태그를 다시 클릭하거나 'ALL'을 클릭한 경우
-        activeTag = null; // 'ALL'은 null로 처리하여 모든 태그 포함
-    } else {
-        activeTag = tag;
+    
+    if (!clickedButton.classList.contains('tag-button')) {
+        clickedButton = clickedButton.closest('.tag-button');
     }
 
-    // 버튼의 active 클래스 업데이트
-    document.querySelectorAll('.tag-button').forEach(btn => {
-        btn.classList.remove('active');
-    });
+    if (!clickedButton) return; // 버튼을 찾지 못했으면 함수 중단
 
-    if (activeTag) {
-        clickedButton.classList.add('active');
-    } else {
-        // 'ALL' 버튼을 찾아 active 클래스 추가 (초기 버튼이 '' 태그를 가지고 있음)
-        document.querySelector('.tag-filters button[data-tag=""]').classList.add('active');
-    }
-
-    filterSpots(); // 필터링 실행
+    const tag = clickedButton.dataset.tag; // ''는 ALL 태그를 의미 
+    const allButton = document.querySelector('.tag-filters button[data-tag=""]'); // 'ALL' 버튼 요소 
+    if (tag === '') { // 1. 'ALL' 버튼 클릭 처리: 단독 선택 // 이미 'ALL'만 활성화된 상태라면 무시 
+        if (activeTags.length === 0 && clickedButton.classList.contains('active')) { return; } activeTags = []; // 모든 활성 태그 초기화 // 모든 태그 버튼에서 active 클래스 제거 
+        document.querySelectorAll('.tag-button').forEach(btn => { btn.classList.remove('active'); }); // 'ALL' 버튼에만 active 클래스 추가 
+        allButton.classList.add('active');
+    } else { // 2. 일반 태그 버튼 클릭 처리: 중복 선택 토글 // 만약 'ALL'이 활성화되어 있었다면, 'ALL'을 비활성화 
+        if (activeTags.length === 0 && allButton.classList.contains('active')) { allButton.classList.remove('active'); } // 현재 클릭한 태그의 상태 토글 
+        const index = activeTags.indexOf(tag); if (index > -1) { // 이미 활성화된 태그를 다시 클릭 -> 제거 
+            activeTags.splice(index, 1); clickedButton.classList.remove('active');
+        } else { // 비활성화된 태그를 클릭 -> 추가 
+            activeTags.push(tag); clickedButton.classList.add('active');
+        } // 모든 태그가 비활성화되면 'ALL'을 자동 활성화 
+        if (activeTags.length === 0) { allButton.classList.add('active'); }
+    } filterSpots(); // 필터링 실행 
 }
 
 
@@ -247,17 +369,17 @@ window.onload = () => {
             // 하지만 filterSpots()를 직접 호출해도 동일하게 작동합니다.
             filterSpots();
             // Enter 키를 눌러도 폼 제출 등의 기본 동작을 방지
-            event.preventDefault(); 
+            event.preventDefault();
         }
     });
 
     // 태그 필터 초기화
     setupTagFilters();
 
-    // ⭐️ 모달 닫기 이벤트 리스너 등록 (새로 추가)
+    //  모달 닫기 이벤트 리스너 등록
     modalCloseBtn.addEventListener('click', hideModal);
-    
-    // ⭐️ 모달 바깥 영역 클릭 시 닫기 (새로 추가)
+
+    //  모달 바깥 영역 클릭 시 닫기
     modalEl.addEventListener('click', (event) => {
         // 이벤트 타겟이 모달 배경(modalEl)일 때만 닫기
         if (event.target === modalEl) {
@@ -269,13 +391,16 @@ window.onload = () => {
 
     // 초기 목록 렌더링 (모든 여행지 표시)
     renderTripList(travelSpots);
+
+    // 페이지 로드 시 최근 본 장소 위젯도 렌더링
+    renderRecentlyViewed();
 };
 
 // 8. 모달 표시 함수 (새로 추가)
 function showModal(spot) {
     // 태그를 HTML로 변환
     const tagsHtml = spot.tags.map(tag => `<span class="modal-tag">#${tag}</span>`).join('');
-    
+
     // 모달 내용 구성
     modalContentEl.innerHTML = `
         <div class="modal-image-wrapper">
@@ -299,8 +424,67 @@ function showModal(spot) {
     document.body.classList.add('modal-open-no-scroll');
 }
 
-// 9. 모달 숨김 함수 (새로 추가)
+// 9. 모달 숨김 함수
 function hideModal() {
     modalEl.classList.remove('visible');
     document.body.classList.remove('modal-open-no-scroll');
+}
+
+// 10. 최근 본 장소를 localStorage에 저장하는 함수
+function saveRecentSpot(spot) {
+    // 저장할 핵심 정보만 추출
+    const spotInfo = {
+        id: spot.id,
+        name: spot.name,
+        image: spot.image,
+        location: spot.location
+    };
+
+    // 로컬 스토리지에서 기존 목록을 불러옴 (없으면 빈 배열)
+    let recentList = JSON.parse(localStorage.getItem('recentSpots')) || [];
+
+    // 1. 중복 제거: 이미 목록에 있는 항목이면 기존 것을 제거
+    recentList = recentList.filter(item => item.id !== spot.id);
+
+    // 2. 새 항목을 목록의 맨 앞에 추가
+    recentList.unshift(spotInfo);
+
+    // 3. 목록 크기 제한 (최대 5개)
+    if (recentList.length > 4) {
+        recentList = recentList.slice(0, 4);
+    }
+
+    // 4. 로컬 스토리지에 저장
+    localStorage.setItem('recentSpots', JSON.stringify(recentList));
+
+    // 5. 위젯 업데이트
+    renderRecentlyViewed();
+}
+
+
+// ⭐️ 11. 최근 본 장소 위젯을 렌더링하는 함수
+function renderRecentlyViewed() {
+    const recentList = JSON.parse(localStorage.getItem('recentSpots')) || [];
+
+    // 위젯 제목 추가
+    let html = '<h3>최근 본 장소</h3>';
+
+    if (recentList.length === 0) {
+        html += '<p>최근 본 장소가 없습니다.</p>';
+    } else {
+        html += '<div class="recent-list">';
+        recentList.forEach(spot => {
+            // 참고: 실제 웹에서는 이 링크를 상세 페이지 URL로 연결해야 합니다.
+            html += `
+                <a href="#" class="recent-item" title="${spot.name} (${spot.location})" onclick="alert('${spot.name} 상세 페이지로 이동합니다. (링크 미연결)'); return false;">
+                    <img src="${spot.image}" alt="${spot.name}">
+                    <div class="recent-text">
+                    </div>
+                </a>
+            `;
+        });
+        html += '</div>';
+    }
+
+    recentlyViewedEl.innerHTML = html;
 }
