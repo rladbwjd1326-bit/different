@@ -97,236 +97,184 @@ function startAnimation(data) {
     });
 }
 
-/*
-* 참고: Math.floor(Math.random() * 9) * 100는 0, 100, 200, ..., 800 중 하나의 값을 생성합니다.
-* 새로운 차분하고 밝은 톤 팔레트 (예: Material Design 300-400 레벨의 색상, 명도는 유지하고 채도를 낮춤)
-* ㄱ: #E57373 (Soft Red), ㄴ: #FFB74D (Soft Orange), ㄷ: #FFEE58 (Light Yellow)
-* ㄹ: #A5D6A7 (Soft Green), ㅁ: #80CBC4 (Soft Teal), ㅂ: #64B5F6 (Soft Blue)
-* ㅅ: #9575CD (Soft Deep Purple), ㅇ: #FF8A65 (Soft Deep Orange)
-* ㅈ: #F48FB1 (Soft Pink), ㅊ: #A1887F (Soft Brown)
-* ㅋ: #FFCC80 (Light Amber), ㅌ: #4FC3F7 (Light Cyan)
-* ㅍ: #DCE775 (Light Lime), ㅎ: #BDBDBD (Light Gray)
-*
-* ㅏ: #EF9A9A (Light Red), ㅑ: #C5E1A5 (Light Lime), ㅓ: #FFCC80 (Light Amber)
-* ㅕ: #FF8A65 (Soft Deep Orange), ㅗ: #A1887F (Soft Brown), ㅛ: #81D4FA (Light Blue)
-* ㅜ: #BA68C8 (Soft Purple), ㅠ: #80CBC4 (Soft Teal), ㅡ: #F48FB1 (Soft Pink), ㅣ: #9575CD (Soft Deep Purple)
-*/
-
 /* ================================
-   4. 자음 데이터 (랜덤 딜레이, 차분한 밝은 톤 통일) - 그룹별 간격 4px 감소
+   4. 자음 데이터 (동일)
 ================================ */
 const CONSONANT_STROKES = [
+    /* ㄱ */
+    { id:'g1', color:'#E57373', final:{left:48, top:55, rotate:0},  initial:{left:-200, top:20},  delay:500 },
+    { id:'g2', color:'#E57373', final:{left:88, top:60, rotate:90}, initial:{left:800,  top:20},  delay:100 },
 
-/* 1행 — ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅅ */
+    /* ㄴ */
+    { id:'n1', color:'#FFB74D', final:{left:131, top:55, rotate:90}, initial:{left:-200, top:80}, delay:300 },
+    { id:'n2', color:'#FFB74D', final:{left:120, top:90, rotate:0},  initial:{left:800,  top:80}, delay:700 },
 
-/* ㄱ - Soft Red: #E57373 (Offset: 0px) */
-{ id:'g1', color:'#E57373', final:{left:48, top:55, rotate:0}, initial:{left:-200, top:20}, delay:500 },
-{ id:'g2', color:'#E57373', final:{left:88, top:60, rotate:90}, initial:{left:800, top:20}, delay:100 },
+    /* ㄷ */
+    { id:'d1', color:'#FFEE58', final:{left:192, top:52, rotate:0},  initial:{left:-200, top:-50}, delay:200 },
+    { id:'d2', color:'#FFEE58', final:{left:203, top:55, rotate:90}, initial:{left:800,  top:-50}, delay:0   },
+    { id:'d3', color:'#FFEE58', final:{left:192, top:90, rotate:0},  initial:{left:-200, top:150}, delay:800 },
 
-/* ㄴ - Soft Orange: #FFB74D (Offset: -4px) */
-{ id:'n1', color:'#FFB74D', final:{left:131, top:55, rotate:90}, initial:{left:-200, top:80}, delay:300 }, // 135 -> 131
-{ id:'n2', color:'#FFB74D', final:{left:120, top:90, rotate:0}, initial:{left:800, top:80}, delay:700 }, // 124 -> 120
+    /* ㄹ */
+    { id:'r1', color:'#A5D6A7', final:{left:268, top:50, rotate:0, width:33},  initial:{left:-200, top:-20}, delay:600 },
+    { id:'r2', color:'#A5D6A7', final:{left:306, top:50, rotate:90, width:31}, initial:{left:800,  top:-20}, delay:400 },
+    { id:'r3', color:'#A5D6A7', final:{left:268, top:70, rotate:0, width:33},  initial:{left:-200, top:120}, delay:300 },
+    { id:'r4', color:'#A5D6A7', final:{left:278, top:70, rotate:90, width:31}, initial:{left:800,  top:120}, delay:500 },
+    { id:'r5', color:'#A5D6A7', final:{left:273, top:90, rotate:0, width:33},  initial:{left:-200, top:10},  delay:0   },
 
-/* ㄷ - Light Yellow: #FFEE58 (Offset: -8px) */
-{ id:'d1', color:'#FFEE58', final:{left:192, top:52, rotate:0}, initial:{left:-200, top:-50}, delay:200 }, // 200 -> 192
-{ id:'d2', color:'#FFEE58', final:{left:203, top:55, rotate:90}, initial:{left:800, top:-50}, delay:0 }, // 211 -> 203
-{ id:'d3', color:'#FFEE58', final:{left:192, top:90, rotate:0}, initial:{left:-200, top:150}, delay:800 }, // 200 -> 192
+    /* ㅁ */
+    { id:'m1', color:'#80CBC4', final:{left:340, top:52, rotate:0, width:47},  initial:{left:-200, top:40}, delay:800 },
+    { id:'m2', color:'#80CBC4', final:{left:351, top:53, rotate:90, width:47}, initial:{left:800,  top:40}, delay:100 },
+    { id:'m3', color:'#80CBC4', final:{left:340, top:89, rotate:0, width:47},  initial:{left:-200, top:100},delay:200 },
+    { id:'m4', color:'#80CBC4', final:{left:387, top:53, rotate:90, width:47}, initial:{left:800,  top:100},delay:700 },
 
-/* ㄹ - Soft Green: #A5D6A7 (Offset: -12px) */
-{ id:'r1', color:'#A5D6A7', final:{left:268, top:50, rotate:0, width:33}, initial:{left:-200, top:-20}, delay:600 }, // 280 -> 268
-{ id:'r2', color:'#A5D6A7', final:{left:306, top:50, rotate:90, width:31}, initial:{left:800, top:-20}, delay:400 }, // 318 -> 306
-{ id:'r3', color:'#A5D6A7', final:{left:268, top:70, rotate:0, width:33}, initial:{left:-200, top:120}, delay:300 }, // 280 -> 268
-{ id:'r4', color:'#A5D6A7', final:{left:278, top:70, rotate:90, width:31}, initial:{left:800, top:120}, delay:500 }, // 290 -> 278
-{ id:'r5', color:'#A5D6A7', final:{left:273, top:90, rotate:0, width:33}, initial:{left:-200, top:10}, delay:0 }, // 285 -> 273
+    /* ㅂ */
+    { id:'b1', color:'#64B5F6', final:{left:420, top:67, rotate:0}, initial:{left:-200, top:40}, delay:400 },
+    { id:'b2', color:'#64B5F6', final:{left:420, top:90, rotate:0}, initial:{left:800,  top:20}, delay:600 },
+    { id:'b3', color:'#64B5F6', final:{left:426, top:50, rotate:90, width:51}, initial:{left:-200, top:180},delay:0   },
+    { id:'b4', color:'#64B5F6', final:{left:464, top:50, rotate:90, width:51}, initial:{left:800,  top:180},delay:100 },
 
-/* ㅁ - Soft Teal: #80CBC4 (Offset: -16px) */
-{ id:'m1', color:'#80CBC4', final:{left:340, top:52, rotate:0, width:47}, initial:{left:-200, top:40}, delay:800 }, // 356 -> 340
-{ id:'m2', color:'#80CBC4', final:{left:351, top:53, rotate:90, width:47}, initial:{left:800, top:40}, delay:100 }, // 367 -> 351
-{ id:'m3', color:'#80CBC4', final:{left:340, top:89, rotate:0, width:47}, initial:{left:-200, top:100}, delay:200 }, // 356 -> 340
-{ id:'m4', color:'#80CBC4', final:{left:387, top:53, rotate:90, width:47}, initial:{left:800, top:100}, delay:700 }, // 403 -> 387
+    /* ㅅ */
+    { id:'s1', color:'#9575CD', final:{left:480, top:94, rotate:-45, width:55}, initial:{left:-300, top:40},delay:500 },
+    { id:'s2', color:'#9575CD', final:{left:513, top:68, rotate:45,  width:40}, initial:{left:900,  top:40},delay:800 },
 
-/* ㅂ - Soft Blue: #64B5F6 (Offset: -20px) */
-{ id:'b1', color:'#64B5F6', final:{left:420, top:67, rotate:0}, initial:{left:-200, top:40}, delay:400 }, // 440 -> 420
-{ id:'b2', color:'#64B5F6', final:{left:420, top:90, rotate:0}, initial:{left:800, top:20},  delay:600 }, // 440 -> 420
-{ id:'b3', color:'#64B5F6', final:{left:426, top:50, rotate:90, width:51}, initial:{left:-200, top:180}, delay:0 }, // 446 -> 426
-{ id:'b4', color:'#64B5F6', final:{left:464, top:50, rotate:90, width:51}, initial:{left:800, top:180}, delay:100 }, // 484 -> 464
+    /* ㅇ */
+    { id:'o_circle', type:'circle', color:'#FF8A65',
+      final:{ left:47, top:149, size:45 }, initial:{ left:-200, top:-200 }, delay:300 },
 
-/* ㅅ - Soft Deep Purple: #9575CD (Offset: -24px) */
-{ id:'s1', color:'#9575CD', final:{left:480, top:94, rotate:-45, width:55}, initial:{left:-300, top:40}, delay:500 }, // 504 -> 480
-{ id:'s2', color:'#9575CD', final:{left:513, top:68, rotate:45, width:40}, initial:{left:900, top:40}, delay:800 }, // 537 -> 513
+    /* ㅈ */
+    { id:'j1', color:'#F48FB1', final:{left:116, top:150, rotate:0, width:46},  initial:{left:-200, top:10}, delay:700 },
+    { id:'j2', color:'#F48FB1', final:{left:110, top:185, rotate:-45, width:38},initial:{left:800,  top:100},delay:200 },
+    { id:'j3', color:'#F48FB1', final:{left:141, top:158, rotate:45,  width:38},initial:{left:-200, top:150},delay:0   },
 
+    /* ㅊ */
+    { id:'c1', color:'#A1887F', final:{left:195, top:145, rotate:0, width:32}, initial:{left:-200, top:10}, delay:400 },
+    { id:'c2', color:'#A1887F', final:{left:188, top:160, rotate:0, width:46}, initial:{left:800,  top:20}, delay:600 },
+    { id:'c3', color:'#A1887F', final:{left:187, top:186, rotate:-45,width:33}, initial:{left:-200, top:100},delay:800 },
+    { id:'c4', color:'#A1887F', final:{left:212, top:163, rotate:45, width:33}, initial:{left:800,  top:150},delay:100 },
 
-/* 2행 — ㅇ ㅈ ㅊ ㅋ ㅌ ㅍ ㅎ */
+    /* ㅋ */
+    { id:'k1', color:'#FFCC80', final:{left:265, top:150, rotate:0}, initial:{left:-200, top:40}, delay:300 },
+    { id:'k2', color:'#FFCC80', final:{left:306, top:150, rotate:90, width:45}, initial:{left:800, top:60}, delay:500 },
+    { id:'k3', color:'#FFCC80', final:{left:265, top:170, rotate:0}, initial:{left:-200, top:120},delay:700 },
 
-/* ㅇ - Soft Deep Orange: #FF8A65 (Offset: 0px) — 도넛 */
-{
-    id:'o_circle', type:'circle',
-    color:'#FF8A65',
-    final:{ left:47, top:149, size:45 },
-    initial:{ left:-200, top:-200 },
-    delay:300
-},
+    /* ㅌ */
+    { id:'t1', color:'#4FC3F7', final:{left:344, top:150, rotate:0}, initial:{left:-200, top:20}, delay:200 },
+    { id:'t2', color:'#4FC3F7', final:{left:350, top:150, rotate:90, width:45}, initial:{left:800,  top:0}, delay:0   },
+    { id:'t3', color:'#4FC3F7', final:{left:344, top:167, rotate:0}, initial:{left:-200, top:180},delay:800 },
+    { id:'t4', color:'#4FC3F7', final:{left:344, top:184, rotate:0}, initial:{left:800,  top:180},delay:600 },
 
-/* ㅈ - Soft Pink: #F48FB1 (Offset: -4px) */
-{ id:'j1', color:'#F48FB1', final:{left:116, top:150, rotate:0, width:46}, initial:{left:-200, top:10}, delay:700 }, // 120 -> 116
-{ id:'j2', color:'#F48FB1', final:{left:110, top:185, rotate:-45, width:38}, initial:{left:800, top:100}, delay:200 }, // 114 -> 110
-{ id:'j3', color:'#F48FB1', final:{left:141, top:158, rotate:45, width:38}, initial:{left:-200, top:150}, delay:0 }, // 145 -> 141
+    /* ㅍ */
+    { id:'p1', color:'#DCE775', final:{left:416, top:150, rotate:0, width:45}, initial:{left:-200, top:40}, delay:400 },
+    { id:'p2', color:'#DCE775', final:{left:416, top:184, rotate:0, width:45}, initial:{left:800,  top:20}, delay:100 },
+    { id:'p3', color:'#DCE775', final:{left:436, top:156, rotate:90,width:30}, initial:{left:-200, top:160},delay:700 },
+    { id:'p4', color:'#DCE775', final:{left:453, top:156, rotate:90,width:30}, initial:{left:800,  top:150},delay:300 },
 
-/* ㅊ - Soft Brown: #A1887F (Offset: -8px) */
-{ id:'c1', color:'#A1887F', final:{left:195, top:145, rotate:0, width:32}, initial:{left:-200, top:10}, delay:400 }, // 203 -> 195
-{ id:'c2', color:'#A1887F', final:{left:188, top:160, rotate:0, width:46}, initial:{left:800, top:20}, delay:600 }, // 196 -> 188
-{ id:'c3', color:'#A1887F', final:{left:187, top:186, rotate:-45, width:33}, initial:{left:-200, top:100}, delay:800 }, // 195 -> 187
-{ id:'c4', color:'#A1887F', final:{left:212, top:163, rotate:45, width:33}, initial:{left:800, top:150}, delay:100 }, // 220 -> 212
-
-/* ㅋ - Light Amber: #FFCC80 (Offset: -12px) */
-{ id:'k1', color:'#FFCC80', final:{left:265, top:150, rotate:0}, initial:{left:-200, top:40}, delay:300 }, // 277 -> 265
-{ id:'k2', color:'#FFCC80', final:{left:306, top:150, rotate:90, width:45}, initial:{left:800, top:60}, delay:500 }, // 318 -> 306
-{ id:'k3', color:'#FFCC80', final:{left:265, top:170, rotate:0}, initial:{left:-200, top:120}, delay:700 }, // 277 -> 265
-
-/* ㅌ - Light Cyan: #4FC3F7 (Offset: -16px) */
-{ id:'t1', color:'#4FC3F7', final:{left:344, top:150, rotate:0}, initial:{left:-200, top:20}, delay:200 }, // 360 -> 344
-{ id:'t2', color:'#4FC3F7', final:{left:350, top:150, rotate:90, width:45}, initial:{left:800, top:0}, delay:0 }, // 366 -> 350
-{ id:'t3', color:'#4FC3F7', final:{left:344, top:167, rotate:0}, initial:{left:-200, top:180}, delay:800 }, // 360 -> 344
-{ id:'t4', color:'#4FC3F7', final:{left:344, top:184, rotate:0}, initial:{left:800, top:180}, delay:600 }, // 360 -> 344
-
-/* ㅍ - Light Lime: #DCE775 (Offset: -20px) */
-{ id:'p1', color:'#DCE775', final:{left:416, top:150, rotate:0, width:45}, initial:{left:-200, top:40}, delay:400 }, // 436 -> 416
-{ id:'p2', color:'#DCE775', final:{left:416, top:184, rotate:0, width:45}, initial:{left:800, top:20}, delay:100 }, // 436 -> 416
-{ id:'p3', color:'#DCE775', final:{left:436, top:156, rotate:90, width:30}, initial:{left:-200, top:160}, delay:700 }, // 456 -> 436
-{ id:'p4', color:'#DCE775', final:{left:453, top:156, rotate:90, width:30}, initial:{left:800, top:150}, delay:300 }, // 473 -> 453
-
-/* ㅎ - Light Gray: #BDBDBD (Offset: -24px) */
-{
-    id:'h_circle', type:'circle',
-    color:'#BDBDBD',
-    final:{ left:496, top:166, size:30 }, // 520 -> 496
-    initial:{ left:-200, top:-200 },
-    delay:0
-},
-{
-    id:'h_line1', color:'#BDBDBD',
-    final:{ left:489, top:155, rotate:0, width:44 }, // 513 -> 489
-    initial:{ left:800, top:150 },
-    delay:600
-},
-{
-    id:'h_line2', color:'#BDBDBD',
-    final:{ left:496, top:141, rotate:0, width:30 }, // 520 -> 496
-    initial:{ left:800, top:150 },
-    delay:400
-}
+    /* ㅎ */
+    { id:'h_circle', type:'circle', color:'#BDBDBD',
+      final:{ left:496, top:166, size:30 }, initial:{ left:-200, top:-200 }, delay:0 },
+    { id:'h_line1', color:'#BDBDBD', final:{ left:489, top:155, rotate:0, width:44 }, initial:{ left:800, top:150 }, delay:600 },
+    { id:'h_line2', color:'#BDBDBD', final:{ left:496, top:141, rotate:0, width:30 }, initial:{ left:800, top:150 }, delay:400 }
 ];
 
 /* ================================
-   5. 모음 데이터 (랜덤 딜레이, 차분한 밝은 톤 통일) - 그룹별 간격 8px 감소
+   5. 모음 데이터
 ================================ */
 const VOWEL_STROKES = [
+    /* ㅏ */
+    { id:'a1',  color:'#EF9A9A', final:{left:76,  top:80,  rotate:90, width:60}, initial:{left:-200, top:0},   delay:700 },
+    { id:'a2',  color:'#EF9A9A', final:{left:72,  top:100, rotate:0,  width:25}, initial:{left:800,  top:20},  delay:200 },
 
-/* 모음 1줄 — ㅏ ㅑ ㅓ ㅕ ㅗ ㅛ ㅜ ㅠ ㅡ ㅣ */
+    /* ㅑ */
+    { id:'ya1', color:'#C5E1A5', final:{left:148, top:80,  rotate:90, width:60}, initial:{left:-200, top:40}, delay:0   },
+    { id:'ya2', color:'#C5E1A5', final:{left:144, top:92,  rotate:0,  width:25}, initial:{left:800,  top:0},  delay:500 },
+    { id:'ya3', color:'#C5E1A5', final:{left:144, top:112, rotate:0,  width:25}, initial:{left:-200, top:150},delay:400 },
 
-/* ㅏ - Light Red: #EF9A9A (Offset: 0px) */
-{ id:'a1', color:'#EF9A9A', final:{left:76, top:80, rotate:90, width:60}, initial:{left:-200, top:0}, delay:700 },
-{ id:'a2', color:'#EF9A9A', final:{left:72, top:100, rotate:0, width:25}, initial:{left:800, top:20}, delay:200},
+    /* ㅓ */
+    { id:'eo1', color:'#FFCC80', final:{left:228, top:80,  rotate:90, width:60}, initial:{left:-200, top:20}, delay:600 },
+    { id:'eo2', color:'#FFCC80', final:{left:200, top:100, rotate:0,  width:25}, initial:{left:800,  top:20}, delay:100 },
 
-/* ㅑ - Light Lime: #C5E1A5 (Offset: -8px) */
-{ id:'ya1', color:'#C5E1A5', final:{left:148, top:80, rotate:90, width:60}, initial:{left:-200, top:40}, delay:0 }, // 124 -> 116
-{ id:'ya2', color:'#C5E1A5', final:{left:144, top:92, rotate:0, width:25}, initial:{left:800, top:0}, delay:500 }, // 120 -> 112
-{ id:'ya3', color:'#C5E1A5', final:{left:144, top:112, rotate:0, width:25}, initial:{left:-200, top:150}, delay:400 }, // 120 -> 112
+    /* ㅕ */
+    { id:'yeo1', color:'#FF8A65', final:{left:298, top:80,  rotate:90, width:60}, initial:{left:-200, top:0},  delay:300 },
+    { id:'yeo2', color:'#FF8A65', final:{left:266, top:92,  rotate:0,  width:25}, initial:{left:800,  top:100},delay:800 },
+    { id:'yeo3', color:'#FF8A65', final:{left:266, top:112, rotate:0,  width:25}, initial:{left:-200, top:120},delay:500 },
 
-/* ㅓ - Light Amber: #FFCC80 (Offset: -16px) */
-{ id:'eo1', color:'#FFCC80', final:{left:228, top:80, rotate:90, width:60}, initial:{left:-200, top:20}, delay:600 }, // 212 -> 196
-{ id:'eo2', color:'#FFCC80', final:{left:200, top:100, rotate:0, width:25}, initial:{left:800, top:20}, delay:100 }, // 184 -> 168
+    /* ㅗ */
+    { id:'o_v1', color:'#A1887F', final:{left:318, top:116, rotate:0, width:60}, initial:{left:-200, top:60}, delay:0   },
+    { id:'o_v2', color:'#A1887F', final:{left:353, top:90,  rotate:90,width:30}, initial:{left:800,  top:10}, delay:400 },
 
-/* ㅕ - Soft Deep Orange: #FF8A65 (Offset: -24px) */
-{ id:'yeo1', color:'#FF8A65', final:{left:298, top:80, rotate:90, width:60}, initial:{left:-200, top:0}, delay:300 }, // 296 -> 272
-{ id:'yeo2', color:'#FF8A65', final:{left:266, top:92, rotate:0, width:25}, initial:{left:800, top:100}, delay:800 }, // 264 -> 240
-{ id:'yeo3', color:'#FF8A65', final:{left:266, top:112, rotate:0, width:25}, initial:{left:-200, top:120}, delay:500 }, // 264 -> 240
+    /* ㅛ */
+    { id:'yo1', color:'#81D4FA', final:{left:400, top:116, rotate:0, width:60}, initial:{left:-200, top:40}, delay:200 },
+    { id:'yo2', color:'#81D4FA', final:{left:424, top:90,  rotate:90,width:30}, initial:{left:800,  top:0},  delay:600 },
+    { id:'yo3', color:'#81D4FA', final:{left:446, top:90,  rotate:90,width:30}, initial:{left:-200, top:100},delay:100 },
 
-/* ㅗ - Soft Brown: #A1887F (Offset: -32px) */
-{ id:'o_v1', color:'#A1887F', final:{left:318, top:116, rotate:0, width:60}, initial:{left:-200, top:60}, delay:0 }, // 350 -> 318
-{ id:'o_v2', color:'#A1887F', final:{left:353, top:90, rotate:90, width:30}, initial:{left:800, top:10}, delay:400 }, // 385 -> 353
+    /* ㅜ */
+    { id:'u1',  color:'#BA68C8', final:{left:472, top:94,  rotate:0, width:60}, initial:{left:-200, top:20}, delay:800 },
+    { id:'u2',  color:'#BA68C8', final:{left:507, top:101, rotate:90,width:30}, initial:{left:800,  top:100},delay:300 },
 
-/* ㅛ - Light Blue: #81D4FA (Offset: -40px) */
-{ id:'yo1', color:'#81D4FA', final:{left:400, top:116, rotate:0, width:60}, initial:{left:-200, top:40}, delay:200 }, // 440 -> 400
-{ id:'yo2', color:'#81D4FA', final:{left:424, top:90, rotate:90, width:30}, initial:{left:800, top:0}, delay:600 }, // 464 -> 424
-{ id:'yo3', color:'#81D4FA', final:{left:446, top:90, rotate:90, width:30}, initial:{left:-200, top:100}, delay:100 }, // 486 -> 446
+    /* ㅠ */
+    { id:'yu1', color:'#80CBC4', final:{left:544, top:94,  rotate:0, width:60}, initial:{left:-200, top:40}, delay:500 },
+    { id:'yu2', color:'#80CBC4', final:{left:568, top:101, rotate:90,width:30}, initial:{left:800,  top:0},  delay:700 },
+    { id:'yu3', color:'#80CBC4', final:{left:590, top:101, rotate:90,width:30}, initial:{left:-200, top:150},delay:200 },
 
-/* ㅜ - Soft Purple: #BA68C8 (Offset: -48px) */
-{ id:'u1', color:'#BA68C8', final:{left:472, top:94, rotate:0, width:60}, initial:{left:-200, top:20}, delay:800 }, // 520 -> 472
-{ id:'u2', color:'#BA68C8', final:{left:507, top:101, rotate:90, width:30}, initial:{left:800, top:100}, delay:300 }, // 555 -> 507
+    /* ㅡ */
+    { id:'eu1', color:'#F48FB1', final:{left:616, top:105, rotate:0, width:60}, initial:{left:-200, top:10}, delay:400 },
 
-/* ㅠ - Soft Teal: #80CBC4 (Offset: -56px) */
-{ id:'yu1', color:'#80CBC4', final:{left:544, top:94, rotate:0, width:60}, initial:{left:-200, top:40}, delay:500 }, // 600 -> 544
-{ id:'yu2', color:'#80CBC4', final:{left:568, top:101, rotate:90, width:30}, initial:{left:800, top:0}, delay:700 }, // 624 -> 568
-{ id:'yu3', color:'#80CBC4', final:{left:590, top:101, rotate:90, width:30}, initial:{left:-200, top:150}, delay:200 }, // 646 -> 590
-
-/* ㅡ - Soft Pink: #F48FB1 (Offset: -64px) */
-{ id:'eu1', color:'#F48FB1', final:{left:616, top:105, rotate:0, width:60}, initial:{left:-200, top:10}, delay:400 }, // 680 -> 616
-
-/* ㅣ - Soft Deep Purple: #9575CD (Offset: -72px) */
-{ id:'i1', color:'#9575CD', final:{left:704, top:80, rotate:90, width:60}, initial:{left:800, top:20}, delay:0 } // 776 -> 704
-
+    /* ㅣ */
+    { id:'i1',  color:'#9575CD', final:{left:704, top:80,  rotate:90,width:60}, initial:{left:800,  top:20}, delay:0   }
 ];
 
-/* ================================
-   6. 그룹(자음/모음 한 글자 단위) 정의
-   - A 방식: stroke id 기반   그룹 묶기 
-================================ */
+/* ------------------------------------------------------------
+   5. stroke id → groupKey (자모)
+------------------------------------------------------------ */
 const LETTER_GROUPS = {
-    // 자음
-    g: ["g1", "g2"],                    // ㄱ
-    n: ["n1", "n2"],                    // ㄴ
-    d: ["d1", "d2", "d3"],              // ㄷ
-    r: ["r1", "r2", "r3", "r4", "r5"],  // ㄹ
-    m: ["m1", "m2", "m3", "m4"],        // ㅁ
-    b: ["b1", "b2", "b3", "b4"],        // ㅂ
-    s: ["s1", "s2"],                    // ㅅ
-    o: ["o_circle"],                    // ㅇ
-    j: ["j1", "j2", "j3"],              // ㅈ
-    c: ["c1", "c2", "c3", "c4"],        // ㅊ
-    k: ["k1", "k2", "k3"],              // ㅋ
-    t: ["t1", "t2", "t3", "t4"],        // ㅌ
-    p: ["p1", "p2", "p3", "p4"],        // ㅍ
-    h: ["h_circle", "h_line1", "h_line2"], // ㅎ
+    g: ["g1", "g2"],
+    n: ["n1", "n2"],
+    d: ["d1", "d2", "d3"],
+    r: ["r1", "r2", "r3", "r4", "r5"],
+    m: ["m1", "m2", "m3", "m4"],
+    b: ["b1", "b2", "b3", "b4"],
+    s: ["s1", "s2"],
+    o: ["o_circle"],
+    j: ["j1", "j2", "j3"],
+    c: ["c1", "c2", "c3", "c4"],
+    k: ["k1", "k2", "k3"],
+    t: ["t1", "t2", "t3", "t4"],
+    p: ["p1", "p2", "p3", "p4"],
+    h: ["h_circle", "h_line1", "h_line2"],
 
     // 모음
-    a: ["a1", "a2"],                    // ㅏ
-    ya: ["ya1", "ya2", "ya3"],          // ㅑ
-    eo: ["eo1", "eo2"],                 // ㅓ
-    yeo: ["yeo1", "yeo2", "yeo3"],      // ㅕ
-    ov: ["o_v1", "o_v2"],               // ㅗ
-    yo: ["yo1", "yo2", "yo3"],          // ㅛ
-    u: ["u1", "u2"],                    // ㅜ
-    yu: ["yu1", "yu2", "yu3"],          // ㅠ
-    eu: ["eu1"],                        // ㅡ
-    i: ["i1"]                           // ㅣ
+    a: ["a1", "a2"],
+    ya: ["ya1", "ya2", "ya3"],
+    eo: ["eo1", "eo2"],
+    yeo: ["yeo1", "yeo2", "yeo3"],
+    ov: ["o_v1", "o_v2"],
+    yo: ["yo1", "yo2", "yo3"],
+    u: ["u1", "u2"],
+    yu: ["yu1", "yu2", "yu3"],
+    eu: ["eu1"],
+    i: ["i1"]
 };
 
-/* id → 어느 그룹(key)인지 찾기 위한 역맵 */
+/* id → 어느 그룹(key)인지 찾기 위한 역매핑 */
 const ID_TO_GROUP_KEY = (() => {
     const map = {};
-    Object.entries(LETTER_GROUPS).forEach(([key, idList]) => {
-        idList.forEach(id => {
-            map[id] = key;
-        });
+    Object.entries(LETTER_GROUPS).forEach(([key, ids]) => {
+        ids.forEach(id => map[id] = key);
     });
     return map;
 })();
 
 /* ================================
-   7. 클릭 → 그룹 복제 → 조합보드 배치
+   6. 클릭 → 그룹 복제 → 한 글자 보드 배치
 ================================ */
 function enableClickCloneMovement() {
     pickedPiece = null;
     mouseMoveHandler = null;
 
-    /* ---------------------------
-       1) 자음/모음 영역 클릭 → 그 글자(그룹) 복제해서 들기
-    ---------------------------- */
+    // A) 자음/모음 클릭 → 그룹 복제해서 들기
     $("#consonant-container, #vowel-container").on("click", ".stroke, .circle", function (e) {
-        if (eraserMode) return; // 지우개 모드일 땐 복제 안 함
+        if (eraserMode) return;
 
-        // 이미 들고 있는 조각 있으면 취소
         if (pickedPiece) {
             pickedPiece.remove();
             $(document).off("mousemove", mouseMoveHandler);
@@ -338,16 +286,11 @@ function enableClickCloneMovement() {
 
         const idList = LETTER_GROUPS[groupKey];
 
-        // 원본 요소들
         const elems = idList
             .map(id => $("#" + id))
-            .filter($el => $el.length > 0);
+            .filter($el => $el.length);
 
-        if (!elems.length) return;
-
-        // 그룹의 바운딩 박스 계산 (원본 기준)
-        let minLeft = Infinity,
-            minTop = Infinity;
+        let minLeft = Infinity, minTop = Infinity;
         elems.forEach($el => {
             const left = parseFloat($el.css("left"));
             const top = parseFloat($el.css("top"));
@@ -355,7 +298,6 @@ function enableClickCloneMovement() {
             if (top < minTop) minTop = top;
         });
 
-        // 그룹 래퍼 생성
         const $group = $("<div>")
             .addClass("letter-group placed-piece floating-piece")
             .attr("data-group-key", groupKey)
@@ -366,11 +308,8 @@ function enableClickCloneMovement() {
                 zIndex: 99999
             });
 
-        // 각 stroke / circle 복제 후 그룹 내부에 상대좌표로 배치
         elems.forEach($orig => {
-            const clone = $orig
-                .clone()
-                .removeAttr("id"); // workspace 안에서는 id 중복 방지
+            const clone = $orig.clone().removeAttr("id");
 
             const left = parseFloat($orig.css("left"));
             const top = parseFloat($orig.css("top"));
@@ -378,7 +317,7 @@ function enableClickCloneMovement() {
             clone.css({
                 left: left - minLeft + "px",
                 top: top - minTop + "px",
-                opacity: 1 // 이미 애니메이션 끝난 상태처럼 보이도록
+                opacity: 1
             });
 
             $group.append(clone);
@@ -393,32 +332,26 @@ function enableClickCloneMovement() {
                 top: ev.clientY - pickedPiece.height() / 2 + "px"
             });
         };
-
         $(document).on("mousemove", mouseMoveHandler);
+
         e.stopPropagation();
     });
 
-    /* ---------------------------
-       2) 조합보드 안의 그룹 클릭 → 다시 들기
-          (복사 X, 그대로 이동)
-    ---------------------------- */
+    // B) 보드 위 조각 클릭 → 다시 들기 or 삭제
     $("#workspace").on("click", ".placed-piece", function (e) {
         if (eraserMode) {
-            // 지우개 모드에서는 삭제만
             $(this).remove();
+            recognizeWordFromBoard();
             e.stopPropagation();
             return;
         }
 
-        // 이미 다른 걸 들고 있으면 취소
         if (pickedPiece) {
             pickedPiece.remove();
             $(document).off("mousemove", mouseMoveHandler);
         }
 
-        const $elem = $(this);
-
-        pickedPiece = $elem
+        pickedPiece = $(this)
             .addClass("floating-piece")
             .css({
                 position: "fixed",
@@ -433,14 +366,11 @@ function enableClickCloneMovement() {
                 top: ev.clientY - pickedPiece.height() / 2 + "px"
             });
         };
-
         $(document).on("mousemove", mouseMoveHandler);
         e.stopPropagation();
     });
 
-    /* ---------------------------
-       3) workspace 클릭 → 들고 있는 그룹 내려놓기
-    ---------------------------- */
+    // C) 보드 클릭 → 조각 내려놓기 (한 글자 보드 안)
     $("#workspace").on("click", function (e) {
         if (!pickedPiece) return;
 
@@ -460,13 +390,15 @@ function enableClickCloneMovement() {
             });
 
         $(this).append(pickedPiece);
+
         $(document).off("mousemove", mouseMoveHandler);
         pickedPiece = null;
+
+        $("#workspace-hint").hide();   // 무언가 올라오면 안내 문구 숨김
+        recognizeWordFromBoard();      // 🔥 항상 한 글자 인식
     });
 
-    /* ---------------------------
-       4) Esc → 현재 들고 있는 그룹 취소
-    ---------------------------- */
+    // Esc → 들고 있는 조각 취소
     $(document).on("keydown", e => {
         if (e.key === "Escape" && pickedPiece) {
             pickedPiece.remove();
@@ -475,18 +407,18 @@ function enableClickCloneMovement() {
         }
     });
 
-    /* ---------------------------
-       5) 전체 삭제 버튼
-    ---------------------------- */
+    // 전체 삭제
     $("#clearWorkspace").on("click", function () {
         $("#workspace").empty();
+        $("#workspace-hint").show();
         pickedPiece = null;
         $(document).off("mousemove", mouseMoveHandler);
+        recognizeWordFromBoard();
     });
 }
 
 /* ================================
-   8. 지우개 모드 ON/OFF
+   7. 지우개 모드 버튼 기능
 ================================ */
 function setupEraserAndCursorButtons() {
     $("#eraserButton").on("click", function () {
@@ -506,6 +438,200 @@ function setupEraserAndCursorButtons() {
     });
 }
 
+/* ============================================================
+   8.🔥 한 글자 전용 인식 (복합받침 + 자모 단독 지원)
+============================================================ */
+
+/* 자모 key 테이블 */
+const CHO_KEYS  = ["g","n","d","r","m","b","s","o","j","c","k","t","p","h"];
+const JUNG_KEYS = ["a","ya","eo","yeo","ov","yo","u","yu","eu","i"];
+
+/* 종성 테이블 (유니코드용) */
+const FINAL_TABLE = [
+    "", "g","gg","gs","n","nj","nh","d","r",
+    "rg","rm","rb","rs","rt","rp","rh","m","b","bs",
+    "s","ss","ng","j","c","k","t","p","h"
+];
+
+/* 복합받침으로 허용되는 조합 */
+const COMPLEX_JONG_SET = new Set([
+    "gs","nj","nh","rg","rm","rb","rs","rt","rp","rh","bs"
+]);
+
+/* 자모 → 단독 자모 글자 */
+const ROMA_TO_CONSONANT = {
+    g:"\u3131", // ㄱ
+    n:"\u3134", // ㄴ
+    d:"\u3137", // ㄷ
+    r:"\u3139", // ㄹ
+    m:"\u3141", // ㅁ
+    b:"\u3142", // ㅂ
+    s:"\u3145", // ㅅ
+    o:"\u3147", // ㅇ
+    j:"\u3148", // ㅈ
+    c:"\u314A", // ㅊ
+    k:"\u314B", // ㅋ
+    t:"\u314C", // ㅌ
+    p:"\u314D", // ㅍ
+    h:"\u314E"  // ㅎ
+};
+
+const ROMA_TO_VOWEL = {
+    a:"\u314F",   // ㅏ
+    ya:"\u3151",  // ㅑ
+    eo:"\u3153",  // ㅓ
+    yeo:"\u3155", // ㅕ
+    ov:"\u3157",  // ㅗ
+    yo:"\u315B",  // ㅛ
+    u:"\u315C",   // ㅜ
+    yu:"\u3160",  // ㅠ
+    eu:"\u3161",  // ㅡ
+    i:"\u3163"    // ㅣ
+};
+
+function isConsonantKey(k) { return CHO_KEYS.includes(k); }
+function isVowelKey(k)     { return JUNG_KEYS.includes(k); }
+
+/* 초/중/종으로 완성형 한 글자 만들기 */
+function makeHangulSyllable(choKey, jungKey, jongStr) {
+    const ci = CHO_KEYS.indexOf(choKey);
+    const vi = JUNG_KEYS.indexOf(jungKey);
+    const fi = FINAL_TABLE.indexOf(jongStr || "");
+
+    if (ci < 0 || vi < 0 || fi < 0) return "";
+
+    const code = 0xAC00 + ci * 21 * 28 + vi * 28 + fi;
+    return String.fromCharCode(code);
+}
+
+/* trailing 자음들로 받침 하나 결정 */
+function deriveFinalJong(trailing) {
+    if (!trailing || trailing.length === 0) return "";
+
+    if (trailing.length === 1) return trailing[0];
+
+    const pair = trailing[0] + trailing[1];
+    if (COMPLEX_JONG_SET.has(pair)) return pair;
+
+    return trailing[0]; // 나머지는 첫 자음만 받침으로
+}
+
+/* 한 글자 보드 안의 자모 시퀀스 → 한 글자 or 자모 */
+function buildHangulFromSingleBoard(keys) {
+    if (!keys || keys.length === 0) return "";
+
+    // 1) 모음이 하나도 없으면 → 자음/모음 자모 그대로 출력
+    const hasVowel = keys.some(k => isVowelKey(k));
+    if (!hasVowel) {
+        return keys.map(k =>
+            ROMA_TO_CONSONANT[k] || ROMA_TO_VOWEL[k] || ""
+        ).join("");
+    }
+
+    // 2) 첫 번째 모음 위치 찾기
+    const vIdx = keys.findIndex(k => isVowelKey(k));
+    const jung = keys[vIdx];
+
+    // 3) 모음 앞에서 가장 오른쪽의 자음 하나를 초성으로 사용
+    let cho = null;
+    for (let i = vIdx - 1; i >= 0; i--) {
+        if (isConsonantKey(keys[i])) {
+            cho = keys[i];
+            break;
+        }
+    }
+    if (!cho) cho = "o"; // 초성이 없으면 ㅇ으로 자동 보정
+
+    // 4) 모음 뒤에 오는 자음들 → 받침 후보
+    const trailing = [];
+    for (let i = vIdx + 1; i < keys.length; i++) {
+        if (isConsonantKey(keys[i])) trailing.push(keys[i]);
+    }
+    const jong = deriveFinalJong(trailing);
+
+    // 5) 완성형 글자 만들기
+    const syllable = makeHangulSyllable(cho, jung, jong);
+    if (!syllable) {
+        // 혹시라도 조합 실패하면 자모 그대로
+        return keys.map(k =>
+            ROMA_TO_CONSONANT[k] || ROMA_TO_VOWEL[k] || ""
+        ).join("");
+    }
+
+    // 6) 모음 앞의 나머지 자모(초성으로 쓰이지 않은 것들)는 자모 그대로
+    const prefix = [];
+    for (let i = 0; i < vIdx; i++) {
+        if (keys[i] === cho && isConsonantKey(keys[i])) continue;
+        prefix.push(keys[i]);
+    }
+
+    const prefixStr = prefix.map(k =>
+        ROMA_TO_CONSONANT[k] || ROMA_TO_VOWEL[k] || ""
+    ).join("");
+
+    return prefixStr + syllable;
+}
+
+/* 결과 박스 업데이트 */
+function updateRecognitionOutput(text) {
+    $("#recognized-text").text(text && text.length > 0 ? text : "-");
+}
+
+/* ---------------------------------------------------------
+   🔥 한 글자 전용 인식
+   보드 안에 있는 조각들 = 항상 한 글자를 구성한다고 가정
+--------------------------------------------------------- */
+function recognizeWordFromBoard() {
+    const pieces = Array.from(document.querySelectorAll("#workspace .letter-group"));
+    if (pieces.length === 0) {
+        updateRecognitionOutput("");
+        return;
+    }
+
+    // 1) x좌표 기준으로 정렬 (초 → 중 → 종 순서)
+    const sorted = pieces
+        .map(el => {
+            const rect = el.getBoundingClientRect();
+            return {
+                key: el.dataset.groupKey,
+                x: rect.left + rect.width / 2
+            };
+        })
+        .sort((a, b) => a.x - b.x);
+
+    const jamos = sorted.map(x => x.key);
+
+    let cho = null, jung = null, jong = null;
+
+    jamos.forEach(j => {
+        const t = classifyJamo(j);
+        if (!t) return;
+
+        if (t.type === "cho") {
+            if (!cho) cho = j;
+            else if (!jong) jong = j;             // 중성 이후라면 종성
+        }
+        else if (t.type === "jung") {
+            jung = j;
+        }
+        else if (t.type === "jong") {
+            if (!jong) jong = j;
+            else {
+                const combo = combineJong(jong, j);
+                if (combo) jong = combo;
+            }
+        }
+    });
+
+    // 초성 + 중성 필수
+    if (cho && jung) {
+        updateRecognitionOutput(makeHangulSyllable(cho, jung, jong));
+    } else {
+        updateRecognitionOutput("-");
+    }
+}
+
+
 /* ================================
    9. 실행
 ================================ */
@@ -517,13 +643,16 @@ $(document).ready(() => {
     startAnimation(CONSONANT_STROKES);
     startAnimation(VOWEL_STROKES);
 
-    // 반응형 스케일 초기 적용
+    // 반응형 초기 적용
     applyScale("#consonant-wrapper", 680);
     applyScale("#vowel-wrapper", 780);
 
-    // 클릭 → 그룹 복제/배치/이동
+    // 클릭 복제/배치 기능
     enableClickCloneMovement();
 
-    // 지우개 / 마우스 모드
+    // 지우개/마우스 모드
     setupEraserAndCursorButtons();
+
+    // 초기 인식
+    recognizeWordFromBoard();
 });

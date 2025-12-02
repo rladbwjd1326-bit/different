@@ -16,21 +16,33 @@ body {
 }
 
 /* ==========================================================
-   🧩 조합보드 (workspace)
+   🧩 조합보드 + 인식 박스 좌우 정렬 영역
    ========================================================== */
-#workspace-wrapper {
+#board-area {
     width: 100%;
     max-width: 900px;
     margin: 0 auto 40px;
-    position: relative;
 
-    /* 🔥 버튼이 보드 위에 겹치지 않도록 위쪽 공간 확보 */
-    padding-top: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px;   /* 보드와 인식박스 간격 */
+}
+
+/* ==========================================================
+   🧩 한 글자 전용 조합보드 (workspace)
+   ========================================================== */
+#workspace-wrapper {
+    width: 100%;
+    max-width: 260px;
+    position: relative;
+    padding-top: 45px; /* 상단 버튼 공간 확보 */
 }
 
 #workspace {
-    width: 100%;
-    height: 220px;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
     background: #ffffff;
     border-radius: 18px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -38,25 +50,41 @@ body {
     overflow: hidden;
 }
 
+/* 안에 안내 문구 */
+#workspace-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+/* 보드 안에 조각 그룹 */
+#workspace .letter-group {
+    position: absolute;
+}
+
 /* ==========================================================
-   1) 조합보드 상단 도구 버튼
-      (커서 / 지우개 / 전체삭제)
+   조합보드 상단 도구 버튼 (커서/지우개/전체 삭제)
    ========================================================== */
 #toolButtons {
     position: absolute;
-    top: 0;  /* wrapper의 맨 상단 */
+    top: 0;
     left: 0;
     right: 0;
 
     display: flex;
-    justify-content: space-between; /* 왼쪽 그룹 vs 오른쪽 그룹 */
+    justify-content: space-between;
     align-items: center;
 
     padding: 0 10px;
     z-index: 10;
 }
 
-/* 왼쪽(마우스/지우개) 버튼 그룹 */
+/* 왼쪽(마우스/지우개) 버튼 */
 .left-tools button {
     padding: 8px 16px;
     background: #4a6fa5;
@@ -67,29 +95,64 @@ body {
     font-size: 0.95rem;
     margin-right: 8px;
 }
+.left-tools button:hover { background: #3558c8; }
 
-.left-tools button:hover {
-    background: #3558c8;
-}
-
-/* 오른쪽(전체 삭제) 버튼 그룹 */
+/* 오른쪽(전체삭제) 버튼 */
 .right-tools #clearWorkspace {
     padding: 8px 16px;
-    background: #d86b6b; /* 차분한 붉은색 */
+    background: #d86b6b;
     color: #fff;
     border-radius: 8px;
     border: none;
     cursor: pointer;
     font-size: 0.95rem;
 }
+.right-tools #clearWorkspace:hover { background: #c05a5a; }
 
-.right-tools #clearWorkspace:hover {
-    background: #c05a5a;
+#toolButtons .active {
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.7);
 }
 
-/* 공통 active 상태 (마우스/지우개 등) */
-#toolButtons .active {
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7);
+/* ==========================================================
+   🔥 실시간 인식 결과 박스
+   ========================================================== */
+#recognition-box {
+    width: 260px;
+    min-height: 220px;
+
+    background: white;
+    border-radius: 15px;
+    padding: 15px 20px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#recognition-box h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 12px;
+}
+
+#recognized-text {
+    width: 100%;
+    min-height: 120px;
+
+    background: #f3f6ff;
+    border-radius: 10px;
+    padding: 12px;
+
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ==========================================================
@@ -126,13 +189,14 @@ body {
     transform-origin: top center;
     width: 100%;
     height: 100%;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 /* ==========================================================
-   자음/모음 컨테이너 (실제 좌표 기준 영역)
+   자음/모음 내부 좌표 영역
    ========================================================== */
 #consonant-container {
     width: 580px;
@@ -168,18 +232,13 @@ body {
     cursor: pointer;
 }
 
-/* 조합보드 위에 올라간 하나의 "글자" 그룹 */
-.letter-group {
-    position: absolute;
-}
-
-/* 지우개 모드일 때 커서 */
+/* 지우개 모드 시 커서 변경 */
 body.eraser-mode,
 body.eraser-mode * {
     cursor: crosshair !important;
 }
 
-/* ======================  ====================================
+/* ==========================================================
    🎮 게임 방법 버튼
    ========================================================== */
 #guide-box {
@@ -208,13 +267,13 @@ body.eraser-mode * {
     background: #ffffff;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s ease;
 }
 
-#guide-popup p { 
+#guide-popup p {
     margin: 4px 0;
     font-size: 0.85rem;
     text-align: left;
@@ -226,9 +285,7 @@ body.eraser-mode * {
     color: #777;
 }
 
-/* Hover 시 팝업 열림 */
 #guide-box:hover #guide-popup {
-
     opacity: 1;
     pointer-events: auto;
 }

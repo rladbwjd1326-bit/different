@@ -17,6 +17,7 @@
 </head>
 
 <body class="font-inter">
+
     <!-- 🎮 게임 방법 버튼 -->
     <div id="guide-box">
         <button id="guide-btn">게임 방법</button>
@@ -25,8 +26,8 @@
             <p>✔ 아래 자음/모음을 클릭하여 조각을 들어올립니다.</p>
             <p class="en">✔ Click a consonant or vowel below to pick up a piece.</p>
 
-            <p>✔ 조합보드(맨 위)를 클릭하면 그 위치에 조각이 놓입니다.</p>
-            <p class="en">✔ Click on the top workspace to place the piece.</p>
+            <p>✔ 한 글자 조합 보드(위의 흰 박스)에 조각을 올려 한 글자를 만듭니다.</p>
+            <p class="en">✔ Put pieces on the small board above to build ONE syllable.</p>
 
             <p>✔ Esc 키를 누르면 집은 조각이 취소됩니다.</p>
             <p class="en">✔ Press Esc to cancel the selected piece.</p>
@@ -36,22 +37,36 @@
         </div>
     </div>
 
-    <!-- 🧩 조합  보드 -->
-    <h1 class="title-text">🧩 한글 조합 보드</h1>
+    <!-- 🧩 조합 보드 -->
+    <h1 class="title-text">🧩 한 글자 전용 조합 보드</h1>
 
-    <div id="workspace-wrapper">
-        <!-- 보드용 도구 버튼 (마우스  / 지우개 / 전체 삭제) -->
-        <div id="toolButtons">
-            <div class="left-tools">
-                <button id="cursorButton" class="active font-bold">🖱️ 마우스</button>
-                <button id="eraserButton" class="font-bold">🩹 지우개</button>
+    <div id="board-area">
+        <!-- 보드 전체 묶음 -->
+        <div id="workspace-wrapper">
+
+            <!-- 도구 버튼 영역 -->
+            <div id="toolButtons">
+                <div class="left-tools">
+                    <button id="cursorButton" class="active font-bold">🖱️ 마우스</button>
+                    <button id="eraserButton" class="font-bold">🩹 지우개</button>
+                </div>
+
+                <div class="right-tools">
+                    <button id="clearWorkspace" class="font-bold">🗑 전체 삭제</button>
+                </div>
             </div>
-            <div class="right-tools">
-                <button id="clearWorkspace" class="font-bold">🗑 전체 삭제</button>
+
+            <!-- 실제 작업 보드 (한 글자 전용) -->
+            <div id="workspace">
+                <div id="workspace-hint">여기에 한 글자 조합하기</div>
             </div>
         </div>
 
-        <div id="workspace"></div>
+        <!-- 🔥 실시간 인식 결과 박스 -->
+        <div id="recognition-box">
+            <h3>🔍 인식 결과 (한 글자)</h3>
+            <div id="recognized-text">-</div>
+        </div>
     </div>
 
     <!-- ✨ 자음 영역 -->
