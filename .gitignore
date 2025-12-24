@@ -1,0 +1,6 @@
+.env
+node_modules/
+콘랩데이터.csv
+데이터삽입용.csv
+data.py
+data2.py

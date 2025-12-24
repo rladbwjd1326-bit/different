@@ -1,0 +1,456 @@
+/* common.css - Global Styles & Navigation */
+
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #2a2a2a;
+    --acc-color: #f2f2f2;
+    --primary-red: #C1272D;
+    --primary-blue: #0047A0;
+    --nav-height: 80px;
+    --max-width: 1280px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* 모바일 상단 네비 고정 시 본문 밀기 */
+@media (max-width: 767px) {
+    body {
+        padding-top: 70px;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* --- Layout Utils --- */
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Top Navigation --- */
+.top-nav {
+    width: 100%;
+    height: var(--nav-height);
+    position: relative;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    display: flex;
+    justify-content: space-between;
+    /* Default for Desktop */
+    align-items: center;
+    padding: 0 40px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+/* 모바일에서 상단 네비 고정 */
+@media (max-width: 767px) {
+    .top-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 70px;
+        width: 100%;
+        width: 100%;
+        padding: 0 12px;
+        z-index: 9999;
+        /* Ensure flex behavior for 3 items (Logo, Auth, Hamburger) works */
+        justify-content: flex-start;
+        /* We will use auto margins to push items */
+    }
+}
+
+.top-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.top-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    font-size: 22px;
+    font-weight: 900;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+    transition: 0.3s ease;
+}
+
+/* 태극기 문양 (Taegeuk Symbol) */
+.top-logo::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--primary-red) 50%, var(--primary-blue) 50%);
+    border-radius: 50%;
+    opacity: 1;
+    z-index: -1;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.top-logo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+
+.top-menu {
+    display: flex;
+    gap: 30px;
+}
+
+.top-menu a {
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    transition: color 0.2s;
+    padding: 5px 0;
+    position: relative;
+}
+
+.mobile-only-link {
+    display: none;
+}
+
+.top-menu a:hover,
+.top-menu a.active {
+    color: var(--text-color);
+}
+
+.top-menu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--text-color);
+}
+
+.top-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.top-btn-small {
+    padding: 8px 18px;
+    border-radius: 20px;
+    background: #2a2a2a;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.top-btn-small:hover {
+    background: #000;
+    transform: translateY(-1px);
+}
+
+/* Search Bar */
+.top-search {
+    width: 240px;
+    height: 40px;
+    background: #f1f3f5;
+    border-radius: 20px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+.top-search:focus-within {
+    width: 300px;
+    background: #fff;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.search-btn {
+    padding: 4px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.search-btn:hover {
+    opacity: 1;
+}
+
+.search-icon {
+    height: 18px;
+}
+
+/* Hide Mobile Profile by default on Desktop */
+#mobileProfile {
+    display: none !important;
+}
+
+/* --- Mobile Menu Button --- */
+.mobile-menu-btn {
+    display: none;
+    font-size: 24px;
+    padding: 10px;
+    color: var(--text-color);
+}
+
+/* --- Mobile Responsive Styles --- */
+@media (max-width: 767px) {
+
+    .mobile-menu-btn {
+        display: block;
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    .top-nav-left {
+        gap: 0;
+    }
+
+    .top-menu {
+        position: fixed;
+        top: 70px;
+        right: 0;
+        left: auto;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: #fff;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px;
+        gap: 20px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    .top-nav.mobile-open .top-menu {
+        transform: translateX(0);
+    }
+
+    .top-menu a {
+        font-size: 18px;
+        width: 100%;
+        border-bottom: 1px solid #f9f9f9;
+        padding-bottom: 15px;
+        color: #333;
+    }
+
+    .mobile-only-link {
+        display: block;
+        font-weight: 700;
+        color: var(--primary-blue) !important;
+    }
+
+    .top-menu a.active::after {
+        display: none;
+    }
+
+    .top-menu a.active {
+        color: var(--primary-red);
+        font-weight: 700;
+    }
+
+    /* top-search remains hidden */
+    .top-search {
+        display: none;
+    }
+
+    /* Show top-nav-right on mobile but adjust style */
+    .top-nav-right {
+        display: flex;
+        gap: 8px;
+        /* Close gap */
+        margin-left: auto;
+        /* Push to right */
+        margin-right: 10px;
+        /* Space before hamburger */
+    }
+
+    /* Small buttons for mobile */
+    .top-btn-small {
+        padding: 6px 10px;
+        font-size: 12px;
+        border-radius: 12px;
+    }
+
+    /* Hide text 'Log In'/'Sign Up' if needed, but user wants buttons. 
+       Maybe just make them very compact. */
+
+    #mobileProfile {
+        display: flex !important;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #f0f0f0;
+        width: 100%;
+        font-weight: 700;
+        color: #2a2a2a;
+    }
+
+    #mobileProfile .profile-initial-mobile {
+        width: 40px;
+        height: 40px;
+        background: #2a2a2a;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 700;
+    }
+
+    /* Prevent nickname from breaking layout on small phones */
+    .user-nickname {
+        max-width: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+    }
+
+    /* Hide Logout button and divider on mobile (header) */
+    .user-profile-menu button#logoutBtn,
+    .user-profile-menu span[style*="background: #ddd"] {
+        display: none !important;
+    }
+
+    /* Adjust profile menu container for mobile header */
+    .user-profile-menu {
+        gap: 6px !important;
+        margin-right: 5px;
+    }
+}
+
+/* --- Floating Bottom Navigation (Mobile App-like) --- */
+.bottom-nav {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: 12px 30px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 9000;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.bottom-nav.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 모바일에서는 하단 네비 제거 */
+@media (max-width: 767px) {
+    .bottom-nav {
+        display: none !important;
+    }
+}
+
+/* --- Tooltip --- */
+.tooltip {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .tooltip {
+        display: block;
+        position: absolute;
+        bottom: -35px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #333;
+        color: #fff;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: 0.2s;
+        pointer-events: none;
+    }
+
+    .nav-icon-link:hover .tooltip {
+        opacity: 1;
+        bottom: -45px;
+    }
+}
+
+/* --- Global Footer --- */
+.local-main-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+    color: #777;
+    font-size: 0.9em;
+    background-color: var(--bg-color);
+    width: 100%;
+}

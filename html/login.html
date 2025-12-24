@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Koreanize</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="top-nav">
+        <div class="top-nav-left">
+            <a href="../index.html" class="top-logo">K</a>
+            <nav class="top-menu">
+                <a href="../index.html">Home</a>
+                <a href="local.html">Local</a>
+                <a href="k-lingo.html">K-Lingo</a>
+                <a href="media.html">Media</a>
+                <a href="minigame.html">Mini Games</a>
+                <a href="mypage.html">My Page</a>
+            </nav>
+        </div>
+        <div class="top-nav-right">
+            <a href="login.html" class="top-btn-small">Log In</a>
+            <a href="signup.html" class="top-btn-small"
+                style="background:transparent; color:#2a2a2a; border: 1px solid #ddd;">Sign Up</a>
+        </div>
+    </header>
+
+    <main class="auth-container">
+        <div class="auth-card">
+            <h1>Log In</h1>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="email" placeholder="user@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="********" required>
+                </div>
+                <button type="submit" class="auth-btn">Log In</button>
+            </form>
+            <p class="auth-link">
+                Don't have an account? <a href="signup.html">Sign Up</a>
+            </p>
+        </div>
+    </main>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+
+</html>

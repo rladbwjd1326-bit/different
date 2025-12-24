@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page - Koreanize</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="top-nav">
+        <div class="top-nav-left">
+            <a href="../index.html" class="top-logo">K</a>
+            <nav class="top-menu">
+                <a href="../index.html">Home</a>
+                <a href="local.html">Local</a>
+                <a href="k-lingo.html">K-Lingo</a>
+                <a href="media.html">Media</a>
+                <a href="minigame.html">Mini Games</a>
+                <a href="mypage.html" class="active">My Page</a>
+                <!-- Mobile Only Links -->
+                <a href="login.html" class="mobile-only-link">Log In</a>
+                <a href="signup.html" class="mobile-only-link">Sign Up</a>
+            </nav>
+        </div>
+        <div class="top-nav-right">
+            <a href="login.html" class="top-btn-small">Log In</a>
+            <a href="signup.html" class="top-btn-small"
+                style="background:transparent; color:#2a2a2a; border: 1px solid #ddd;">Sign Up</a>
+        </div>
+    </header>
+
+    <main class="mypage-container">
+
+        <section class="profile-section">
+            <div class="avatar-wrapper">
+                <div class="avatar-circle">
+                    <img src="../images/main/mypage.svg" alt="User" id="profileImg">
+                </div>
+                <button class="edit-profile-btn" id="editProfileBtn">
+                    <i class="fas fa-pen"></i>
+                </button>
+                <input type="file" id="profileInput" style="display: none;" accept="image/*">
+            </div>
+            <div class="profile-info">
+                <h2 id="userName">Traveler</h2>
+                <p>Korea Explorer Level 1</p>
+            </div>
+        </section>
+
+
+
+        <section class="section-box">
+            <h3>💘 Bookmarked Spots (<span id="bookmarkCount"> 0 </span>)</h3>
+            <div class="bookmark-list" id="bookmarkList">
+                <!-- Injected via JS -->
+                <div class="empty-msg">No bookmarks yet.</div>
+            </div>
+            <!-- Bookmark Pagination -->
+            <div class="mypage-pagination" id="bookmarkPagination"
+                style="display:none; margin-top:20px; justify-content:center; gap:15px; align-items:center;">
+                <button id="prevBookmarkBtn" class="page-btn"><i class="fas fa-chevron-left"></i></button>
+                <span id="bookmarkPageIndicator" style="font-weight:600; color:#555;">1 / 1</span>
+                <button id="nextBookmarkBtn" class="page-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+        </section>
+        <div class="account-actions" style="margin-top: 40px; text-align: right;">
+            <button id="deleteAccountBtn" class="delete-account-btn">회원 탈퇴 (Delete Account)</button>
+        </div>
+    </main>
+
+
+    <footer class="local-main-footer">
+        <p>&copy; 2025 K-Local Vibe Trip. All rights reserved.</p>
+    </footer>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav" id="bottomNav">
+        <a href="../index.html" class="nav-icon-link">
+            <img src="../images/home.svg" alt="Home" class="nav-img">
+            <span class="tooltip">Home</span>
+        </a>
+        <a href="local.html" class="nav-icon-link">
+            <img src="../images/travel.svg" alt="Local" class="nav-img">
+            <span class="tooltip">Local</span>
+        </a>
+        <a href="k-lingo.html" class="nav-icon-link">
+            <img src="../images/language.svg" alt="K-Lingo" class="nav-img">
+            <span class="tooltip">K-Lingo</span>
+        </a>
+        <a href="media.html" class="nav-icon-link">
+            <img src="../images/media.svg" alt="Media" class="nav-img">
+            <span class="tooltip">Media</span>
+        </a>
+        <a href="minigame.html" class="nav-icon-link">
+            <img src="../images/minigame.svg" alt="Game" class="nav-img">
+            <span class="tooltip">Game</span>
+        </a>
+        <a href="mypage.html" class="nav-icon-link">
+            <img src="../images/mypage.svg" alt="MyPage" class="nav-img">
+            <span class="tooltip">MyPage</span>
+        </a>
+    </nav>
+
+    <script src="../js/mock_data.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/mypage.js"></script>
+</body>
+
+
+</html>

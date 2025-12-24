@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Lingo - Koreanize</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/k-lingo.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Dynamic Top Nav (Standardized) -->
+    <header class="top-nav">
+        <div class="top-nav-left">
+            <a href="../index.html" class="top-logo">K</a>
+            <nav class="top-menu">
+                <a href="../index.html">Home</a>
+                <a href="local.html">Local</a>
+                <a href="k-lingo.html" class="active">K-Lingo</a>
+                <a href="media.html">Media</a>
+                <a href="minigame.html">Mini Games</a>
+                <a href="mypage.html">My Page</a>
+                <a href="login.html" class="mobile-only-link">Log In</a>
+                <a href="signup.html" class="mobile-only-link">Sign Up</a>
+            </nav>
+        </div>
+        <div class="top-nav-right">
+            <a href="login.html" class="top-btn-small">Log In</a>
+            <a href="signup.html" class="top-btn-small"
+                style="background:transparent; color:#2a2a2a; border: 1px solid #ddd;">Sign Up</a>
+
+        </div>
+    </header>
+
+    <main class="klingo-container">
+        <div class="klingo-header">
+            <h1>K-Lingo</h1>
+            <p>Master Korean slang and chat with our AI tutor.</p>
+        </div>
+
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="chat">AI Chat</button>
+            <button class="tab-btn" data-tab="slang">Slang Dictionary</button>
+        </div>
+
+        <div class="tab-content">
+            <!-- Chat Tab -->
+            <div id="chat" class="tab-pane active">
+                <div class="chat-wrapper">
+                    <div class="chat-window" id="chatWindow">
+                        <!-- Messages go here -->
+                        <div class="chat-bubble bot">
+                            Hello! I'm your Korean AI tutor. Ask me anything about Korean language or culture! 😊
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chatInput" placeholder="Type your message..." autocomplete="off">
+                        <button id="sendBtn">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slang Tab -->
+            <div id="slang" class="tab-pane">
+                <div class="slang-grid" id="slangGrid">
+                    <!-- Slang items injected by JS -->
+                    <div class="loading-spinner">Loading slang...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="local-main-footer">
+        <p>&copy; 2025 K-Local Vibe Trip. All rights reserved.</p>
+    </footer>
+
+    <!-- Floating Bottom Nav -->
+    <nav class="bottom-nav" id="bottomNav">
+        <a href="../index.html" class="nav-icon-link">
+            <img src="../images/home.svg" alt="Home" class="nav-img">
+            <span class="tooltip">Home</span>
+        </a>
+        <a href="local.html" class="nav-icon-link">
+            <img src="../images/travel.svg" alt="Local" class="nav-img">
+            <span class="tooltip">Local</span>
+        </a>
+        <a href="k-lingo.html" class="nav-icon-link">
+            <img src="../images/language.svg" alt="K-Lingo" class="nav-img">
+            <span class="tooltip">K-Lingo</span>
+        </a>
+        <a href="media.html" class="nav-icon-link">
+            <img src="../images/media.svg" alt="Media" class="nav-img">
+            <span class="tooltip">Media</span>
+        </a>
+        <a href="minigame.html" class="nav-icon-link">
+            <img src="../images/minigame.svg" alt="Game" class="nav-img">
+            <span class="tooltip">Game</span>
+        </a>
+        <a href="mypage.html" class="nav-icon-link">
+            <img src="../images/mypage.svg" alt="MyPage" class="nav-img">
+            <span class="tooltip">MyPage</span>
+        </a>
+    </nav>
+
+    <script src="../js/mock_data.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/k-lingo.js"></script>
+</body>
+
+</html>

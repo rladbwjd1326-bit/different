@@ -1,0 +1,335 @@
+/* auth.css */
+
+/* Auth Container (Login/Signup) */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.auth-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.auth-card h1 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #2a2a2a;
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 14px;
+    background: #2a2a2a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.auth-btn:hover {
+    background: #000;
+}
+
+.auth-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #888;
+}
+
+.auth-link a {
+    color: #2a2a2a;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+/* My Page Styles */
+.mypage-container {
+    padding-bottom: 100px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+.profile-section {
+    background: white;
+    padding: 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.avatar-circle {
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    color: #ccc;
+    overflow: hidden;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+}
+
+.edit-profile-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    background: #2a2a2a;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: 0.2s;
+    z-index: 10;
+    border: 3px solid #fff;
+}
+
+.edit-profile-btn:hover {
+    transform: scale(1.1);
+    background: #000;
+}
+
+
+.profile-info h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.profile-rank {
+    font-size: 18px;
+    color: var(--primary-blue);
+    font-weight: 700;
+}
+
+.profile-points {
+    font-size: 14px;
+    color: #888;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+
+.section-box {
+    margin-top: 20px;
+    background: white;
+    padding: 24px 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+}
+
+/* Pagination Styles */
+.mypage-pagination .page-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2a2a2a;
+    transition: 0.2s;
+}
+
+.mypage-pagination .page-btn:hover:not(:disabled) {
+    background: #2a2a2a;
+    color: #fff;
+}
+
+.mypage-pagination .page-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+
+.section-box h3 {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Bookmark List */
+.bookmark-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.bookmark-item {
+    display: flex;
+    gap: 16px;
+    text-decoration: none;
+    color: inherit;
+    padding: 12px;
+    border-radius: 12px;
+    background: #fdfdfd;
+    border: 1px solid #f0f0f0;
+    transition: 0.2s;
+}
+
+.bookmark-item:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.bookmark-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.bookmark-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bookmark-content h4 {
+    margin: 0 0 6px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.bookmark-content span {
+    font-size: 14px;
+    color: #888;
+}
+
+.empty-msg {
+    text-align: center;
+    padding: 30px;
+    color: #bbb;
+}
+
+/* Menu List */
+.menu-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border: none;
+    background: none;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    text-align: left;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item span {
+    color: #ccc;
+    font-size: 12px;
+}
+
+.delete-account-btn {
+    background: none;
+    color: #ff4d4d;
+    border: 1px solid #ff4d4d;
+    margin-right: 550px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.delete-account-btn:hover {
+    background: #ff4d4d;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .auth-card {
+        padding: 30px 20px;
+        box-shadow: none;
+        /* 플랫 디자인 */
+    }
+
+    .auth-container {
+        padding: 10px;
+        align-items: flex-start;
+        padding-top: 40px;
+    }
+
+    .section-box {
+        padding: 20px 15px;
+    }
+
+    .profile-section {
+        flex-direction: column;
+        text-align: center;
+    }
+}

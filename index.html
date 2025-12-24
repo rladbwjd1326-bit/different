@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koreanize - The Korean Fluency Platform</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Dynamic Top Navigation (Appears on scroll/interaction logic handled in JS) -->
+    <!-- Initial State: Transparent or styled specifically for Home hero -->
+    <header class="top-nav">
+        <div class="top-nav-left">
+            <a href="index.html" class="top-logo">K</a>
+            <nav class="top-menu">
+                <a href="index.html" class="active">Home</a>
+                <a href="html/local.html">Local</a>
+                <a href="html/k-lingo.html">K-Lingo</a>
+                <a href="html/learn.html">Learn</a>
+                <a href="html/mypage.html">My Page</a>
+                <!-- Mobile Only Links -->
+                <a href="html/login.html" class="mobile-only-link">Log In</a>
+                <a href="html/signup.html" class="mobile-only-link">Sign Up</a>
+            </nav>
+        </div>
+        <div class="top-nav-right">
+            <a href="html/login.html" class="top-btn-small">Log In</a>
+            <a href="html/signup.html" class="top-btn-small"
+                style="background:transparent; color:#2a2a2a; border: 1px solid #ddd;">Sign Up</a>
+
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- Hero Title -->
+        <section class="main-title-section">
+            <!-- <h1 class="main-title"><span style="color: red;">K</span>O<span style="color: blue;">R</span>E<span
+                    style="color: red;">A</span><span style="color: blue;">N</span>IZE</h1> -->
+            <h1 class="main-title">KOREANIZE</h1>
+            <p class="main-subtitle">The Korean Fluency Platform</p>
+        </section>
+
+        <!-- Intro Hero Image -->
+        <section class="intro-section">
+            <div class="intro-image"></div>
+            <div class="intro-text">
+                <p class="intro-title">Welcome to Koreanize</p>
+                <p class="intro-subtitle">The Global Community for Everything Korea</p>
+            </div>
+        </section>
+
+        <!-- Description 1 -->
+        <section class="desc-section">
+            <p class="description-text">
+                <strong class="desc-em">Koreanize is</strong><br><br>
+                a platform for foreigners who truly want to understand and experience Korea<br>
+                We go beyond simple language learning — naturally connecting users to the heart of
+                Korean culture, daily life, and emotional nuances
+            </p>
+        </section>
+
+        <!-- PANORAMA -->
+        <section class="panorama-section">
+            <div class="panorama-wrapper">
+
+                <!-- 상단 타원 SVG -->
+                <img src="images/Ellipse.svg" class="panorama-ellipse top" alt="" />
+
+                <!-- 하단 타원 SVG -->
+                <img src="images/Ellipse.svg" class="panorama-ellipse bottom" alt="" />
+
+                <!-- 이미지 슬라이드 -->
+                <div class="panorama-track">
+                    <div class="panorama-images">
+                        <!-- JS injects images here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Description 2 -->
+        <section class="desc-section">
+            <p class="description-text">
+                Enjoy like a local, experiencing their language and true spirit
+            </p>
+        </section>
+
+        <!-- Cards Section -->
+        <section class="cards-section">
+            <div class="cards-wrapper">
+
+                <!-- Card 1: Local Travel -->
+                <div class="card-slot" id="localSlot">
+
+                    <a href="html/local.html" class="travel-card">
+                        <img src="images/local.jpg" class="card-img" alt="Local Travel">
+                        <div class="card-dim">
+                            <h3 class="card-title">Local Travel</h3>
+                            <div class="card-more">
+                                <span>view more</span>
+                                <span class="arrow-span">→</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Card 2: Culture & Language -->
+                <a href="html/k-lingo.html" class="travel-card">
+                    <img src="images/문화언어.jpg" class="card-img" alt="Culture & Language">
+                    <div class="card-dim">
+                        <h3 class="card-title">Culture & Language</h3>
+                        <div class="card-more">
+                            <span>view more</span>
+                            <span class="arrow-span">→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3: Learn -->
+                <a href="html/learn.html" class="travel-card">
+                    <img src="images/재미있는학습.jpg" class="card-img" alt="Learn">
+                    <div class="card-dim">
+                        <h3 class="card-title">Learn</h3>
+                        <div class="card-more">
+                            <span>view more</span>
+                            <span class="arrow-span">→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 4: My Page -->
+                <a href="html/mypage.html" class="travel-card">
+                    <img src="images/mypage.jpg" class="card-img" alt="My Page">
+                    <div class="card-dim">
+                        <h3 class="card-title">My Page</h3>
+                        <div class="card-more">
+                            <span>view more</span>
+                            <span class="arrow-span">→</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="local-main-footer">
+        <p>&copy; 2025 K-Local Vibe Trip. All rights reserved.</p>
+    </footer>
+
+    <!-- Floating Bottom Nav (Appears on scroll) -->
+    <nav class="bottom-nav" id="bottomNav">
+        <a href="index.html" class="nav-icon-link">
+            <img src="images/home.svg" alt="Home" class="nav-img">
+            <span class="tooltip">Home</span>
+        </a>
+        <a href="html/local.html" class="nav-icon-link">
+            <img src="images/travel.svg" alt="Local" class="nav-img">
+            <span class="tooltip">Local</span>
+        </a>
+        <a href="html/k-lingo.html" class="nav-icon-link">
+            <img src="images/language.svg" alt="K-Lingo" class="nav-img">
+            <span class="tooltip">K-Lingo</span>
+        </a>
+        <a href="html/learn.html" class="nav-icon-link">
+            <img src="images/learn.svg" alt="Learn" class="nav-img">
+            <span class="tooltip">Learn</span>
+        </a>
+        <a href="html/mypage.html" class="nav-icon-link">
+            <img src="images/mypage.svg" alt="MyPage" class="nav-img">
+            <span class="tooltip">MyPage</span>
+        </a>
+    </nav>
+
+    <script src="js/common.js"></script>
+    <script src="js/home.js"></script>
+</body>
+
+</html>

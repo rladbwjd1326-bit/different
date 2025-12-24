@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Spots - Koreanize</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/local.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="local-page-body">
+
+    <!-- ================= Top Navigation ================= -->
+    <header class="top-nav">
+        <div class="top-nav-left">
+            <a href="../index.html" class="top-logo">K</a>
+            <nav class="top-menu">
+                <a href="../index.html">Home</a>
+                <a href="local.html" class="active">Local</a>
+                <a href="k-lingo.html">K-Lingo</a>
+                <a href="media.html">Media</a>
+                <a href="minigame.html">Mini Games</a>
+                <a href="mypage.html">My Page</a>
+                <a href="login.html" class="mobile-only-link">Log In</a>
+                <a href="signup.html" class="mobile-only-link">Sign Up</a>
+            </nav>
+        </div>
+
+        <div class="top-nav-right">
+            <a href="login.html" class="top-btn-small">Log In</a>
+            <a href="signup.html" class="top-btn-small"
+                style="background:transparent; color:#2a2a2a; border: 1px solid #ddd;">Sign Up</a>
+
+        </div>
+    </header>
+
+    <!-- ================= Hero ================= -->
+    <div class="local-hero-title">
+        <h1>Local Spots</h1>
+        <p>Enjoy <strong>authentic</strong> Korean culture like a local.</p>
+    </div>
+
+    <!-- ================= Main ================= -->
+    <main class="local-container">
+
+        <div class="local-content-wrapper">
+
+            <!-- ===== Main Content ===== -->
+            <div class="local-main-content">
+
+                <!-- Controls -->
+                <section class="local-controls">
+                    <div class="local-search-wrapper">
+                        <div class="local-category-dropdown-container">
+                            <select id="localCategoryDropdown" class="local-category-dropdown">
+                                <option value="">전체</option>
+                                <option value="식당">식당</option>
+                                <option value="카페">카페</option>
+                                <option value="관광지">관광지</option>
+                                <option value="자연">자연</option>
+                                <option value="쇼핑">쇼핑</option>
+                                <option value="오락">오락</option>
+                                <option value="체험">체험</option>
+                            </select>
+                        </div>
+
+                        <input type="text" id="localContentSearchInput" placeholder="   키워드를 검색하세요">
+                        <button class="local-search-btn" id="localContentSearchBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="local-tag-filters" id="localTagFilters"></div>
+                </section>
+
+                <!-- Loading / Error -->
+                <div id="localLoading" style="text-align:center; padding:50px; display:none;">
+                    데이터를 로드 중입니다...
+                </div>
+                <div id="localError" style="text-align:center; padding:50px; color:red; display:none;"></div>
+
+                <!-- List -->
+                <section class="local-trip-list" id="localTripList"></section>
+
+                <!-- Pagination -->
+                <div id="localPaginationControls">
+                    <button id="prevPageBtn" disabled>이전</button>
+                    <span id="pageIndicator">1 / 1 페이지</span>
+                    <button id="nextPageBtn" disabled>다음</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===== Sidebar ===== -->
+        <aside class="local-sidebar">
+            <h3 style="font-size:1em; text-align:center;">최근 본 장소</h3>
+            <hr class="local-modal-hr">
+            <div id="recentSpotsList" class="local-recent-list">
+                <p style="font-size:0.9em; color:#777; text-align:center;">
+                    최근 본 장소가 없습니다.
+                </p>
+            </div>
+        </aside>
+    </main>
+
+    <!-- ================= Footer ================= -->
+    <footer class="local-main-footer">
+        <p>&copy; 2025 K-Local Vibe Trip. All rights reserved.</p>
+    </footer>
+
+    <!-- ================= Bottom Navigation ================= -->
+    <nav class="bottom-nav" id="bottomNav">
+        <a href="../index.html" class="nav-icon-link">
+            <img src="../images/home.svg" class="nav-img">
+            <span class="tooltip">Home</span>
+        </a>
+        <a href="local.html" class="nav-icon-link">
+            <img src="../images/travel.svg" class="nav-img">
+            <span class="tooltip">Local</span>
+        </a>
+        <a href="k-lingo.html" class="nav-icon-link">
+            <img src="../images/language.svg" class="nav-img">
+            <span class="tooltip">K-Lingo</span>
+        </a>
+        <a href="media.html" class="nav-icon-link active">
+            <img src="../images/media.svg" alt="Media" class="nav-img">
+            <span class="tooltip">Media</span>
+        </a>
+        <a href="minigame.html" class="nav-icon-link">
+            <img src="../images/minigame.svg" class="nav-img">
+            <span class="tooltip">Game</span>
+        </a>
+        <a href="mypage.html" class="nav-icon-link">
+            <img src="../images/mypage.svg" class="nav-img">
+            <span class="tooltip">MyPage</span>
+        </a>
+    </nav>
+
+    <!-- ================= Modal ================= -->
+    <div class="local-modal-overlay" id="localModal">
+        <div class="local-modal-container">
+
+            <button class="local-modal-close" id="localModalClose">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="local-modal-image-area">
+                <img src="" id="localModalImg">
+            </div>
+
+            <div class="local-modal-text-area">
+                <div class="local-modal-main-info">
+                    <h2 id="localModalTitle"></h2>
+                    <p class="local-modal-location">
+                        <i class="fas fa-map-marker-alt" style="color:#C1272D; font-size:14px; margin-right:5px;"></i>
+                        <span id="localModalAddress"></span>
+                    </p>
+                    <p class="local-modal-description" id="localModalDesc"></p>
+                    <div class="local-modal-tags-container" id="localModalTags"></div>
+                </div>
+
+                <div class="local-modal-button-area">
+                    <a href="#" class="local-modal-link-btn" id="localModalLinkBtn">
+                        페이지로 이동
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= Scripts ================= -->
+    <script src="../js/common.js"></script>
+    <script src="../js/local.js"></script>
+
+</body>
+
+</html>

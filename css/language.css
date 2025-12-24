@@ -1,0 +1,437 @@
+/* ==========================================================
+   GLOBAL TONE
+========================================================== */
+:root {
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+    --shadow-strong: 0 10px 25px rgba(0, 0, 0, 0.12);
+
+    --radius-lg: 18px;
+    --radius-md: 12px;
+
+    --primary: #4a6fa5;
+    --primary-hover: #3558c8;
+
+    --danger: #d86b6b;
+    --danger-hover: #c05a5a;
+
+    --text: #2b2b2b;
+    --muted: #777;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    margin: 0;
+
+    /* Drag UX */
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ==========================================================
+   LAYOUT
+========================================================== */
+.language-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px 120px;
+}
+
+/* ==========================================================
+   HEADER / GUIDE
+========================================================== */
+.language-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.language-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.language-header p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Guide Box */
+#guide-box {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#guide-btn {
+    background: #FFB74D;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s;
+}
+
+#guide-btn:hover {
+    transform: scale(1.05);
+    background: #FF9800;
+    color: #fff;
+}
+
+#guide-popup {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    width: 300px;
+    background: #ffffff;
+    padding: 14px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    display: none;
+    text-align: left;
+    z-index: 100;
+}
+
+#guide-box:hover #guide-popup {
+    display: block;
+}
+
+#guide-popup p {
+    font-size: 0.85rem;
+    margin: 6px 0;
+    line-height: 1.4;
+}
+
+#guide-popup .en {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: -4px;
+}
+
+/* ==========================================================
+   SOURCE AREA (CONSONANT / VOWEL)
+========================================================== */
+.source-section {
+    margin-bottom: 40px;
+}
+
+/* Consonant */
+#consonant-wrapper {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto 20px;
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    min-height: 260px;
+}
+
+/* Vowel */
+#vowel-wrapper {
+    width: 100%;
+    max-width: 820px;
+    margin: 0 auto;
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    min-height: 240px;
+}
+
+/* Scale */
+.scale-container {
+    transform-origin: top center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Internal Containers */
+#consonant-container {
+    width: 580px;
+    height: 240px;
+    position: relative;
+}
+
+#vowel-container {
+    width: 780px;
+    height: 220px;
+    position: relative;
+}
+
+/* ==========================================================
+   WORKSPACE
+========================================================== */
+#board-area {
+    display: flex;
+    justify-content: center;
+}
+
+#workspace-wrapper {
+    width: 100%;
+    max-width: 650px;
+    position: relative;
+    padding-top: 54px;
+
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+#workspace {
+    width: 600px;
+    height: 500px;
+    margin: 0 auto;
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-strong);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#workspace-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 0.95rem;
+    pointer-events: none;
+}
+
+/* ==========================================================
+   TOOL BUTTONS
+========================================================== */
+#toolButtons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    z-index: 10;
+}
+
+.left-tools,
+.right-tools {
+    display: flex;
+}
+
+/* ===== 기본 버튼 (선택 안 됨) ===== */
+.left-tools button,
+.right-tools button {
+    padding: 10px 12px;
+    margin-right: 8px;
+    border-radius: 10px;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    background: #f2f2f2;   /* ← 기본 배경 */
+    color: #333;           /* ← 기본 글자색 */
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease;
+}
+
+.left-tools button:hover {
+    background: #e6e6e6;
+}
+
+/* ===== active (선택됨) ===== */
+.left-tools button.active {
+    background: var(--primary);
+    color: #fff;
+}
+
+.right-tools button {
+    background: var(--danger);
+    color: #c71c1c;
+}
+
+.right-tools button:hover {
+    background: var(--danger);
+}
+
+#toolButtons .active {
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.7),
+        0 8px 18px rgba(0, 0, 0, 0.14);
+}
+
+/* ==========================================================
+   DRAG PIECES
+========================================================== */
+.stroke {
+    position: absolute;
+    height: 11px;
+    border-radius: 4px;
+    opacity: 0;
+    cursor: pointer;
+    transform-origin: 0 0;
+    transition: transform 0.4s ease;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    background: transparent;
+    border: 10px solid currentColor;
+    cursor: pointer;
+}
+
+.letter-group {
+    position: absolute;
+}
+
+.placed-piece {
+    cursor: pointer;
+}
+
+.floating-piece {
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.18));
+}
+
+/* Eraser Cursor */
+body.eraser-mode,
+body.eraser-mode * {
+    cursor: crosshair !important;
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+@media (max-width: 720px) {
+    .language-container {
+        padding-bottom: 80px;
+    }
+
+    #workspace {
+        width: 300px;
+        height: 240px;
+    }
+}
+
+/* =========================================
+   BUILDER : SOURCE + BOARD SIDE BY SIDE
+   (글자 모양 영향 없음)
+========================================= */
+
+.builder-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+}
+
+/* 왼쪽 : 자음 / 모음 */
+.builder-source {
+    flex: 0 0 58%;
+}
+
+/* 오른쪽 : 조합 보드 */
+.builder-board {
+    flex: 0 0 42%;
+    background: #f3f3f3;
+    border-radius: 18px;
+    padding: 93px;
+}
+
+/* 반응형: 모바일에서는 세로 */
+@media (max-width: 1024px) {
+    .builder-layout {
+        flex-direction: column;
+    }
+
+    .builder-source,
+    .builder-board {
+        flex: 1 1 100%;
+    }
+}
+
+/* =========================================
+   Hide inner scrollbars during animation
+========================================= */
+
+.no-inner-scroll #consonant-wrapper,
+.no-inner-scroll #vowel-wrapper {
+    overflow-x: hidden !important;
+}
+
+/* 스크롤바 자체 숨김 (크롬/엣지) */
+.no-inner-scroll #consonant-wrapper::-webkit-scrollbar,
+.no-inner-scroll #vowel-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+/* ==========================================================
+   STEP 1 - COMBINATION GUIDES
+========================================================== */
+
+.combine-guide {
+    position: absolute;
+    border: 2px dashed rgba(0, 0, 0, 0.35);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.06);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 5;
+}
+
+.combine-guide.show {
+    opacity: 1;
+}
+
+/* 위치별 가이드 */
+.combine-guide.vowel-right {
+    width: 60px;
+    height: 80px;
+}
+
+.combine-guide.vowel-bottom {
+    width: 80px;
+    height: 60px;
+}
+
+.combine-guide.final-bottom {
+    width: 60px;
+    height: 40px;
+}
+
+#hangul-warning {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffebee;
+    color: #c62828;
+    padding: 8px 14px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    z-index: 20;
+}

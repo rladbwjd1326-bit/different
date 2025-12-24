@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn - Koreanize</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/learn.css">
+    <link rel="stylesheet" href="../css/language.css">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            prefix: 'tw-',
+            corePlugins: {
+                preflight: false,
+            }
+        }
+    </script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="top-nav">
+        <div class="top-nav-left">
+            <a href="../index.html" class="top-logo">K</a>
+            <nav class="top-menu">
+                <a href="../index.html">Home</a>
+                <a href="local.html">Local</a>
+                <a href="k-lingo.html">K-Lingo</a>
+                <a href="learn.html" class="active">Learn</a>
+                <a href="mypage.html">My Page</a>
+                <a href="login.html" class="mobile-only-link">Log In</a>
+                <a href="signup.html" class="mobile-only-link">Sign Up</a>
+            </nav>
+        </div>
+        <div class="top-nav-right">
+            <a href="login.html" class="top-btn-small">Log In</a>
+            <a href="signup.html" class="top-btn-small"
+                style="background:transparent; color:#2a2a2a; border: 1px solid #ddd;">Sign Up</a>
+        </div>
+    </header>
+
+    <!-- ================= MAIN ================= -->
+    <main class="learn-container">
+
+        <!-- ===== TOP LEVEL TABS ===== -->
+        <div class="tab-folder-nav">
+            <button class="tab-folder-btn active" data-tab="builder">Hangul Builder</button>
+            <button class="tab-folder-btn" data-tab="blank">Fill the Blank</button>
+            <button class="tab-folder-btn" data-tab="media">Media</button>
+            <button class="tab-folder-btn" data-tab="quiz">K-Quiz</button>
+        </div>
+
+        <!-- ================= TAB CONTENT ================= -->
+        <div class="tab-content-container">
+
+            <!-- ================= HANGUL BUILDER ================= -->
+            <div id="builder" class="tab-pane active">
+
+                <div class="lang-header" style="position:relative;">
+                    <h2>Hangul Builder</h2>
+                    <p>자음과 모음을 자유롭게 조합하며 한글 구조를 탐색해보세요</p>
+
+                    <!-- Guide -->
+                    <div id="guide-box">
+                        <button id="guide-btn">게임 방법</button>
+                        <div id="guide-popup">
+                            <p><strong>[Hangul Builder]</strong></p>
+                            <p>✔ 자음/모음을 클릭해 조각을 집어보세요.</p>
+                            <p class="en">✔ Click a consonant or vowel to pick it up.</p>
+                            <p>✔ 조합 보드 위에 올려 자유롭게 배치할 수 있습니다.</p>
+                            <p class="en">✔ Place pieces freely on the board.</p>
+                            <p>✔ 정답은 없어요. 구조를 느껴보세요!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== BUILDER GRAY BOX ===== -->
+                <div class="builder-outer-box">
+
+                    <div class="builder-layout">
+
+                        <!-- LEFT : SOURCE -->
+                        <div class="builder-source">
+                            <div id="source-wrapper">
+                                <div id="drag-interface">
+
+                                    <div id="consonant-wrapper">
+                                        <div class="scale-container">
+                                            <div id="consonant-container"></div>
+                                        </div>
+                                    </div>
+
+                                    <div id="vowel-wrapper" style="margin-top:10px;">
+                                        <div class="scale-container">
+                                            <div id="vowel-container"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT : BOARD -->
+                        <div class="builder-board">
+                            <div id="board-area">
+                                <div id="workspace-wrapper">
+
+                                    <div id="toolButtons">
+                                        <div class="left-tools">
+                                            <button id="cursorButton" class="active">🖱️ 마우스</button>
+                                            <button id="eraserButton">🩹 지우개</button>
+                                        </div>
+                                        <div class="right-tools">
+                                            <button id="clearWorkspace">🗑 전체 삭제</button>
+                                        </div>
+                                    </div>
+
+                                    <div id="workspace">
+                                        <div id="workspace-hint">여기에 자유롭게 조합해보세요</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= FILL THE BLANK ================= -->
+            <div id="blank" class="tab-pane">
+
+                <div class="lang-header">
+                    <h2>Fill the Blank</h2>
+                    <p>빈칸에 들어갈 글자를 직접 만들어보세요</p>
+                </div>
+
+                <div id="quiz-container" style="text-align:center; margin-bottom:30px;">
+                    <div id="quiz-word-display"
+                        style="font-size:2.5rem; font-weight:800; letter-spacing:12px; min-height:60px;">
+                        Loading...
+                    </div>
+                    <p id="quiz-instruction" style="color:#666;">빈칸에 들어갈 글자를 만들어주세요!</p>
+
+                    <div id="ans-check-area" style="margin-top:10px; display:none;">
+                        <span id="quiz-feedback" style="font-weight:bold;"></span>
+                        <button id="next-quiz-btn" class="action-btn"
+                            style="margin-left:10px; padding:5px 15px;">Next</button>
+                    </div>
+                </div>
+
+                <div id="keyboard-interface"
+                    style="max-width:800px; margin:0 auto; background:#f9f9f9; padding:20px; border-radius:15px;">
+                    <div id="keyboard-consonants" class="keyboard-row"></div>
+                    <div id="keyboard-vowels" class="keyboard-row" style="margin-top:15px;"></div>
+                </div>
+
+                <div id="recognition-box" style="max-width:320px; margin:30px auto;">
+                    <h3>내가 만든 글자</h3>
+                    <div id="recognized-text" style="font-size:3rem; min-height:60px;">-</div>
+                    <button id="submit-answer-btn" class="action-btn"
+                        style="width:100%; margin-top:10px;">정답 제출</button>
+                </div>
+
+            </div>
+
+            <!-- ================= MEDIA ================= -->
+            <div id="media" class="tab-pane">
+                <div class="media-inner-wrapper">
+                    <div class="page-header">
+                        <h1 class="page-title">K-Media Collection</h1>
+                        <p class="page-subtitle">Learn Korean culture through popular media</p>
+                    </div>
+
+                    <div class="content" id="mainContent">
+                        <iframe src="https://www.youtube.com/embed/v-RnT9-pcRs" allowfullscreen></iframe>
+                        <div class="info">
+                            <h2>외국인이 한국에 와서 가장 놀란다는 9가지</h2>
+                            <p>한국 문화 소개 영상</p>
+                        </div>
+                        <button id="toggleButton">자세히 보기 ▼</button>
+                        <div id="contentToToggle" class="hidden"></div>
+                    </div>
+
+                    <div class="horizontal-list" id="relatedList"></div>
+                </div>
+            </div>
+
+            <!-- ================= K-QUIZ ================= -->
+            <div id="quiz" class="tab-pane">
+                <div class="game-header">
+                    <h1>K-Quiz</h1>
+                </div>
+
+                <div class="game-card" id="gameCard">
+                    <div class="start-screen">
+                        <p>Test your knowledge about Korea!</p>
+                        <button class="action-btn" id="startBtn">Start Quiz</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="local-main-footer">
+        <p>&copy; 2025 K-Local Vibe Trip. All rights reserved.</p>
+    </footer>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav" id="bottomNav">
+        <a href="../index.html" class="nav-icon-link"><img src="../images/home.svg"><span
+                class="tooltip">Home</span></a>
+        <a href="local.html" class="nav-icon-link"><img src="../images/travel.svg"><span
+                class="tooltip">Local</span></a>
+        <a href="k-lingo.html" class="nav-icon-link"><img src="../images/language.svg"><span
+                class="tooltip">K-Lingo</span></a>
+        <a href="learn.html" class="nav-icon-link active"><img src="../images/learn.svg"><span
+                class="tooltip">Learn</span></a>
+        <a href="mypage.html" class="nav-icon-link"><img src="../images/mypage.svg"><span
+                class="tooltip">MyPage</span></a>
+    </nav>
+
+    <!-- JS -->
+    <script src="../js/mock_data.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/learn.js"></script>
+    <script src="../js/language.js"></script>
+
+</body>
+
+</html>

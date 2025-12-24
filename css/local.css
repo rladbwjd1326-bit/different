@@ -1,0 +1,606 @@
+/* ============================= */
+/* 기본 설정 */
+/* ============================= */
+
+:root {
+    --primary-color: #494949;
+    --secondary-color: #2a2a2a;
+    --background-color: #f5f5f5;
+    --card-bg-color: #fff;
+    --text-color: #2a2a2a;
+}
+
+.local-page-body {
+    font-family: 'Inter', 'Roboto', 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+
+/* ============================= */
+/* Hero Section */
+/* ============================= */
+
+.local-hero-title {
+    width: 100%;
+    background-image: url('../images/main/travel-course-bg.png');
+    background-size: cover;
+    background-position: center 20%;
+    background-repeat: no-repeat;
+    padding: 100px 20px 80px 20px;
+    text-align: center;
+}
+
+.local-hero-title h1 {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: #252525;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.local-hero-title p {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #252525;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ============================= */
+/* Main Container */
+/* ============================= */
+
+.local-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+/* ============================= */
+/* Search & Filter Controls */
+/* ============================= */
+
+.local-controls {
+    margin-bottom: 80px;
+}
+
+.local-search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+/* ▼ 드롭다운 컨테이너 */
+.local-category-dropdown-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* ▼ 드롭다운 select */
+.local-category-dropdown {
+    padding: 15px 20px;
+    font-size: 15px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    min-width: 70px;
+    color: var(--secondary-color);
+    font-weight: bold;
+
+    /* 기본 화살표 제거 */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* ▼ 커스텀 화살표 */
+.local-category-dropdown-container::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+
+    background-image: url("../images/down.svg");
+    background-repeat: no-repeat;
+    background-size: contain;     /* ✅ 필수 */
+    background-position: center;  /* ✅ 필수 */
+
+    pointer-events: none;
+    z-index: 5;                   /* ✅ 안전장치 */
+}
+
+/* ▼ 오른쪽 세로 구분선 */
+.local-category-dropdown-container::before {
+    content: "";
+    position: absolute;
+    right: 2px;                /* ⭐ 세로선 위치 */
+    top: 8px;
+    width: 1px;
+    height: calc(100% - 16px);
+    background-color: #ddd;
+}
+
+/* ▼ 검색 인풋 */
+.local-search-wrapper input[type="text"] {
+    flex-grow: 1;
+    padding: 15px 20px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* ▼ 검색 버튼 */
+.local-search-wrapper .local-search-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 50px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-size: 1.2em;
+    padding: 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    transition: color 0.2s;
+}
+
+.local-search-wrapper .local-search-btn:hover {
+    color: #FF5733;
+    filter: brightness(1.7);
+}
+
+/* ▼ 태그 필터 */
+.local-tag-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.local-tag-button {
+    background-color: #e9e9e9;
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.local-tag-button:hover {
+    background-color: #dcdcdc;
+}
+
+.local-tag-button.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: bold;
+}
+
+
+
+/* ============================= */
+/* Trip List & Cards */
+/* ============================= */
+
+.local-trip-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    margin: 0 auto;
+}
+
+.local-trip-card {
+    background-color: var(--card-bg-color);
+    border-radius: 20px;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+    position: relative;
+    min-height: 250px;
+    cursor: pointer;
+}
+
+.local-trip-card:hover,
+.local-trip-card.is-interacting {
+    transform: translateY(-10px)!important;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28)!important;
+}
+
+.local-card-image {
+    width: 100%;
+    height: 400px;
+    background-color: #eee;
+    overflow: hidden;
+}
+
+.local-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.local-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.904);
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 5;
+}
+
+.local-trip-card:hover .local-card-content,
+.local-trip-card.is-interacting .local-card-content {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.local-card-content h3 {
+    margin-top: 0;
+    font-size: 1.15em;
+    color: var(--primary-color);
+}
+
+.local-card-content p {
+    font-size: 0.85em;
+    line-height: 1.3;
+    color: #555;
+}
+
+.local-card-tags span {
+    background-color: rgba(223, 223, 223, 0.692);
+    color: #535353;
+    padding: 1px 5px;
+    border-radius: 15px;
+    font-size: 0.65em;
+    margin-right: 3px;
+    display: inline-block;
+}
+
+.local-bookmark-btn {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    background: transparent;
+    color: #ffe448;
+    border: none;
+    width: 35px;
+    height: 35px;
+    font-size: 2em;
+    cursor: pointer;
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.local-bookmark-btn.active {
+    color: #ffe448;
+}
+
+.local-bookmark-btn:hover ~ .local-card-content {
+    transform: translateY(0);
+}
+
+
+/* ============================= */
+/* Sidebar - Recent Spots */
+/* ============================= */
+
+.local-content-wrapper {
+    display: flex;
+    gap: 200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    align-items: center;
+}
+
+.local-main-content {
+    flex-grow: 1;
+    min-width: 800px;
+    margin: 0 auto;
+}
+
+.local-sidebar {
+    width: 120px;
+    position: fixed;     /* 핵심 */
+    top: 150px;
+    right: 100px;        /* 오른쪽 끝에서 100px */
+
+    background-color: var(--card-bg-color);
+    padding: 20px 10px 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.local-recent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 10px;
+    align-items: center;
+}
+
+.local-recent-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.2s;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.local-recent-item:hover {
+    transform: scale(1.02);
+}
+
+.local-recent-item img {
+    width: 90px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.local-recent-text {
+    width: 100%;
+    text-align: center;
+    padding: 3px 2px 0;
+}
+
+.local-recent-text h4 {
+    margin: 0;
+    font-size: 0.8em;
+    color: var(--primary-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* ============================= */
+/* Pagination */
+/* ============================= */
+
+#localPaginationControls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0;
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+#localPaginationControls button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+#localPaginationControls button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+
+/* ============================= */
+/* Footer */
+/* ============================= */
+
+.local-main-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+    color: #777;
+    font-size: 0.9em;
+}
+
+
+/* ============================= */
+/* Modal */
+/* ============================= */
+
+.local-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.local-modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.local-modal-description {
+    margin-top: 20px !important;
+    margin-bottom: 22px;
+    font-size: 0.95em;
+    line-height: 1.8;
+    color: #444;
+    flex: 1; 
+    overflow-y: auto;   
+    padding-right: 8px; 
+}
+
+.local-modal-container {
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    max-height: 700px;
+    height: 90vh;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.local-modal-image-area {
+    flex: 0 0 45%;
+    min-height: 200px;
+    background: #eee;
+}
+
+.local-modal-image-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.local-modal-main-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-shrink: 0; /* 제목 영역은 줄어들지 않게 설정 */
+}
+
+.local-modal-text-area {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* ★ 전체 스크롤 방지 */
+    height: 100%;     /* 부모 높이 꽉 채움 */
+
+}
+
+.local-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.local-modal-link-btn {
+    display: block;
+    text-align: center;
+    background-color: #252525;     
+    color: #fff !important;     
+    font-weight: 600;           
+    padding: 13px 20px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.local-modal-link-btn:hover {
+    background-color: #444444;  
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+}
+
+.local-modal-link-btn:active {
+    transform: scale(0.98);
+}
+
+.local-modal-button-area {
+    margin-top: auto;
+    padding-top: 15px;
+    width: 70%;
+    flex-shrink: 0;
+    border-top: 1.5px solid #e7e7e7;
+    position: relative; /* 가상 요소 선의 기준점이 됨 */
+    display: flex;
+    /* justify-content: center; */
+}
+
+/* ============================= */
+/* Responsive */
+/* ============================= */
+
+@media (max-width: 768px) {
+    .local-trip-list {
+        grid-template-columns: 1fr;
+    }
+
+    .local-content-wrapper {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .local-main-content {
+        min-width: auto;
+    }
+
+    .local-card-content {
+        opacity: 1;           /* 투명도 해제 */
+        transform: translateY(0); /* 위치 고정 */
+        background: rgba(255, 255, 255, 0.95); /* 가독성을 위해 배경 약간 더 진하게 */
+    }
+
+    .local-modal-description {
+        display: none !important;
+    }
+
+    .local-modal-text-area {
+        justify-content: flex-start; /* 남은 콘텐츠를 위로 정렬 */
+        gap: 10px;
+    }
+
+    .local-modal-container {
+        height: auto; /* 고정 높이 대신 내용에 맞게 조절 */
+        max-height: 70vh;
+    }
+
+    .local-sidebar {
+        display: none !important;
+    }
+
+
+}

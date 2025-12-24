@@ -1,0 +1,503 @@
+/* ============================= */
+/* Import Basics */
+/* ============================= */
+@import url('common.css');
+
+/* ============================= */
+/* Learn Page Layout */
+/* ============================= */
+.learn-container {
+    .learn-container {
+        padding: 0;
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        /* Full width */
+        width: 100%;
+    }
+
+    .inner-content {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* ============================= */
+    /* Folder Tabs (A4 Style) */
+    /* ============================= */
+    .tab-folder-nav {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
+        border-bottom: 2px solid #ccc;
+        /* Folder line */
+        padding-left: 10px;
+        margin-bottom: 20px;
+    }
+
+    .tab-folder-btn {
+        padding: 10px 25px;
+        margin-right: -4px;
+        /* Overlap slightly */
+        border: 1px solid #ccc;
+        border-bottom: none;
+        border-radius: 12px 12px 0 0;
+        background: #f4f4f4;
+        color: #666;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        position: relative;
+        top: 2px;
+        /* Touch the line */
+        transition: all 0.2s ease;
+        z-index: 1;
+    }
+
+    .tab-folder-btn:hover {
+        background: #e8e8e8;
+    }
+
+    .tab-folder-btn.active {
+        background: #fff;
+        color: #333;
+        /* Point Color */
+        font-weight: 700;
+        border-top: 3px solid #C1272D;
+        /* Highlight */
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        border-bottom: 2px solid #fff;
+        /* Hide bottom line */
+        z-index: 10;
+        padding-top: 8px;
+        /* Adjust for border-top */
+        top: 2px;
+    }
+
+    .tab-content-container {
+        background: #fff;
+        min-height: 600px;
+        /* border: 1px solid #ccc;  Optional: if we want a box look */
+        /* border-top: none; */
+    }
+
+    .tab-pane {
+        display: none;
+        padding: 20px 0;
+        animation: fadeInPane 0.4s ease;
+    }
+
+    .tab-pane.active {
+        display: block;
+    }
+
+    @keyframes fadeInPane {
+        from {
+            opacity: 0;
+            transform: translateY(5px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ============================= */
+    /* MEDIA STYLES (Adapted) */
+    /* ============================= */
+    .media-inner-wrapper {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    /* Page Header */
+    .page-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .page-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #333;
+        /* Changed from white */
+        margin-bottom: 10px;
+    }
+
+    .page-subtitle {
+        font-size: 16px;
+        color: #666;
+        /* Changed from white-ish */
+        margin: 0;
+        margin-bottom: 40px;
+    }
+
+    /* Main Video Content */
+    .content {
+        background: #f9f9f9;
+        border: 1px solid #eee;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        margin-bottom: 30px;
+    }
+
+    iframe {
+        width: 100%;
+        height: 480px;
+        border-radius: 10px;
+        border: none;
+    }
+
+    .info {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .info h2 {
+        font-size: 22px;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    /* Toggle Details */
+    .hidden {
+        display: none;
+    }
+
+    #toggleButton {
+        display: block;
+        padding: 8px 12px;
+        font-size: 14px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        border-radius: 8px;
+        transition: 0.2s;
+    }
+
+    #toggleButton:hover {
+        background-color: #f0f0f0;
+    }
+
+    #contentToToggle {
+        margin-top: 15px;
+        padding: 20px;
+        border-top: 1px solid #eee;
+        background-color: #fff;
+        line-height: 1.6;
+        color: #444;
+    }
+
+    /* Horizontal List */
+    .horizontal-list {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        padding: 10px 5px 20px;
+        scroll-behavior: smooth;
+    }
+
+    .horizontal-list::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .horizontal-list::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 4px;
+    }
+
+    .h-item {
+        min-width: 220px;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 12px;
+        padding: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .h-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    .h-thumb {
+        width: 100%;
+        height: 120px;
+        border-radius: 8px;
+        background-size: cover;
+        background-position: center;
+        background-color: #eee;
+    }
+
+    .h-title {
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* ============================= */
+    /* MINIGAME & LANGUAGE STYLES */
+    /* ============================= */
+    /* Copied and adapted from minigame.css */
+
+    .lang-header {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    .lang-header h2 {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #333;
+    }
+
+    .lang-header p {
+        color: #666;
+        margin-top: 6px;
+    }
+
+    /* Guide Box */
+    #guide-box {
+        position: absolute;
+        right: 0;
+        top: 0;
+        /* Adjusted for better positioning in tab */
+    }
+
+    #guide-btn {
+        background: #FFB74D;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #fff;
+        font-size: 14px;
+    }
+
+    #guide-popup {
+        display: none;
+        position: absolute;
+        top: 35px;
+        right: 0;
+        width: 280px;
+        background: white;
+        border: 2px solid #FFB74D;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    #guide-box:hover #guide-popup {
+        display: block;
+    }
+
+    /* Drag Interface */
+    #drag-interface {
+        background: #f4f4f4;
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+
+    .scale-container {
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+
+    #consonant-container,
+    #vowel-container {
+        display: flex;
+        gap: 8px;
+        min-width: max-content;
+    }
+
+    /* Workspace */
+    #workspace-wrapper {
+        border: 2px solid #e0e0e0;
+        border-radius: 15px;
+        overflow: hidden;
+        background: #fff;
+    }
+
+    #toolButtons {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background: #f9f9f9;
+        border-bottom: 1px solid #eee;
+    }
+
+    .left-tools button,
+    .right-tools button {
+        padding: 6px 12px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        background: white;
+        cursor: pointer;
+        margin-right: 5px;
+        font-size: 14px;
+    }
+
+    .left-tools button.active {
+        background: #333;
+        color: #fff;
+        border-color: #333;
+    }
+
+    #workspace {
+        height: 400px;
+        position: relative;
+        background-image: radial-gradient(#ddd 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+
+    #workspace-hint {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #ccc;
+        font-size: 18px;
+        pointer-events: none;
+    }
+
+    /* Fill the Blank */
+    #quiz-word-display {
+        border: 2px dashed #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+    }
+
+    #keyboard-interface {
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .keyboard-row {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .keyboard-key {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #ddd;
+        background: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #333;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .keyboard-key.vowel {
+        background: #FFF3E0;
+        color: #E65100;
+        border-color: #FFE0B2;
+    }
+
+    .keyboard-key.consonant {
+        background: #E3F2FD;
+        color: #0277BD;
+        border-color: #BBDEFB;
+    }
+
+    /* K-Quiz */
+    .game-card {
+        background: white;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        border: 1px solid #eee;
+    }
+
+    .option-btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 10px;
+        border: 2px solid #f0f0f0;
+        border-radius: 10px;
+        background: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .option-btn:hover:not(:disabled) {
+        background: #fafafa;
+        border-color: #ddd;
+    }
+
+    .option-btn.correct {
+        background: #E8F5E9;
+        border-color: #4CAF50;
+        color: #2E7D32;
+    }
+
+    .option-btn.wrong {
+        background: #FFEBEE;
+        border-color: #F44336;
+        color: #C62828;
+    }
+
+    .action-btn {
+        background: #C1272D;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(193, 39, 45, 0.3);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .tab-folder-nav {
+            flex-wrap: wrap;
+            padding-left: 0;
+        }
+
+        .tab-folder-btn {
+            flex: 1;
+            font-size: 14px;
+            padding: 10px 5px;
+            text-align: center;
+        }
+
+        iframe {
+            height: 240px;
+        }
+    }
+}
+
