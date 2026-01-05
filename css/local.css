@@ -565,42 +565,94 @@
 /* ============================= */
 
 @media (max-width: 768px) {
-    .local-trip-list {
-        grid-template-columns: 1fr;
+    .local-container .local-main-content .local-trip-list {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+            padding: 0 10px;
+            align-items: start !important;
+        }
+
+        /* 2. 카드 전체: 높이 고정 해제 */
+    .local-trip-card {
+            height: auto !important; 
+            min-height: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            background: #fff !important;
+            border-radius: 12px !important;
+            overflow: hidden !important;
+            position: relative !important;
+        }
+
+        /* 3. 이미지 영역: 140px로 고정 */
+    .local-card-image {
+            height: 140px !important; 
+            width: 100% !important;
+            flex-shrink: 0 !important;
+        }
+
+    .local-card-image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important; /* 이미지 비율 유지하며 꽉 채움 */
     }
 
-    .local-content-wrapper {
-        flex-direction: column;
-        gap: 40px;
+    /* 4. 텍스트 영역: 여백을 주고 남은 공간 차지 */
+    .local-card-content {
+        position: relative !important;
+        min-height: auto !important;
+        opacity: 1 !important;
+        transform: none !important;
+        padding: 5px 10px !important;
+        flex-grow: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important; /* 텍스트 중앙 정렬 */
+        background: #fff !important;
+    }
+
+    /* 제목 스타일: 2줄 이상 시 생략 처리 */
+    .local-card-title {
+        font-size: 0.8em !important;
+        line-height: 1.3 !important;
+        margin: 0 !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        white-space: normal !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 8px !important;
     }
 
     .local-main-content {
-        min-width: auto;
+        padding: 8px 10px 10px 10px !important;
+        width: 100% !important;
+        min-width: 0 !important; /* PC에서 설정된 min-width 해제 */
+        padding: 0px !important;
+        box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
+        gap: 2px !important;
     }
 
-    .local-card-content {
-        opacity: 1;           /* 투명도 해제 */
-        transform: translateY(0); /* 위치 고정 */
-        background: rgba(255, 255, 255, 0.95); /* 가독성을 위해 배경 약간 더 진하게 */
+    .local-controls {
+        width: 100% !important;
+        box-sizing: border-box;
     }
 
-    .local-modal-description {
-        display: none !important;
+    .local-content-wrapper { 
+        width: 100%;
+        gap: 10px !important; 
     }
 
-    .local-modal-text-area {
-        justify-content: flex-start; /* 남은 콘텐츠를 위로 정렬 */
-        gap: 10px;
-    }
+    
 
-    .local-modal-container {
-        height: auto; /* 고정 높이 대신 내용에 맞게 조절 */
-        max-height: 70vh;
-    }
+    /* 태그 및 주소 정리 */
+    .local-card-tag-row { margin-bottom: 0px !important; }
+    .card-region-tag { font-size: 0.7em !important; }
+    .local-card-address { display: none !important; }
+    
+    /* 기타 UI 정리 */
 
-    .local-sidebar {
-        display: none !important;
-    }
-
-
+    .local-sidebar { display: none !important; }
 }
