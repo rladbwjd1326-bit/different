@@ -150,32 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.open(naverSearchUrl, '_blank');
             });
         }
-        const hotPlaceCards = document.querySelectorAll('.hot-place-card');
-
-        hotPlaceCards.forEach(card => {
-            card.addEventListener('click', () => {
-                // 1. 모든 카드의 활성화 상태 초기화
-                hotPlaceCards.forEach(c => {
-                    c.classList.remove('is-active');
-                });
-
-                // 2. 클릭한 카드에만 그림자 효과(is-active) 부여
-                card.classList.add('is-active');
-
-                // 3. 검색창 업데이트 및 데이터 로드 (기존 로직 유지)
-                const regionName = card.dataset.region || card.querySelector('p').textContent;
-                if (els.searchInput) els.searchInput.value = regionName;
-                state.searchTerm = regionName;
-                state.activeTags = [];
-                
-                renderTags();
-                fetchTravelSpots(1);
-            });
-        });
-
-
     }
-
 
     // --- Fetch Logic ---
     async function fetchTravelSpots(page) {
@@ -219,7 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleSearch() {
-        document.querySelectorAll('.hot-place-card').forEach(c => c.classList.remove('is-active'));
         state.searchTerm = els.searchInput.value.trim();
         fetchTravelSpots(1);
     }
@@ -243,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         els.tagFilters.querySelectorAll('.local-tag-button').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.hot-place-card').forEach(c => c.classList.remove('is-active'));
                 const tag = btn.dataset.tag;
                 if (tag === '') {
                     state.activeTags = [];
