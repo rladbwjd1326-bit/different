@@ -129,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target.classList.contains('local-modal-overlay')) closeModal();
         });
 
-        // [수정사항] 네이버 검색 연결 로직 (지역+상호명)
         if (els.modalLinkBtn) {
             els.modalLinkBtn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -141,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                // 주소의 앞 두 단어 추출 (시/도 + 시/군/구)
                 const addressMatch = fullAddress.match(/^([^\s]+\s+[^\s]+)/);
                 const region = addressMatch ? addressMatch[0] : "";
                 const searchQuery = `${region} ${name}`.trim();
@@ -154,15 +152,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         hotPlaceCards.forEach(card => {
             card.addEventListener('click', () => {
-                // 1. 모든 카드의 활성화 상태 초기화
+
                 hotPlaceCards.forEach(c => {
                     c.classList.remove('is-active');
                 });
 
-                // 2. 클릭한 카드에만 그림자 효과(is-active) 부여
                 card.classList.add('is-active');
 
-                // 3. 검색창 업데이트 및 데이터 로드 (기존 로직 유지)
                 const regionName = card.dataset.region || card.querySelector('p').textContent;
                 if (els.searchInput) els.searchInput.value = regionName;
                 state.searchTerm = regionName;
@@ -192,7 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (state.searchTerm) queryParams.append('search', state.searchTerm);
             if (state.selectedCategory) queryParams.append('category', state.selectedCategory);
             
-            // ★ 지역 태그 검색 시 주소 기반 필터링 파라미터 전송
             if (state.activeTags.length > 0) {
                 queryParams.append('region', state.activeTags[0]);
                 queryParams.append('tag', state.activeTags[0]);
@@ -210,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (err) {
             console.warn("Backend API unavailable.", err);
-            // Fallback 로직 필요시 여기에 구현
+
         } finally {
             state.isLoading = false;
             renderLoading(false);
@@ -230,7 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (els.listContainer) els.listContainer.style.display = isLoading ? 'none' : 'grid';
     }
 
-    // [수정사항] 지역 태그 생성 및 분류 로직 (주소 첫 단어 기준)
     function renderTags() {
         if (!els.tagFilters) return;
 
@@ -259,31 +253,24 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderList() {
         if (!els.listContainer) return;
 
-        // 1. [데이터 필터링 추가] 
-        // 서버에서 가져온 데이터 중, 현재 선택된 지역 태그와 주소 앞부분이 일치하는 것만 필터링합니다.
         const filteredSpots = state.travelSpots.filter(spot => {
-            // 선택된 태그가 없으면(ALL) 모든 데이터를 보여줍니다.
             if (state.activeTags.length === 0) return true;
 
-            const selectedRegion = state.activeTags[0]; // 사용자가 클릭한 태그 (예: '부산')
-            const firstWord = spot.address ? spot.address.split(' ')[0] : ''; // 주소의 첫 단어 (예: '부산광역시')
+            const selectedRegion = state.activeTags[0]; 
+            const firstWord = spot.address ? spot.address.split(' ')[0] : ''; 
 
-            // 주소 첫 단어에 선택한 태그가 포함되어 있는지 확인 ('부산광역시'에 '부산'이 있는지)
             return firstWord.includes(selectedRegion);
         });
 
-        // 2. 필터링된 결과가 없을 경우 처리
         if (filteredSpots.length === 0) {
             els.listContainer.innerHTML = '<p class="no-results">결과가 없습니다.</p>';
             return;
         }
 
-        // 3. state.travelSpots 대신 filteredSpots를 사용하여 화면을 그립니다.
         els.listContainer.innerHTML = filteredSpots.map(spot => {
             const imageSrc = getWebImagePath(spot.image);
             const isBookmarked = state.bookmarkedIds.includes(Number(spot.id));
             
-            // 주소 첫 단어를 기준으로 태그 추출
             const firstWord = spot.address ? spot.address.split(' ')[0] : '';
             const displayTag = REGION_TAGS.find(t => firstWord.includes(t)) || '';
 

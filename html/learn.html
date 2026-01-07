@@ -74,7 +74,7 @@
 
                 <div class="lang-header" style="position:relative;">
                     <h2>Hangul Builder</h2>
-                    <p>자음과 모음을 자유롭게 조합하며 한글 구조를 탐색해보세요</p>
+                    <p>Freely combine consonants and vowels to explore the structure of Hangul</p>
 
                     <!-- Guide -->
                     <div id="guide-box">
@@ -93,10 +93,164 @@
                 <!-- ===== BUILDER GRAY BOX ===== -->
                 <div class="builder-outer-box">
 
+                    <!-- ===============================
+                         THEME TOOLBAR
+                    =============================== -->
+                    <div class="theme-switcher">
+                        <button class="theme-btn active" data-theme="colorful">Colorful</button>
+                        <button class="theme-btn" data-theme="ink">Ink</button>
+                        <button class="theme-btn" data-theme="wood">Wood</button>
+                        <button class="theme-btn" data-theme="metal">Metal</button>
+                        <button class="theme-btn" data-theme="tetris">Tetris</button>
+                        <button class="theme-btn" data-theme="custom">Custom</button>
+                    </div>
+
                     <div class="builder-layout">
 
-                        <!-- LEFT : SOURCE -->
+                        <!-- ================= LEFT : SOURCE ================= -->
                         <div class="builder-source">
+
+                            <!-- 🔽 커스텀 전용 회색 컨테이너 -->
+                            <div id="customLayout" class="custom-outer-box hidden">
+
+                                <div class="custom-layout-inner">
+
+                                    <!-- ▶ 커스텀 만들기 -->
+                                    <div class="custom-tools">
+                                        <div class="custom-tools-header">
+                                            <h4>Custom Tools</h4>
+
+                                            <!-- ❓ 도움말 버튼 -->
+                                            <button class="help-btn" id="customHelpBtn" aria-label="Custom tools help">
+                                                ?
+                                            </button>
+
+                                            <!-- 도움말 팝오버 -->
+                                            <div class="help-popover" id="customHelp">
+                                                <h5>커스텀 도구란?</h5>
+                                                <p>
+                                                    커스텀 시트에서는 <strong>막대(Bar)</strong>와 <strong>원(Circle)</strong>을 직접
+                                                    만들어<br>
+                                                    크기, 색상, 투명도, 회전을 자유롭게 조절할 수 있습니다.
+                                                </p>
+
+                                                <p>
+                                                    완성된 도형은 <strong>Move to Combination Sheet</strong> 버튼을 눌러<br>
+                                                    조합 시트로 옮겨 한글 자음·모음과 함께 사용할 수 있습니다.
+                                                </p>
+
+                                                <hr>
+
+                                                <h5>What are Custom Tools?</h5>
+                                                <p>
+                                                    In the custom sheet, you can create <strong>bars</strong> and
+                                                    <strong>circles</strong><br>
+                                                    and freely adjust their size, color, opacity, and rotation.
+                                                </p>
+
+                                                <p>
+                                                    Once ready, click <strong>Move to Combination Sheet</strong><br>
+                                                    to use them together with Hangul consonants and vowels.
+                                                </p>
+                                            </div>
+                                        </div>
+
+
+                                        <button id="moveModeBtn">Move to Combination Sheet</button>
+
+                                        <!-- ================= Shape & Fill ================= -->
+                                        <div class="custom-section">
+                                            <button class="section-toggle open">Shape & Fill</button>
+
+                                            <div class="section-body">
+                                                <div class="custom-row">
+                                                    <button id="addCustomStroke">▭ Bar</button>
+                                                    <button id="addCustomCircle">◯ Circle</button>
+                                                </div>
+
+                                                <div class="custom-field">
+                                                    <label>Fill Color</label>
+                                                    <div class="inline-controls">
+                                                        <input type="color" id="customFillColor">
+                                                        <input type="text" id="customFillHex" value="#000000">
+                                                    </div>
+                                                </div>
+
+                                                <div class="custom-field">
+                                                    <label>Opacity</label>
+                                                    <input type="range" id="customOpacity" min="0" max="1" step="0.05"
+                                                        value="1">
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- ================= Transform ================= -->
+                                        <div class="custom-section">
+                                            <button class="section-toggle">Transform</button>
+
+                                            <div class="section-body collapsed">
+                                                <div class="custom-field">
+                                                    <label>Width</label>
+                                                    <input type="number" id="sizeXInput">
+                                                </div>
+
+                                                <div class="custom-field">
+                                                    <label>Height</label>
+                                                    <input type="number" id="sizeYInput">
+                                                </div>
+
+                                                <div class="custom-field">
+                                                    <label>Rotation</label>
+                                                    <div class="inline-controls">
+                                                        <input type="number" id="rotateInput">
+                                                        <button id="rotatePlus10">+10°</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- ================= Stroke ================= -->
+                                        <div class="custom-section">
+                                            <button class="section-toggle">Stroke</button>
+
+                                            <div class="section-body collapsed">
+                                                <div class="custom-field">
+                                                    <label>Stroke Color</label>
+                                                    <div class="inline-controls">
+                                                        <input type="color" id="customStrokeColor">
+                                                        <input type="text" id="customStrokeHex" value="#000000">
+                                                    </div>
+                                                </div>
+
+                                                <div class="custom-field">
+                                                    <label>Stroke Width</label>
+                                                    <div class="inline-controls">
+                                                        <button class="num-btn" data-type="border"
+                                                            data-step="-1">−</button>
+                                                        <input type="number" id="borderWidthInput" min="0">
+                                                        <button class="num-btn" data-type="border"
+                                                            data-step="1">＋</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button id="customEraser">🩹 Eraser</button>
+                                        <button id="clearCustomCanvas">🗑 Clear All</button>
+                                    </div>
+
+
+                                    <!-- ▶ 커스텀 시트 -->
+                                    <div class="custom-sheet">
+                                        <h5>Custom Sheet</h5>
+                                        <div id="customCanvas" class="sheet-canvas"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- 🔽 일반 테마용 자음/모음 -->
                             <div id="source-wrapper">
                                 <div id="drag-interface">
 
@@ -114,25 +268,45 @@
 
                                 </div>
                             </div>
+
                         </div>
 
-                        <!-- RIGHT : BOARD -->
+                        <!-- ================= RIGHT : BOARD ================= -->
                         <div class="builder-board">
                             <div id="board-area">
                                 <div id="workspace-wrapper">
 
                                     <div id="toolButtons">
                                         <div class="left-tools">
-                                            <button id="cursorButton" class="active">🖱️ 마우스</button>
-                                            <button id="eraserButton">🩹 지우개</button>
+                                            <button id="cursorButton" class="active">🖱️ Cursor</button>
+                                            <button id="eraserButton">🩹 Eraser</button>
+
+                                            <!-- ✅ 색 변경 버튼 (항상 보임) -->
+                                            <div class="color-picker-box">
+                                                <input type="color" id="sheetColorInput" class="color-swatch-btn">
+                                            </div>
+
+                                            <!-- 투명도 버튼 -->
+                                            <div class="sheet-tool">
+                                                <button id="sheetOpacityBtn" class="sheet-btn">Opacity</button>
+                                                <div id="sheetOpacityWrapper" hidden>
+                                                    <input type="range" id="sheetOpacityRange" min="0" max="1"
+                                                        step="0.05" value="1">
+                                                </div>
+                                            </div>
                                         </div>
+
                                         <div class="right-tools">
-                                            <button id="clearWorkspace">🗑 전체 삭제</button>
+                                            <button id="captureButton">📷</button>
+                                            <button id="clearWorkspace">🗑 Clear All</button>
                                         </div>
                                     </div>
 
                                     <div id="workspace">
-                                        <div id="workspace-hint">여기에 자유롭게 조합해보세요</div>
+                                        <!-- 🔥 테트리스 전용 레이어 -->
+                                        <div id="tetrisLayer"></div>
+
+                                        <div id="workspace-hint">Combine freely here</div>
                                     </div>
 
                                 </div>
@@ -140,84 +314,221 @@
                         </div>
 
                     </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= FILL THE BLANK ================= -->
+        <div id="blank" class="tab-pane">
+
+            <div class="lang-header">
+                <h2>Fill the Blank</h2>
+                <p>빈칸에 들어갈 글자를 직접 만들어보세요</p>
+            </div>
+
+            <div id="quiz-container" style="text-align:center; margin-bottom:30px;">
+                <div id="quiz-word-display"
+                    style="font-size:2.5rem; font-weight:800; letter-spacing:12px; min-height:60px;">
+                    Loading...
+                </div>
+                <p id="quiz-instruction" style="color:#666;">빈칸에 들어갈 글자를 만들어주세요!</p>
+
+                <div id="ans-check-area" style="margin-top:10px; display:none;">
+                    <span id="quiz-feedback" style="font-weight:bold;"></span>
+                    <button id="next-quiz-btn" class="action-btn"
+                        style="margin-left:10px; padding:5px 15px;">Next</button>
                 </div>
             </div>
 
-            <!-- ================= FILL THE BLANK ================= -->
-            <div id="blank" class="tab-pane">
-
-                <div class="lang-header">
-                    <h2>Fill the Blank</h2>
-                    <p>빈칸에 들어갈 글자를 직접 만들어보세요</p>
-                </div>
-
-                <div id="quiz-container" style="text-align:center; margin-bottom:30px;">
-                    <div id="quiz-word-display"
-                        style="font-size:2.5rem; font-weight:800; letter-spacing:12px; min-height:60px;">
-                        Loading...
-                    </div>
-                    <p id="quiz-instruction" style="color:#666;">빈칸에 들어갈 글자를 만들어주세요!</p>
-
-                    <div id="ans-check-area" style="margin-top:10px; display:none;">
-                        <span id="quiz-feedback" style="font-weight:bold;"></span>
-                        <button id="next-quiz-btn" class="action-btn"
-                            style="margin-left:10px; padding:5px 15px;">Next</button>
-                    </div>
-                </div>
-
-                <div id="keyboard-interface"
-                    style="max-width:800px; margin:0 auto; background:#f9f9f9; padding:20px; border-radius:15px;">
-                    <div id="keyboard-consonants" class="keyboard-row"></div>
-                    <div id="keyboard-vowels" class="keyboard-row" style="margin-top:15px;"></div>
-                </div>
-
-                <div id="recognition-box" style="max-width:320px; margin:30px auto;">
-                    <h3>내가 만든 글자</h3>
-                    <div id="recognized-text" style="font-size:3rem; min-height:60px;">-</div>
-                    <button id="submit-answer-btn" class="action-btn"
-                        style="width:100%; margin-top:10px;">정답 제출</button>
-                </div>
-
+            <div id="keyboard-interface"
+                style="max-width:800px; margin:0 auto; background:#f9f9f9; padding:20px; border-radius:15px;">
+                <div id="keyboard-consonants" class="keyboard-row"></div>
+                <div id="keyboard-vowels" class="keyboard-row" style="margin-top:15px;"></div>
             </div>
 
-            <!-- ================= MEDIA ================= -->
-            <div id="media" class="tab-pane">
-                <div class="media-inner-wrapper">
-                    <div class="page-header">
-                        <h1 class="page-title">K-Media Collection</h1>
-                        <p class="page-subtitle">Learn Korean culture through popular media</p>
-                    </div>
+            <div id="recognition-box" style="max-width:320px; margin:30px auto;">
+                <h3>내가 만든 글자</h3>
+                <div id="recognized-text" style="font-size:3rem; min-height:60px;">-</div>
+                <button id="submit-answer-btn" class="action-btn" style="width:100%; margin-top:10px;">정답
+                    제출</button>
+            </div>
 
-                    <div class="content" id="mainContent">
-                        <iframe src="https://www.youtube.com/embed/v-RnT9-pcRs" allowfullscreen></iframe>
-                        <div class="info">
-                            <h2>외국인이 한국에 와서 가장 놀란다는 9가지</h2>
-                            <p>한국 문화 소개 영상</p>
+        </div>
+
+        <!-- ================= MEDIA ================= -->
+        <div id="media" class="tab-pane">
+            <div class="media-inner-wrapper">
+
+                <div class="page-header">
+                    <h1 class="page-title">K-Media Collection</h1>
+                    <p class="page-subtitle">Learn Korean culture through popular media</p>
+                </div>
+
+                <!-- ✅ 왼쪽 카테고리 + 오른쪽 메인 영역 -->
+                <div class="media-layout">
+                    <!-- LEFT SIDE CATEGORY -->
+                    <aside class="media-side" aria-label="Media Categories">
+
+                        <!-- ✅ 제목 + 플레이리스트 화살표 버튼 (오른쪽 끝) -->
+                        <div class="side-header">
+                            <div class="side-title">Categories</div>
+
+                            <button id="playlistToggle" class="playlist-toggle" type="button"
+                                aria-controls="categoryVideoList" aria-expanded="false" title="Toggle playlist">
+                                ▶
+                            </button>
                         </div>
-                        <button id="toggleButton">자세히 보기 ▼</button>
-                        <div id="contentToToggle" class="hidden"></div>
-                    </div>
 
-                    <div class="horizontal-list" id="relatedList"></div>
+                        <button class="cat-item active" type="button" data-cat="travel">Travel Spot</button>
+                        <button class="cat-item" type="button" data-cat="food">Korea Food</button>
+                        <button class="cat-item" type="button" data-cat="kpop">Kpop</button>
+                        <button class="cat-item" type="button" data-cat="makeup">Korea Makeup</button>
+                        <button class="cat-item" type="button" data-cat="conversation">Korea Conversation</button>
+
+                    </aside>
+
+
+                    <!-- ✅ 카테고리별 세로 썸네일 리스트 -->
+                    <div id="categoryVideoList" class="video-list-vertical"></div>
+
+                    <!-- MAIN CONTENT -->
+                    <section class="media-main">
+                        <div class="content" id="mainContent">
+                            <div class="video-frame">
+                                <iframe id="mainVideo"
+                                    src="https://www.youtube.com/embed/pYzX7cqK_JQ?rel=0&modestbranding=1"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                            </div>
+
+                            <div class="info">
+                                <h2 id="videoTitle">외국인이 한국에 와서 가장 놀란다는 9가지</h2>
+                                <p id="videoDesc">한국 문화 소개 영상</p>
+                            </div>
+
+                            <button id="toggleButton">자세히 보기 ▼</button>
+                            <div id="contentToToggle" class="hidden"></div>
+                        </div>
+
+                        <!-- ✅ 아래 썸네일 리스트는 유지(숨김 처리 가능) -->
+                        <div class="horizontal-list" id="relatedList"></div>
+                    </section>
                 </div>
+
+            </div>
+        </div>
+
+        <!-- ================= K-QUIZ ================= -->
+        <div id="quiz" class="tab-pane">
+            <div class="game-header">
+                <h1>K-Quiz</h1>
             </div>
 
-            <!-- ================= K-QUIZ ================= -->
-            <div id="quiz" class="tab-pane">
-                <div class="game-header">
-                    <h1>K-Quiz</h1>
+            <div class="game-card" id="gameCard">
+                <div class="start-screen">
+                    <p>Test your knowledge about Korea!</p>
+                    <button class="action-btn" id="startBtn">Start Quiz</button>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </main>
+
+    <!-- ===============================
+     CAPTURE EDITOR MODAL
+    ================================ -->
+    <div id="captureEditor" class="editor-overlay editor-hidden">
+        <div class="editor-panel">
+
+            <!-- 헤더 -->
+            <div class="editor-header">
+                <h3>Edit Result</h3>
+                <button id="closeEditorBtn">✕</button>
+            </div>
+
+            <!-- 본문 -->
+            <div class="editor-body">
+
+                <!-- 왼쪽 : 캡쳐 / 크롭 -->
+                <div class="editor-canvas">
+                    <img id="capturedImage" alt="captured">
+
+                    <!-- ✅ CROP OVERLAY DOM 복구 -->
+                    <div id="cropOverlay" class="editor-hidden">
+                        <div class="crop-mask top"></div>
+                        <div class="crop-mask bottom"></div>
+                        <div class="crop-mask left"></div>
+                        <div class="crop-mask right"></div>
+
+                        <div id="cropBox">
+                            <div class="handle nw"></div>
+                            <div class="handle ne"></div>
+                            <div class="handle sw"></div>
+                            <div class="handle se"></div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="game-card" id="gameCard">
-                    <div class="start-screen">
-                        <p>Test your knowledge about Korea!</p>
-                        <button class="action-btn" id="startBtn">Start Quiz</button>
-                    </div>
+                <!-- 가운데 : 기존 컨트롤 -->
+                <div class="editor-controls">
+                    <h4>Edit</h4>
+
+                    <button id="cropModeBtn" class="editor-btn">Select Area</button>
+                    <button id="applyCropBtn" class="editor-btn primary">Apply Crop</button>
+
+                    <hr>
+
+                    <!-- 👕 버튼 -->
+                    <button id="applyToTshirtBtn" class="editor-btn secondary">
+                        👕 Apply to T-shirt
+                    </button>
+
+                    <button id="saveImageBtn" class="editor-btn primary">
+                        Save Image
+                    </button>
                 </div>
             </div>
 
         </div>
-    </main>
+    </div>
+
+    <!-- =========================
+     T-SHIRT MODAL
+    ========================= -->
+    <div id="tshirtModal" class="editor-overlay editor-hidden">
+        <div class="editor-panel">
+
+            <!-- 헤더 -->
+            <div class="editor-header">
+                <h3>T-shirt Preview</h3>
+                <button id="closeTshirtBtn">✕</button>
+            </div>
+
+            <!-- 본문 -->
+            <div class="tshirt-modal-body">
+
+                <div class="tshirt-preview">
+                    <div class="tshirt-capture">
+                        <img class="tshirt-base" src="/images/tshirt.png" />
+                        <img id="tshirt-design" />
+                    </div>
+                </div>
+
+                <!-- ✅ 프린트 크기 조절 -->
+                <input type="range" id="printScale" min="20" max="80" value="45"
+                    style="width: 200px; margin-bottom: 20px;">
+
+                <button id="saveTshirtBtn" class="editor-btn primary">
+                    👕 Save T-shirt Image
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
 
     <!-- ================= FOOTER ================= -->
     <footer class="local-main-footer">
@@ -243,6 +554,8 @@
     <script src="../js/common.js"></script>
     <script src="../js/learn.js"></script>
     <script src="../js/language.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 </body>
 
