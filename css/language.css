@@ -177,35 +177,6 @@ body {
 /* ==========================================================
    WORKSPACE
 ========================================================== */
-#board-area {
-    display: flex;
-    justify-content: center;
-}
-
-#workspace-wrapper {
-    width: 100%;
-    max-width: 650px;
-    position: relative;
-    padding-top: 54px;
-
-    background: #ffffff;
-    border-radius: 14px;
-    padding: 16px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-}
-
-#workspace {
-    width: 600px;
-    height: 500px;
-    margin: 0 auto;
-    background: var(--card);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-strong);
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-}
-
 #workspace-hint {
     position: absolute;
     inset: 0;
@@ -215,7 +186,47 @@ body {
     color: #aaa;
     font-size: 0.95rem;
     pointer-events: none;
+    z-index: 5;
+    /* 추가: learn.css와의 충돌 방지 */
+    transform: none !important; 
+    top: 0 !important;
+    left: 0 !important;
 }
+
+
+#board-area {
+    display: flex;
+    justify-content: center;
+}
+
+#workspace-wrapper {
+  width: 730px;
+  max-width: 750px;
+  position: relative;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+#workspace {
+    width: 600px;
+    height: 500px;
+    margin: 0 auto;
+    margin-top: 58px;
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-strong);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    background-image: radial-gradient(#ddd 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+
+
 
 /* ==========================================================
    TOOL BUTTONS
@@ -229,7 +240,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
+    padding: 8px 10px;
     z-index: 10;
 }
 
@@ -243,14 +254,17 @@ body {
 .right-tools button {
     padding: 10px 12px;
     margin-right: 8px;
+    margin-left: 5px;
     border-radius: 10px;
     border: none;
     font-size: 0.9rem;
     font-weight: 700;
     cursor: pointer;
 
-    background: #f2f2f2;   /* ← 기본 배경 */
-    color: #333;           /* ← 기본 글자색 */
+    background: #ffffff;
+    /* ← 기본 배경 */
+    color: #333;
+    /* ← 기본 글자색 */
 
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
     transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease;
@@ -268,11 +282,12 @@ body {
 
 .right-tools button {
     background: var(--danger);
-    color: #c71c1c;
+    color: #ffffff;
 }
 
 .right-tools button:hover {
     background: var(--danger);
+    background-color: #cc5757
 }
 
 #toolButtons .active {
@@ -280,6 +295,27 @@ body {
         0 0 0 2px rgba(255, 255, 255, 0.7),
         0 8px 18px rgba(0, 0, 0, 0.14);
 }
+
+.ws-bg-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 10px;
+}
+
+.ws-bg-controls input[type="color"] {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.ws-bg-controls input[type="range"] {
+    width: 90px;
+}
+
 
 /* ==========================================================
    DRAG PIECES
@@ -297,10 +333,32 @@ body {
 .circle {
     position: absolute;
     border-radius: 50%;
-    opacity: 0;
+    box-sizing: border-box;
+}
+
+/* ===== 기본 도넛 구조 ===== */
+.circle.donut {
     background: transparent;
     border: 10px solid currentColor;
-    cursor: pointer;
+}
+
+.circle.donut .hole {
+    position: absolute;
+    inset: 28%;
+    background: #fff;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    /* ✅ 테트리스용 테두리 */
+}
+
+/* ===== 꽉 찬 원 ===== */
+.circle.solid {
+    background: currentColor;
+    border: none;
+}
+
+.circle.solid .hole {
+    display: none;
 }
 
 .letter-group {
@@ -353,10 +411,11 @@ body.eraser-mode * {
 
 /* 오른쪽 : 조합 보드 */
 .builder-board {
-    flex: 0 0 42%;
+    flex: 0 0 40%;
+    width: 100%;
     background: #f3f3f3;
     border-radius: 18px;
-    padding: 93px;
+    padding: 20px;
 }
 
 /* 반응형: 모바일에서는 세로 */
@@ -432,6 +491,747 @@ body.eraser-mode * {
     border-radius: 12px;
     font-size: 0.85rem;
     font-weight: 600;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
     z-index: 20;
+}
+
+/* ===============================
+   Structure Explanation Box
+================================ */
+.structure-explanation {
+    margin-top: 14px;
+    padding: 14px 18px;
+    background: #ffffff;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* 숨김 상태 */
+.structure-explanation.hidden {
+    display: none;
+}
+
+/* ===============================
+   THEME TOOLBAR
+================================ */
+.theme-toolbar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.theme-btn {
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid #cfcfcf;
+    background: #efefef;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.15s ease;
+}
+
+.theme-btn:hover {
+    background: #e0e0e0;
+}
+
+.theme-btn.active {
+    background: #222;
+    color: #fff;
+    border-color: #222;
+}
+
+
+#captureButton {
+    background: #ffffff;
+    color: #333;
+    font-size: 24px;
+    padding: 0 8px;
+    padding-bottom: 8px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    transition: transform 0.12s ease, background 0.12s ease;
+}
+
+#captureButton:hover {
+    background: #e6e6e6;
+    transform: scale(1.05);
+}
+
+.custom-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+
+.custom-panel button:hover {
+    background: #e0e0e0;
+}
+
+.hidden {
+    display: none;
+}
+
+.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    filter: grayscale(1);
+}
+
+/* ===============================
+   CUSTOM MODE LAYOUT (FINAL FIX)
+================================ */
+
+/* 🔹 회색 컨테이너 (조합시트와 동급) */
+#customLayout {
+    background: #f3f3f3;
+    border-radius: 24px;
+    padding: 24px;
+    padding-left: 115px;
+}
+
+/* 🔹 내부 정렬 (좌우 배치) */
+.custom-layout-inner {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+/* 🔹 커스텀 만들기 */
+.custom-tools {
+    width: 220px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 12px;
+    box-shadow: var(--shadow);
+}
+
+/* 🔹 커스텀 시트 카드 */
+.custom-sheet {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+}
+
+/* 🔹 커스텀 시트 (완전 빈 흰 배경) */
+#customCanvas {
+    width: 600px;
+    height: 530px;
+    /* 자음/모음 박스 비율 */
+    background: #ffffff;
+    border-radius: 14px;
+    position: relative;
+}
+
+.custom-shape.selected {
+    outline: 2px dashed #4a90e2;
+    outline-offset: 2px;
+}
+
+
+.custom-tools h4 {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.custom-tools button {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: none;
+    margin: 6px 0;
+    background: #f3f3f3;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.custom-tools button:hover {
+    background: #e6e6e6;
+}
+
+.custom-tools button.active {
+    background: #222;
+    color: #fff;
+}
+
+#moveModeBtn {
+    background: #4a6fa5;
+    color: #fff;
+}
+
+#moveModeBtn.active {
+    background: #222;
+}
+
+/* ===============================
+   Custom Tools – Form Layout
+================================ */
+
+.custom-section {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #eee;
+}
+
+.section-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.custom-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.custom-field label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    /* ✅ 세미볼드 */
+    color: #555;
+}
+
+.custom-field input[type="number"],
+.custom-field input[type="color"] {
+    height: 34px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 0.85rem;
+}
+
+.inline-controls {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+/* 버튼 통일 */
+.custom-tools button {
+    margin-top: 6px;
+}
+
+/* Shape 버튼만 살짝 강조 */
+#addCustomStroke,
+#addCustomCircle {
+    flex: 1;
+    border-radius: 999px;
+}
+
+/* 모든 커스텀 인풋 폭 고정 */
+.custom-field input[type="number"],
+.custom-field input[type="color"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* + / - 같이 있는 줄 */
+.inline-controls {
+    display: flex;
+    gap: 6px;
+    width: 100%;
+}
+
+.inline-controls input {
+    flex: 1;
+    /* ← 핵심 */
+    min-width: 0;
+    /* ← overflow 방지 */
+    font-family: monospace;
+    text-transform: uppercase;
+}
+
+/* + / - 버튼 크기 고정 */
+.inline-controls button {
+    flex: 0 0 36px;
+    height: 34px;
+    padding: 0;
+}
+
+/* 섹션 토글 버튼 */
+.section-toggle {
+    width: 100%;
+    text-align: left;
+    font-size: 0.85rem;
+    font-weight: 700;
+    background: none;
+    border: none;
+    padding: 6px 0;
+    cursor: pointer;
+    color: #333;
+}
+
+/* 화살표 */
+.section-toggle::after {
+    content: "▾";
+    float: right;
+    transition: transform 0.2s ease;
+}
+
+.section-toggle.open::after {
+    transform: rotate(180deg);
+}
+
+/* 내용 영역 */
+.section-body {
+    margin-top: 10px;
+}
+
+/* 접힌 상태 */
+.section-body.collapsed {
+    display: none;
+}
+
+#clearCustomCanvas {
+    color: #c71c1c;
+    /* 조합시트 전체삭제 버튼이랑 비슷한 붉은 톤 */
+}
+
+
+/* Sheet Color / 투명도 툴 */
+.sheet-tool {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 🎨 Sheet Color - toolbar color button
+   (Same as Custom Fill Color)
+*/
+/* 컨테이너 */
+.color-picker-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 84px;
+    height: 42px;
+
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+
+    cursor: pointer;
+    transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.color-picker-box:hover {
+    background: #f0f0f0;
+    box-shadow: inset 0 0 0 999px rgba(0,0,0,0.02);
+}
+
+.color-swatch-btn {
+    width: 60px;
+    height: 24px;
+
+    border: none;
+    border-radius: 6px;
+    padding: 0;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    background: none;
+    cursor: pointer;
+
+    pointer-events: none; /* 🔥 핵심 */
+}
+
+
+.tool-popup {
+    position: absolute;
+    top: 42px;
+    left: 0;
+    padding: 10px 12px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    z-index: 20;
+    min-width: 140px;
+}
+
+#sheetOpacityWrapper {
+    position: absolute;
+    top: 42px;
+    left: 0;
+
+    background: #ffffff;
+    padding: 10px 12px;
+    border-radius: 12px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    z-index: 20;
+}
+
+#sheetOpacityWrapper input[type="range"] {
+    width: 120px;
+}
+
+#sheetColorPopup input[type="color"] {
+    width: 120px;
+    height: 36px;
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+}
+
+/* =========================================
+   CAPTURE EDITOR MODAL (CLEAN)
+========================================= */
+.editor-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-hidden {
+  display: none !important;
+}
+
+.editor-panel {
+  width: min(1100px, 92vw);
+  height: 82vh;
+  background: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.editor-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editor-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.editor-header button {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.editor-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 20px;
+  padding: 20px;
+  min-height: 0;
+}
+
+/* 왼쪽 미리보기 영역 */
+.editor-canvas {
+  position: relative;
+  background: #f4f4f4;
+  border-radius: 14px;
+  overflow: hidden;
+  display: block;
+}
+
+/* 캡쳐 이미지 (드래그 가능하게) */
+#capturedImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #ffffff;
+}
+
+#capturedImage.dragging {
+  cursor: grabbing;
+}
+
+/* ===== Crop Overlay ===== */
+#cropOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* 딤 마스크 */
+.crop-mask {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+/* 크롭 박스 */
+#cropBox {
+  position: absolute;
+  border: 3px solid #111;
+  box-sizing: border-box;
+  cursor: move;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+#cropBox .handle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #111;
+  border-radius: 50%;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.handle.nw { top: -6px; left: -6px; cursor: nwse-resize; }
+.handle.ne { top: -6px; right: -6px; cursor: nesw-resize; }
+.handle.sw { bottom: -6px; left: -6px; cursor: nesw-resize; }
+.handle.se { bottom: -6px; right: -6px; cursor: nwse-resize; }
+
+/* 오른쪽 컨트롤 */
+.editor-controls {
+  background: #fafafa;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-controls h4 {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.editor-btn {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  background: #eaeaea;
+  color: #333;
+}
+
+.editor-btn.primary {
+  background: #4a6fa5;
+  color: #fff;
+}
+
+.editor-btn.secondary {
+  background: #dddddd;
+}
+
+.editor-btn.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.editor-controls hr {
+  margin: 12px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+/* 캡쳐 전용 모드 */
+.capture-mode * {
+  filter: none !important;
+  box-shadow: none !important;
+  mix-blend-mode: normal !important;
+}
+
+/* =========================================
+   T-SHIRT MODAL (CLEAN)
+========================================= */
+.tshirt-modal-body {
+  padding: 22px 26px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.tshirt-preview {
+  position: relative;
+  width: min(520px, 86vw);
+  border-radius: 14px;
+  background: #f4f4f4;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tshirt-base {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.tshirt-capture {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+
+/* 프린트(캡쳐 결과물) */
+#tshirt-design {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* ✅ 문법 수정 */
+  width: 42%;
+  height: auto;
+  cursor: grab;
+  user-select: none;
+  pointer-events: auto;
+}
+
+#tshirt-design.dragging {
+  cursor: grabbing;
+}
+
+
+
+/* ==========================================================
+   LEARN.CSS OVERRIDE (Hangul Builder only)
+   - learn.css가 #consonant-container / #vowel-container를 flex로 바꿔서 깨지는 문제 복구
+========================================================== */
+
+/* learn 탭 중 builder에서만 강제 복구 */
+.learn-container #builder #consonant-container,
+.learn-container #builder #vowel-container{
+  display: block !important;         /* ❌ flex 금지 */
+  position: relative !important;     /* 절대좌표 기준 */
+  gap: 0 !important;
+  min-width: 0 !important;
+}
+
+/* 원래 language.css가 의도한 캔버스 크기 유지 */
+.learn-container #builder #consonant-container{
+  width: 580px !important;
+  height: 240px !important;
+}
+.learn-container #builder #vowel-container{
+  width: 780px !important;
+  height: 220px !important;
+}
+
+/* learn.css가 scale-container에 overflow-x auto 걸어둔 흔적 무력화 */
+.learn-container #builder .scale-container{
+  overflow: visible !important;
+  padding-bottom: 0 !important;
+  transform-origin: top center !important;
+}
+
+/* 힌트 텍스트 가운데 정렬(learn.css transform 충돌 방지) */
+.learn-container #builder #workspace-hint{
+  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* 힌트 기본 상태 */
+#workspace-hint{
+  display: flex;
+}
+
+/* 🔥 조합시트에 뭐라도 있으면 힌트 숨김 */
+#workspace:has(.placed-piece) #workspace-hint{
+  display: none !important;
+}
+
+/* Custom Tools header */
+.custom-tools-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+/* ❓ 버튼 – Custom Tools 전용 아이콘 버튼 */
+.custom-tools-header .help-btn {
+    all: unset;                /* 🔥 이 파일에서 제일 중요한 한 줄 */
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #333;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 12px;
+}
+
+.custom-tools-header .help-btn:hover {
+    background: #4a6fa5;
+    color: #fff;
+}
+
+/* 도움말 팝오버 */
+.help-popover {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 300px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    font-size: 13px;
+    line-height: 1.5;
+    display: none;
+    z-index: 100;
+}
+
+.help-popover h5 {
+    margin: 0 0 6px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.help-popover hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 10px 0;
 }
